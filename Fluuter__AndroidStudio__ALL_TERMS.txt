@@ -1,0 +1,320 @@
+Android Studio: Android Studio ek all-in-one software hai jahan Android apps likhne, test karne, aur build karne ke saare tools ek hi jagah miltay hain.”
+
+Google ne IntelliJ IDEA ka Community Edition liya, usmein Android-specific features add kiye jaise:
+
+Layout editor
+
+APK builder
+
+Gradle support
+
+Emulator tools
+
+Logcat console
+Aur bana diya ek custom IDE jise hum kehte hain Android Studio.
+
+-> Version Control (Git): Android Studio supports Git integration. You can commit, push, pull, and resolve conflicts from within the IDE.
+
+IDE: Integrated Development Environment-- Jahan code likha jata hai (editor), compile hota hai (compiler), errors check kiye jaate hain (debugging), aur run kiya jata hai — basically ek aisi jagah jo programmers ko tools provide karti hai takay wo software ya app develop kar saken.
+
+Version: Version of our app is a necessity to know where are code will run and then in future on which versions it will work.
+
+Gradle: Gradle decide karta hai ke kaunsa code compile hoga, kaunsi libraries include hongi, aur APK kaise build hoga.
+-> Gradle files .gradle extension mein hoti hain, jismein build.gradle sabse important file hai — ismein hum SDK versions, dependencies, aur build types define karte hain.
+
+-> Gradle Sync: Jab bhi hum dependencies ya build files mein koi changes karte hain, to Android Studio Gradle ke sath re-sync karta hai taake naye changes apply ho jaayen.
+Ye step important hota hai taake IDE naye updates aur libraries ko samajh sake.
+
+-> Build Variants: Build Variants ki madad se hum app ke multiple versions define kar saktay hain — jaise:
+
+--> debug vs release (development aur production)
+
+--> free vs paid (product flavors) ( free app main ads hon jubke paid me ads na hon )
+
+Har variant ka apna layout, code aur configurations ho sakti hain — ye flexibility deti hai ek hi codebase se multiple apps banane ki.
+
+Compilation Flow: Yeh flow start hota hai jab hum code likhtay hain, phir Gradle us code ko compile karta hai, uske baad build banaya jata hai, aur phir app emulator ya physical device par run hoti hai. Yeh pura process Android Studio khud manage karta hai, lekin humein is flow ka pata hona chahiye taake agar koi error aaye, to hum samajh saken ke wo kis stage par hua hai — compilation, build ya run time.
+
+Managing Dependencies: Dependencies wo external libraries hoti hain jo hum apni app mein use karte hain taake humein har cheez ka code khud na likhna pade.
+Jaise agar humein images load karni hain to hum Glide use karte hain, aur agar API se data lena ho to hum Retrofit use karte hain. In libraries ko use karne ke liye hum unki dependency ko apni build.gradle file mein add karte hain. Jab dependency add ho jati hai to Android Studio Gradle Sync karta hai taake wo library project mein download ho kar properly integrate ho jaye.
+
+Example:
+implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+implementation 'com.github.bumptech.glide:glide:4.11.0'
+
+SDK Version: Software Development Kit -- tools aur libraries ka ek collection hota hai jo humein ek specific platform, OS ya programming language ke liye app banane mein madad deta hai — Android ke case mein Android apps develop karne ke liye.
+
+-> compileSdkVersion: Yeh woh SDK version hai jis par tumhara app compile ho raha hota hai.
+Isse pata chalta hai ke tum latest features aur APIs ko kitna use kar sakte ho.
+
+-> minSdkVersion: Yeh define karta hai ke app minimum kis Android version se start ho kar chalegi. Agar minSdkVersion 21 hai, to app Android 5.0 (Lollipop) aur usse upar wale versions par chalegi, neeche wale par nahi.
+
+->  targetSdkVersion: Yeh batata hai ke app kis Android version ke behavior ke according optimize ki gayi hai. Google Play Store bhi ensure karta hai ke tumhari app latest Android behaviors follow kare. NOTE: Android Studio normally maxSdkVersion nahi specify karta, lekin hum targetSdkVersion ke through ye ensure karte hain ke app naye OS versions pe bhi compatible aur stable ho.
+
+SDK Manager: Android Studio ka ek tool hota hai jisse tum various Android SDK versions, system images, aur tools install aur update kar saktay ho. Yeh zaroori hota hai taake tumhara app compatible ho latest features ke sath.
+
+Min Max OS Support: Min/Max OS support ka matlab hota hai ke humari app kis minimum aur maximum Android operating system versions par kaam karegi.
+
+Multiple Screen Resolution Supports: Android mein har device ka screen size aur resolution alag hota hai, isliye humein apne layouts ko responsive banana padta hai taake app har device pe achhi lage aur sahi kaam kare.
+
+-> DP (Density-independent Pixels): Hum px ke bajaye dp use karte hain taake elements har screen par proportional dikhein — chahe screen chhoti ho ya badi.
+ 
+->  Multiple Resource Folders: Hum alag alag screen sizes aur densities ke liye alag folders banate hain:
+layout-small, layout-large, layout-sw600dp, etc.
+drawable-mdpi, drawable-hdpi, drawable-xhdpi, drawable-xxhdpi — taake images blur na hoon aur har screen pe crisp dikhein.
+
+Project Structure: Android Studio ka har project kuch important folders aur files par based hota hai jo app ke alag alag parts ko handle karte hain:
+
+-> manifest/: Ye folder AndroidManifest.xml file rakhta hai jo app ka entry point hota hai.
+Yahan hum define karte hain:
+	--> app ka naam
+	--> starting activity
+	--> permissions (jaise internet access)
+	--> themes, icons, etc.
+
+-> java/: Is folder mein apka actual code hota hai — jaise classes, activities, fragments, aur logic. Agar tum Kotlin use kar rahe ho to kotlin/ naam ka folder bhi ho sakta hai.
+
+-> res/: Ye folder app ke visual aur text elements rakhta hai:
+	--> layout/ → XML files for UI design
+	--> drawable/ → Images and icons
+	--> values/ → Strings, colors, dimensions
+	--> menu/ → XML menus
+
+-> build.gradle: build.gradle ek important configuration file hoti hai jisme hum:
+	--> compileSdkVersion, minSdkVersion, targetSdkVersion
+	--> dependencies (jaise Retrofit, Glide waghera)
+	--> aur build settings (jaise debug ya release type) define karte hain.
+Yahi file Gradle ko batati hai ke app ko kaise build karna hai aur kaunsi cheezen include karni hain.
+
+Project Creation: Jab hum Android Studio mein naya project create karte hain, to kuch basic steps follow karte hain jisme hum app ka initial setup tay karte hain:
+-> Give app a name
+-> Give a name to the package.
+-> We select the language (Kotlin/java/Dart).
+-> SDK version choose krna: minSdkVersion → App minimum kis OS version pe chalegi. targetSdkVersion → App kis version pe optimized hogi. compileSdkVersion → App kis SDK pe compile hogi
+
+Run Project: Jab hum app run karna chahte hain, to Android Studio mein kuch basic steps follow karte hain jisse app emulator ya device pe chalti hai:
+
+-> Pehle hum ya to emulator (jo ek virtual Android phone hota hai) chalatay hain ya apna real Android phone USB se connect karte hain.
+
+-> Android Studio ke top bar pe jo green run button hota hai, usse click karte hi Gradle app ko build karta hai.
+
+-> Gradle builds the app and Jaise hi build complete hota hai, app device/emulator par automatically launch ho jaati hai.
+
+-> Instant Run: Android Studio ka feature hai jo allow karta hai ke agar humne code mein koi choti change ki ho, to poori app dobara install na ho — sirf woh change apply ho jaaye.
+Isse development fast ho jaata hai.
+
+Testing: Unit testing, Instrumentation testing:
+-> Unit Testing mein hum app ke chhote chhote components (like functions, classes) ko alag se test karte hain taake verify kar saken ke wo sahi kaam kar rahe hain ya nahi. Android Studio JUnit aur Mockito jaise tools use karta hai iske liye.
+
+-> Instrumentation Testing ka matlab hai app ko real device/emulator pe test karna with full integration — UI elements, database, APIs sab ke interactions test hote hain. Android Studio Espresso aur UIAutomator jaise tools use karta hai iske liye.
+
+Debugging (Print Variables. Checking Loaded Screen, Checking Stack, Exceptional Breakpoints, StepOver, StepInto, Continue):
+-> Debugging ka matlab hota hai code mein jo bugs ya errors hain unko trace karna aur unka solution dhoondhna. Android Studio hume debugging ke liye kaafi useful tools provide karta hai:
+
+-> Logcat: Android Studio ka console jahan real-time logs dikhte hain — jaise errors, warnings, aur custom debug messages. Ye debugging mein sabse zyada use hota hai.
+
+-> Print varaibles mean something like Log.d("Tag", variable) isse logcat main woh value print hojaati hay.
+
+-> Check Loaded Screen: Emulator screen ya Layout Inspector se dekh sakte hain ke kaunsa screen load hua hai aur layout kaise render ho raha hai.
+
+-> Checking Stack: Jab koi error aata hai, to console tab mein stack trace dikhayi deta hai — jisme function calls ka order hota hai jahan tak code pohanch chuka tha. Isse pata chalta hai error kahan aur kis line pe hua.
+
+-> Breakpoints: Hum kisi bhi line par red dot ya red circle laga kar code execution ko wahan stop karwa sakte hain — taake hum dekh saken ke us waqt variable ki value kya thi.
+
+-> StepOver: Ek line execute karke next line pe chala jata hai bina method ke andar jaaye.
+
+-> StepInto: Agar uss line mein koi method/function call hai to ye uske andar chala jaata hai taake hum function ke andar ka flow samajh saken.
+
+-> Continue: Code execution ko next breakpoint tak chala deta hai bina rukaye.
+
+Apk Generation (Singed, Unsigned): Jab humari app tayar ho jati hai, to uska ek APK (Android Package) banaya jata hai jise install ya share kiya ja sakta hai.
+APK generate karne ke 2 tareeqay hote hain:
+
+-> Unsigned APK: Ye sirf testing ke liye hoti hai.
+Isme koi verification nahi hoti, aur isay sirf locally device pe run karne ke liye use kiya jata hai. Play Store pe ye upload nahi ho sakti.
+
+-> Signed APK: Ye APK production ya Play Store par launch karne ke liye hoti hai.
+Isme ek digital certificate hota hai jo prove karta hai ke app kis developer ne banayi hai.
+Ye certificate keystore file ke through attach hota hai.
+
+Keystore Management: Keystore Management ka matlab hai ke tumhari Signed APK ko protect karne ke liye jo digital certificate use hota hai, usay manage karna. Android Studio mein tum ek `.jks` file create karte ho jisme credentials hote hain — ye hi keystore hoti hai jo APK sign karti hai.
+
+Framework Vs Library Vs Project: App development mein teen important concepts hote hain — Framework, Library, aur Project. In teeno ka role alag hota hai, lekin ye milke kaam karte hain: 
+
+-> Framework: Ek predefined structure hota hai jisme hum apna code likhte hain.
+Framework already rules set karta hai, aur hum uske according kaam karte hain.
+Jaise: Android khud ek framework hai jo Activity, UI Components, Lifecycle waghera define karta hai. We work in framework.
+
+-> Library: k library ek reusable code ka set hoti hai jo kisi specific kaam ke liye banayi gayi hoti hai. Hum usay apne control mein use karte hain jab chahiye.
+Examples:
+	--> Picasso: Images load karne ke liye
+	--> Firebase: Backend, Auth, Notifications
+	--> Retrofit: API calls
+
+-> Project: Ye tumhari apni app hoti hai — jisme tum Android framework ka structure follow kar rahe hote ho, aur libraries ka code use kar rahe hote ho.
+Project mein UI, logic, backend sab kuch hota hai.
+
+Universal App (To target Multiple Devices): Universal app aisi app hoti hai jo multiple devices par smoothly kaam karti hai — chahe wo phone ho, tablet ho, foldable phone ho ya smartwatch.
+
+Top Menu All Items: Following are the list of all the items in top menu:
+-> File:  New → Naya project, file, class, activity ya XML file create karne ke liye.
+
+🔹 Open…
+Pehle se existing project ko open karne ke liye.
+
+🔹 Profile or Debug APK
+Kisi already built APK ko open kar ke uska structure, resources aur performance analyze karne ke liye.
+
+🔹 Recent Projects →
+Tumhare recently open kiye gaye projects ki list dikhata hai — quick access ke liye.
+
+🔹 Close Project
+Current project ko band karta hai aur Android Studio home screen pe wapas le jata hai.
+
+🔹 Settings... (Ctrl+Alt+S)
+IDE ke internal settings (themes, editor, shortcuts, etc.) ko customize karne ke liye.
+
+🔹 Project Structure... (Ctrl+Alt+Shift+S)
+Project-specific settings jaise:
+	--> SDK version
+	--> dependencies
+	--> module settings
+
+🔹 File Properties
+File ka size, path aur encoding jaise technical properties check karne ke liye.
+
+🔹 Local History →
+Har file ke pichlay versions ko dekhne aur restore karne ke liye — agar accidentally kuch delete ho jaye to useful hai.
+
+🔹 Save All (Ctrl+S)
+Sabhi open files ko ek saath save karta hai.
+
+🔹 Sync Project with Gradle Files (Ctrl+Shift+O)
+Jab Gradle files (dependencies ya settings) change ho jaayein to unhe Android Studio ke sath re-sync karta hai.
+
+🔹 Reload All from Disk (Ctrl+Alt+Y)
+Sab files ko hard disk se fresh read karta hai — agar manually file change ki ho to use reflect karne ke liye.
+
+🔹 Repair IDE
+IDE mein agar koi problem ho jaaye (like crash, lag), to isse fix karne ki try karta hai.
+
+🔹 Invalidate Caches…
+IDE ke temporary files clear karta hai taake performance issues ya indexing problems solve ho sakein.
+
+🔹 Manage IDE Settings →
+Settings ko import/export karne ya reset karne ke options deta hai.
+
+🔹 New Projects Setup →
+Default SDK, themes, aur settings jo har naye project pe lagengi, unko configure karne ke liye.
+
+🔹 Export
+Project ya settings ko kisi aur format mein export karne ke liye (like backup).
+
+🔹 Print...
+Code ya file ko print karne ke liye (disabled in most cases).
+
+🔹 Power Save Mode
+Ye mode CPU-heavy tasks band karta hai (jaise indexing) taake battery aur performance save ki jaaye.
+
+🔹 Exit
+IDE band karta hai.
+
+
+-> Edit:
+Undo / Redo: Code ko peeche ya aage le jaata hai (Ctrl+Z / Ctrl+Shift+Z)
+
+Cut / Copy / Paste: Text ya code ka movement
+
+Delete Line / Duplicate Line: Fast editing ke liye
+
+Find / Replace: Search aur update code in bulk
+
+Indent / Re-indent Line: Proper spacing set karne ke liye
+
+Comment / Uncomment: Quickly kisi code block ko disable/enable karne ke liye
+
+🔹 Macro ko Save bhi kar sakte ho:
+Taake tum uska shortcut key assign kar sako ya baar baar use kar sako.
+
+
+-> View: IDE ke tools aur windows toggle karne ke liye:
+
+	--> Tool Windows → (Logcat, Terminal, Profiler, Problems, Event Log)
+	--> Layout Editor, Structure, Device File Explorer
+	--> Appearance (Toolbar on/off, Full Screen)
+	--> Enter Distraction Free Mode
+	--> Recent change dekh skty hain
+
+-> Navigate: Code ya file fast access karne ke liye:
+	--> Class, File, Symbol
+	--> Back, Forward, Search Everywhere
+	--> Go to Declaration, Implementation, Super Method
+	--> Line Number, Last Edit Location
+
+-> Code: Auto code tools:
+	--> Generate (constructors, getters, setters)
+	--> Override/Implement Methods
+	--> Reformat Code, Optimize Imports
+	--> Comment/Uncomment Code
+	--> Surround With, Code Completion
+
+->Refactor: Safe code editing tools:
+	--> Rename, Move, Change Method Signature
+	--> Extract Variable, Extract Method/Class
+	--> Safe Delete
+
+-> Build: Project build karne ke options:
+	--> Make Project, Rebuild Project, Clean Project
+	--> Build APK / Bundle
+	--> Generate Signed APK
+	--> Build Configurations
+
+-> Run: App ko run aur debug karne ke options:
+	--> Run 'app'
+	--> Debug 'app'
+	--> Edit Configurations
+	--> Stop, Restart
+	--> Attach Debugger
+
+-> Tools: Android tools and integrations:
+	--> AVD Manager (Emulator setup)
+	--> SDK Manager
+	--> Firebase Assistant
+	--> App Links Assistant
+	--> Layout Inspector
+	--> Terminal, Task Manager
+-> VCS (Version Control ): Git ya other version control systems ke liye:
+	--> Commit, Push, Pull
+	--> Clone Repository
+	--> Git Branches, History, Merge
+	--> Resolve Conflicts
+
+-> Help: Android Studio related support:
+	--> Check for Updates
+	--> Documentation, Keymap Reference
+	--> Submit Feedback, About Android Studio
+	--> Show Tips of the Day
+
+Project Configuration Files: Android Studio project mein kuch important configuration files hoti hain jo app ke build process, structure, aur modules ko control karti hain. In files ko samajhna zaroori hai taake hum app ko sahi tarike se customize aur maintain kar saken.
+
+-> AndoridManifest.xml: Ye file app ka structure define karti hai, jismein:
+	--> App ka package name
+	--> Launch activity
+	--> Permissions (jaise internet, camera, etc.)
+	--> App ke components (activities, services, broadcast receivers) listed hotay hain.
+
+-> Build.gradle: Ye file app ka build configuration control karti hai:
+	--> SDK versions (min, target, compile)
+	--> Dependencies (libraries jaise Retrofit, Glide)
+	--> Build types (debug, release)
+	--> Signing configurations, ProGuard, etc.
+	--> Project-level build.gradle → global settings
+	--> Module-level build.gradle → specific module settings
+
+-> settings.gradle: Is file mein define hota hai ke project ke andar kitne modules hain.
+Agar tumhare paas ek se zyada modules hain (like app + library module), to woh yahin list hote hain.
+
+-> gradle.properties: Ye file project-level properties store karti hai — jaise:
+	--> JVM arguments
+	--> API keys
+	--> Boolean flags (jaise enableR8=true)
