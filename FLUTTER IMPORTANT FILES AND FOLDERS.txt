@@ -1,0 +1,29 @@
+FLUTTER IMPORTANT FILES AND FOLDERS
+
+-> .idea folder contains your code editor's project related settings
+
+-> android folder should be used or changed when you have to access android related settings only. Similar goes for mac-os and Linux
+
+-> debug mode means when we are creating the app and its not live
+
+-> release mode is when the app is complete and when it should be live
+
+-> build folder contains the output generated when you build or run the flutter project. It              also stores the build related files and folders like apks/bundles
+
+-> IMPORTANT -> ORANGE FOLDERS MEAN THAT THE FILES IN THAT FOLDER WILL BE CREATED ON RUN-TIME
+
+-> IMPORTANT -> lib folder is the main folder where all the flutter app related code is written and contains main.dart which has the entry point for the flutter app
+
+-> test folder contains all the system and unit testing for different aspects like battery usage, app size, etc are in this folder
+
+-> .ignore is a git specific file and is used specifically for including/excluding a file from GitHub when multiple members are working on the same project
+
+-> .metadata file contains flutter project related metadata the flutter uses on its own and there is no need for manual change in this file.
+
+-> .packages contains libraries/packages required in flutter and it holds the paths' for them. No need for manual change in this file
+
+-> IMPORTANT -> pubspec.yaml file should be changed to add image/assets/fonts/app version to add external dependencies.
+
+-> pubspec.lock file is a helper file that is created after calling pubspec.yaml file and it maintains the version of our app across different machines. No need to maintain it
+
+-> 
