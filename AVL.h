@@ -5,7 +5,7 @@
 #include"Node.h"
 #include"Record.h"
 using namespace std;
-
+ 
 class AVL{
 public:
 	Node* root;
