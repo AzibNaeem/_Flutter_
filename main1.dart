@@ -22,37 +22,42 @@ class MyHomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('ListView Types')),
-      body: Container(
-        width: double.infinity,
-        height: double.infinity,
-        color: Colors.blue,
-          child: Center(
-            child:Container(
-              height: 150,
-              width: 150,
-              decoration: BoxDecoration(
-                color: Colors.blueGrey,
-                border: Border.all(
-                  width: 7,
-                  color: Colors.black
-                ),
-                  borderRadius: BorderRadius.only(topLeft: Radius.circular(60), bottomRight: Radius.circular(60)),
-                  boxShadow: [
-                    BoxShadow(
-                  blurRadius: 11,
-                      color: Colors.grey,
-                      spreadRadius: 10,
-              ),
-                  ],
-                  // This should be done If we dont manually
-                //  do borderRadius: BorderRadius.only/any/circular,etc;
-                //  shape: BoxShape.circle,
+      appBar: AppBar(title: const Text('Expanded Widget Example')),
+      body: Column(
+        children: [
+          // Fixed height container
+          Container(
+            height: 100,
+            color: Colors.red,
+            child: const Center(child: Text('Fixed Height')),
+          ),
 
-              )
-            )
-      )
-      )
+          // Takes 1 part of remaining space
+          Expanded(
+            flex: 1,
+            child: Container(
+              color: Colors.green,
+              child: const Center(child: Text('Expanded (flex: 1)')),
+            ),
+          ),
+
+          // Takes 2 parts of remaining space
+          Expanded(
+            flex: 2,
+            child: Container(
+              color: Colors.blue,
+              child: const Center(child: Text('Expanded (flex: 2)')),
+            ),
+          ),
+
+          // Fixed height again
+          Container(
+            height: 100,
+            color: Colors.orange,
+            child: const Center(child: Text('Fixed Height')),
+          ),
+        ],
+      ),
     );
   }
 }
