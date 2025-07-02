@@ -19,64 +19,40 @@ class MyApp extends StatelessWidget {
 class MyHomePage extends StatelessWidget {
   const MyHomePage({super.key});
 
-  final List<String> janwar = const ["Mano Billi", "Dog", "Lion", "Tiger", "Cheetah","Hawk", "Hippopotamus", "Elephant"];
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text('ListView Types')),
-      body: Column(
-        children: [
-          const Padding(
-            padding: EdgeInsets.all(8.0),
-            child: Text('1. ListView.separated', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
-          ),
-          Expanded(
-            child: ListView.separated(
-              itemCount: janwar.length,
-              itemBuilder: (context, index) {
-                return ListTile(
-                  title: Text(janwar[index]),
-                );
-              },
-              separatorBuilder: (context, index) {
-                return const Divider(
-                  color: Colors.grey,
-                  thickness: 2,
-                );
-              },
-            ),
-          ),
-          const Padding(
-            padding: EdgeInsets.all(8.0),
-            child: Text('2. ListView.builder', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
-          ),
-          Expanded(
-            child: ListView.builder(
-              itemCount: 10,
-              itemBuilder: (context, index) {
-                return ListTile(title: Text('Item ${index + 1}'));
-              },
-            ),
-          ),
-          const Padding(
-            padding: EdgeInsets.all(8.0),
-            child: Text('3. Simple ListView', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
-          ),
-          Expanded(
-            child: ListView(
-              children: const[
-                ListTile(title: Text('THis is an example!')),
-                ListTile(title: Text('THis is an example!')),
-                ListTile(title: Text('THis is an example!')),
-                ListTile(title: Text('THis is an example!')),
-                ListTile(title: Text('THis is an example!')),
-                ListTile(title: Text('THis is an example!')),
-              ],
-            ),
-          ),
-        ],
-      ),
+      body: Container(
+        width: double.infinity,
+        height: double.infinity,
+        color: Colors.blue,
+          child: Center(
+            child:Container(
+              height: 150,
+              width: 150,
+              decoration: BoxDecoration(
+                color: Colors.blueGrey,
+                border: Border.all(
+                  width: 7,
+                  color: Colors.black
+                ),
+                  borderRadius: BorderRadius.only(topLeft: Radius.circular(60), bottomRight: Radius.circular(60)),
+                  boxShadow: [
+                    BoxShadow(
+                  blurRadius: 11,
+                      color: Colors.grey,
+                      spreadRadius: 10,
+              ),
+                  ],
+                  // This should be done If we dont manually
+                //  do borderRadius: BorderRadius.only/any/circular,etc;
+                //  shape: BoxShape.circle,
+
+              )
+            )
+      )
+      )
     );
   }
 }
