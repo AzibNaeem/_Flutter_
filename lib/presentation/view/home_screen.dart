@@ -33,48 +33,6 @@ class HomeScreen extends StatelessWidget {
       percentage: 1.0,
     );
 
-    final dashboardCards = [
-      _DashboardCard(
-        color: const Color(0xFFF2F2FF),
-        icon: Icons.calendar_today_outlined,
-        title: 'Leave & Attendance',
-        value: '2.600',
-        iconColor: Colors.black,
-      ),
-      _DashboardCard(
-        color: Colors.black,
-        icon: Icons.bar_chart,
-        title: 'Employee Report',
-        value: '2.600',
-        iconColor: Colors.white,
-        textColor: Colors.white,
-      ),
-      _DashboardCard(
-        color: Colors.blue,
-        icon: Icons.attach_money,
-        title: 'Salary Management',
-        value: '2.600',
-        iconColor: Colors.white,
-        badge: '+12%',
-        badgeColor: Colors.white,
-        badgeTextColor: Colors.blue,
-        textColor: Colors.white,
-      ),
-      _DashboardCard(
-        color: const Color(0xFFF6FAFF),
-        icon: Icons.school,
-        title: 'Onboarding & Training',
-        value: '2.600',
-        iconColor: Colors.black,
-        badge: '+12%',
-        badgeColor: Colors.white,
-        badgeTextColor: Colors.blue,
-      ),
-    ];
-
-    final scheduleTimes = ['08:00', '09:00', '09:35', '10:00'];
-    final selectedTime = '09:35';
-
     return Scaffold(
       endDrawer: CustomEndDrawer(menuItems: viewModel.menuItems),
       body: NestedScrollView(
@@ -104,101 +62,77 @@ class HomeScreen extends StatelessWidget {
             ),
           ];
         },
-        body: SafeArea(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    CircleAvatar(
-                      radius: 24,
-                      backgroundColor: Colors.purple[100],
-                    ),
-                    const SizedBox(width: 12),
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: const [
-                          Text('Welcome back!', style: TextStyle(fontSize: 14)),
-                          SizedBox(height: 2),
-                          Text('Eveline Murphy',
-                              style: TextStyle(
-                                  fontSize: 22, fontWeight: FontWeight.bold)),
-                        ],
-                      ),
-                    ),
-                    IconButton(
-                      icon: const Icon(Icons.notifications_none_rounded,
-                          size: 28),
-                      onPressed: () {},
-                    ),
-                  ],
-                ),
-              ),
-              Expanded(
-                child: SingleChildScrollView(
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 12),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        GridView.count(
-                          crossAxisCount: 2,
-                          shrinkWrap: true,
-                          physics: const NeverScrollableScrollPhysics(),
-                          crossAxisSpacing: 16,
-                          mainAxisSpacing: 16,
-                          childAspectRatio: 1.15,
-                          children: dashboardCards,
-                        ),
-                        const SizedBox(height: 32),
-                        const Text('Today Schedule',
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold, fontSize: 18)),
-                        const SizedBox(height: 16),
-                        Row(
-                          children: scheduleTimes.map((time) {
-                            final isSelected = time == selectedTime;
-                            return Padding(
-                              padding: const EdgeInsets.only(right: 12),
-                              child: Container(
-                                width: 80,
-                                height: 64,
-                                decoration: BoxDecoration(
-                                  color:
-                                      isSelected ? Colors.purple : Colors.white,
-                                  borderRadius: BorderRadius.circular(16),
-                                  border:
-                                      Border.all(color: Colors.grey.shade300),
-                                ),
-                                child: Center(
-                                  child: Text(
-                                    time,
-                                    style: TextStyle(
-                                      color: isSelected
-                                          ? Colors.white
-                                          : Colors.black,
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 20,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            );
-                          }).toList(),
-                        ),
-                        const SizedBox(height: 24),
-                      ],
-                    ),
-                  ),
-                ),
-              ),
-            ],
-          ),
+        body: ListView(
+          padding: const EdgeInsets.all(16.0),
+          children: [
+            UserAccountInfo(
+              name: 'Abdullah Umar',
+              role: 'Intern',
+              avatarUrl:
+              'https://www.google.com/imgres?q=avatar%20url&imgurl=https%3A%2F%2Fimg.freepik.com%2Ffree-psd%2F3d-illustration-human-avatar-profile_23-2150671142.jpg&imgrefurl=https%3A%2F%2Fwww.freepik.com%2Ffree-photos-vectors%2Favatar&docid=DjJcL6-DnnZi6M&tbnid=FwNZ5GOVnzizSM&vet=12ahUKEwjK5p6K9pqOAxVPXfEDHSvzIiAQM3oECE8QAA..i&w=626&h=626&hcb=2&ved=2ahUKEwjK5p6K9pqOAxVPXfEDHSvzIiAQM3oECE8QAA',
+            ),
+            const SizedBox(height: 16),
+            WorkButtons(
+              buttons: [
+                ButtonData(
+                    label: 'Start Work', color: Colors.teal, onPressed: () {}),
+                ButtonData(
+                    label: 'End Work',
+                    color: Colors.grey,
+                    onPressed: () {},
+                    outlined: true),
+              ],
+            ),
+            const SizedBox(height: 24),
+            _TitledCard(
+                title: 'Experience',
+                child: ExperienceCard(data: viewModel.experienceData)),
+            const SizedBox(height: 16),
+            _TitledCard(
+                title: 'Monthly Status',
+                child: MonthlyStatusCard(data: viewModel.monthlyStatusData)),
+            const SizedBox(height: 16),
+            _TitledCard(
+                title: 'Leaves',
+                child: LeavesCard(leaves: viewModel.leavesData)),
+            const SizedBox(height: 24),
+            _TitledCard(
+              title: 'Attendance',
+              child: const AttendanceSection(),
+            ),
+            const SizedBox(height: 24),
+            _TitledCard(
+                title: 'Reporting Manager',
+                child: SizedBox(
+                    height: 250,
+                    child: ReportingManagerCard(name: 'No Reporting Manager'))),
+            const SizedBox(height: 16),
+            _TitledCard(
+              title: 'User Profile',
+              child: SizedBox(
+                  height: 280, child: UserProfileCard.defaultCard()),
+            ),
+            const SizedBox(height: 16),
+            _TitledCard(title: 'Allocation', child: allocationCardWidget),
+            const SizedBox(height: 16),
+            _TitledCard(
+                title: 'MVP Stats',
+                child: SizedBox(
+                    height: 300,
+                    child: MvpStatsCard(stats: viewModel.mvpStatsData))),
+            const SizedBox(height: 24),
+            _TitledCard(
+                title: 'Perks',
+                child: SizedBox(
+                    height: 250, child: PerksCard(perks: viewModel.perksData))),
+            const SizedBox(height: 16),
+            _TitledCard(
+                title: 'Miscellaneous Info',
+                child: SizedBox(
+                    height: 300,
+                    child: MiscellaneousInfoCard(
+                        items: viewModel.miscellaneousInfoData))),
+          ],
         ),
       ),
     );
@@ -233,87 +167,6 @@ class _TitledCard extends StatelessWidget {
         const SizedBox(height: 8),
         child,
       ],
-    );
-  }
-}
-
-class _DashboardCard extends StatelessWidget {
-  final Color color;
-  final IconData icon;
-  final String title;
-  final String value;
-  final Color? iconColor;
-  final String? badge;
-  final Color? badgeColor;
-  final Color? badgeTextColor;
-  final Color? textColor;
-
-  const _DashboardCard({
-    required this.color,
-    required this.icon,
-    required this.title,
-    required this.value,
-    this.iconColor,
-    this.badge,
-    this.badgeColor,
-    this.badgeTextColor,
-    this.textColor,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        color: color,
-        borderRadius: BorderRadius.circular(20),
-      ),
-      padding: const EdgeInsets.all(20),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Icon(icon, color: iconColor ?? Colors.black, size: 28),
-              if (badge != null)
-                Container(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
-                  decoration: BoxDecoration(
-                    color: badgeColor ?? Colors.white,
-                    borderRadius: BorderRadius.circular(12),
-                  ),
-                  child: Text(
-                    badge!,
-                    style: TextStyle(
-                      color: badgeTextColor ?? Colors.blue,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 12,
-                    ),
-                  ),
-                ),
-            ],
-          ),
-          const SizedBox(height: 16),
-          Text(
-            title,
-            style: TextStyle(
-              color: textColor ?? Colors.black,
-              fontSize: 16,
-            ),
-          ),
-          const Spacer(),
-          Text(
-            value,
-            style: TextStyle(
-              color: textColor ?? Colors.black,
-              fontWeight: FontWeight.bold,
-              fontSize: 22,
-            ),
-          ),
-        ],
-      ),
     );
   }
 }
