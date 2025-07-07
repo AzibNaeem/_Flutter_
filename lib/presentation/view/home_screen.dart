@@ -65,23 +65,46 @@ class HomeScreen extends StatelessWidget {
         body: ListView(
           padding: const EdgeInsets.all(16.0),
           children: [
-            UserAccountInfo(
-              name: 'Abdullah Umar',
-              role: 'Intern',
-              avatarUrl:
-              'https://www.google.com/imgres?q=avatar%20url&imgurl=https%3A%2F%2Fimg.freepik.com%2Ffree-psd%2F3d-illustration-human-avatar-profile_23-2150671142.jpg&imgrefurl=https%3A%2F%2Fwww.freepik.com%2Ffree-photos-vectors%2Favatar&docid=DjJcL6-DnnZi6M&tbnid=FwNZ5GOVnzizSM&vet=12ahUKEwjK5p6K9pqOAxVPXfEDHSvzIiAQM3oECE8QAA..i&w=626&h=626&hcb=2&ved=2ahUKEwjK5p6K9pqOAxVPXfEDHSvzIiAQM3oECE8QAA',
-            ),
-            const SizedBox(height: 16),
-            WorkButtons(
-              buttons: [
-                ButtonData(
-                    label: 'Start Work', color: Colors.teal, onPressed: () {}),
-                ButtonData(
-                    label: 'End Work',
-                    color: Colors.grey,
-                    onPressed: () {},
-                    outlined: true),
-              ],
+            // User profile section in a beautiful centered card
+            Card(
+              elevation: 4,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(16),
+              ),
+              child: Padding(
+                padding: const EdgeInsets.all(20),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    // Center the user account info
+                    Center(
+                      child: UserAccountInfo(
+                        name: 'Abdullah Umar',
+                        role: 'Intern',
+                        avatarUrl:
+                            'https://via.placeholder.com/150', // Use a valid placeholder
+                      ),
+                    ),
+                    const SizedBox(height: 20),
+                    // Center the work buttons
+                    Center(
+                      child: WorkButtons(
+                        buttons: [
+                          ButtonData(
+                              label: 'Start Work',
+                              color: Colors.teal,
+                              onPressed: () {}),
+                          ButtonData(
+                              label: 'End Work',
+                              color: Colors.grey,
+                              onPressed: () {},
+                              outlined: true),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
             ),
             const SizedBox(height: 24),
             _TitledCard(
@@ -109,8 +132,8 @@ class HomeScreen extends StatelessWidget {
             const SizedBox(height: 16),
             _TitledCard(
               title: 'User Profile',
-              child: SizedBox(
-                  height: 280, child: UserProfileCard.defaultCard()),
+              child:
+                  SizedBox(height: 280, child: UserProfileCard.defaultCard()),
             ),
             const SizedBox(height: 16),
             _TitledCard(title: 'Allocation', child: allocationCardWidget),
