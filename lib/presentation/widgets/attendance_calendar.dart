@@ -44,11 +44,9 @@ class _AttendanceDayCell extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 150,
+      width: MediaQuery.of(context).size.width * 0.4, // 40% of screen width
       decoration: BoxDecoration(
-        border: Border(
-          right: BorderSide(color: Colors.grey[300]!),
-        ),
+        border: Border(right: BorderSide(color: Colors.grey[300]!)),
       ),
       child: Column(
         children: [
@@ -57,9 +55,7 @@ class _AttendanceDayCell extends StatelessWidget {
             padding: const EdgeInsets.all(8.0),
             decoration: BoxDecoration(
               color: Colors.grey[100],
-              border: Border(
-                bottom: BorderSide(color: Colors.grey[300]!),
-              ),
+              border: Border(bottom: BorderSide(color: Colors.grey[300]!)),
             ),
             child: Text(
               day.dayName,
@@ -119,8 +115,9 @@ class _AttendanceDayCell extends StatelessWidget {
               children: [
                 TextSpan(
                   text: day.timeIn!,
-                  style:
-                      TextStyle(color: day.isLate ? Colors.red : Colors.green),
+                  style: TextStyle(
+                    color: day.isLate ? Colors.red : Colors.green,
+                  ),
                 ),
               ],
             ),

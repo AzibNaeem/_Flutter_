@@ -26,8 +26,9 @@ class MonthlyStatusCard extends StatelessWidget {
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
       child: Container(
         padding: const EdgeInsets.all(16),
-        width: 400,
-        height: 300,
+        width: MediaQuery.of(context).size.width * 0.9, // 90% of screen width
+        height:
+            MediaQuery.of(context).size.height * 0.4, // 40% of screen height
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -81,13 +82,17 @@ class MonthlyStatusCard extends StatelessWidget {
                       ),
                     ),
                     leftTitles: AxisTitles(
-                      sideTitles:
-                          SideTitles(showTitles: true, reservedSize: 20),
+                      sideTitles: SideTitles(
+                        showTitles: true,
+                        reservedSize: 20,
+                      ),
                     ),
                     topTitles: const AxisTitles(
-                        sideTitles: SideTitles(showTitles: false)),
+                      sideTitles: SideTitles(showTitles: false),
+                    ),
                     rightTitles: const AxisTitles(
-                        sideTitles: SideTitles(showTitles: false)),
+                      sideTitles: SideTitles(showTitles: false),
+                    ),
                   ),
                   gridData: FlGridData(
                     show: true,
@@ -99,9 +104,7 @@ class MonthlyStatusCard extends StatelessWidget {
                     },
                     drawVerticalLine: false,
                   ),
-                  borderData: FlBorderData(
-                    show: false,
-                  ),
+                  borderData: FlBorderData(show: false),
                   barGroups: data.barGroups,
                 ),
               ),
@@ -119,7 +122,7 @@ class MonthlyStatusCard extends StatelessWidget {
                   ],
                 );
               }).toList(),
-            )
+            ),
           ],
         ),
       ),

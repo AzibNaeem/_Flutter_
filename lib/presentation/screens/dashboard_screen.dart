@@ -18,31 +18,34 @@ class DashboardScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: AppColors.background,
       endDrawer: CustomEndDrawer(menuItems: viewModel.menuItems),
-      appBar: AppBar(
-        title: const Text(
-          'HRIS',
-          style: TextStyle(
-            color: AppColors.primary,
-            fontWeight: FontWeight.bold,
-            fontSize: 22,
-          ),
-        ),
-        backgroundColor: AppColors.background,
-        elevation: 0.5,
-        actions: [
-          Builder(
-            builder: (context) => IconButton(
-              icon: const Icon(
-                Icons.menu,
-                color: AppColors.primary,
-                size: 30,
-              ),
-              onPressed: () => Scaffold.of(context).openEndDrawer(),
+      appBar: PreferredSize(
+        preferredSize: Size.fromHeight(48),
+        child: AppBar(
+          title: const Text(
+            'HRIS',
+            style: TextStyle(
+              color: AppColors.black,
+              fontWeight: FontWeight.bold,
+              fontSize: 30,
             ),
           ),
-          const SizedBox(width: 8),
-        ],
-        iconTheme: const IconThemeData(color: AppColors.primary),
+          backgroundColor: AppColors.white,
+          elevation: 0.5,
+          actions: [
+            Builder(
+              builder: (context) => IconButton(
+                icon: const Icon(
+                  Icons.menu,
+                  color: AppColors.primary,
+                  size: 30,
+                ),
+                onPressed: () => Scaffold.of(context).openEndDrawer(),
+              ),
+            ),
+            const SizedBox(width: 8, height: 50),
+          ],
+          iconTheme: const IconThemeData(color: AppColors.primary),
+        ),
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -113,20 +116,55 @@ class DashboardScreen extends StatelessWidget {
         ),
       ),
       bottomNavigationBar: Theme(
-        data: Theme.of(context).copyWith(
-          canvasColor: AppColors.background,
-        ),
+        data: Theme.of(context).copyWith(canvasColor: AppColors.white),
         child: BottomNavigationBar(
           type: BottomNavigationBarType.fixed,
-          selectedItemColor: AppColors.primary,
-          unselectedItemColor: AppColors.accent,
+          selectedItemColor: AppColors.black,
+          unselectedItemColor: AppColors.black,
+          iconSize: 28, // optional: sets default size
           currentIndex: 0,
           onTap: (index) {},
-          items: const [
-            BottomNavigationBarItem(icon: Icon(Icons.home), label: ''),
-            BottomNavigationBarItem(icon: Icon(Icons.calendar_today), label: ''),
-            BottomNavigationBarItem(icon: Icon(Icons.message), label: ''),
-            BottomNavigationBarItem(icon: Icon(Icons.person), label: ''),
+          items: [
+            BottomNavigationBarItem(
+              icon: SizedBox(
+                height: 5,
+                child: Align(
+                  alignment: Alignment.center,
+                  child: Icon(Icons.home, size: 40),
+                ),
+              ),
+              label: '',
+            ),
+            BottomNavigationBarItem(
+              icon: SizedBox(
+                height: 2,
+                child: Align(
+                  alignment: Alignment.center,
+                  child: Icon(Icons.calendar_today, size: 33),
+                ),
+              ),
+              label: '',
+            ),
+            BottomNavigationBarItem(
+              icon: SizedBox(
+                height: 2,
+                child: Align(
+                  alignment: Alignment.center,
+                  child: Icon(Icons.message, size: 35),
+                ),
+              ),
+              label: '',
+            ),
+            BottomNavigationBarItem(
+              icon: SizedBox(
+                height: 5,
+                child: Align(
+                  alignment: Alignment.center,
+                  child: Icon(Icons.person, size: 36),
+                ),
+              ),
+              label: '',
+            ),
           ],
         ),
       ),
@@ -191,7 +229,7 @@ class DashboardScreen extends StatelessWidget {
           crossAxisCount: 2,
           crossAxisSpacing: 12,
           mainAxisSpacing: 12,
-          childAspectRatio: 1.2,
+          childAspectRatio: 0.9, // More vertical space for card content
         ),
         itemBuilder: (context, index) => Card(
           elevation: 6,
@@ -215,7 +253,7 @@ class _ScheduleBlock extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 70,
+      width: MediaQuery.of(context).size.width * 0.18, // 18% of screen width
       margin: const EdgeInsets.only(right: 12),
       decoration: BoxDecoration(
         color: active ? AppColors.scheduleActive : AppColors.white,
@@ -321,12 +359,13 @@ class _FuturisticCard extends StatelessWidget {
           children: [
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisSize: MainAxisSize.min,
               children: [
                 Icon(card.icon, size: 26, color: card.textColor),
-                const Spacer(),
+                const SizedBox(height: 16),
                 Text(
                   card.title,
-                  style: TextStyle(fontSize: 13, color: card.textColor),
+                  style: TextStyle(fontSize: 13, color: AppColors.black),
                 ),
                 const SizedBox(height: 6),
                 Text(
@@ -334,7 +373,7 @@ class _FuturisticCard extends StatelessWidget {
                   style: TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.bold,
-                    color: card.textColor,
+                    color: AppColors.black,
                   ),
                 ),
               ],
@@ -349,7 +388,7 @@ class _FuturisticCard extends StatelessWidget {
                     vertical: 2,
                   ),
                   decoration: BoxDecoration(
-                    color: AppColors.white,
+                    color: AppColors.black,
                     borderRadius: BorderRadius.circular(8),
                   ),
                   child: Text(

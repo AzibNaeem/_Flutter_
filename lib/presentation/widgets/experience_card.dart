@@ -19,7 +19,7 @@ class ExperienceCard extends StatelessWidget {
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
       child: Container(
         padding: const EdgeInsets.all(16),
-        width: 300,
+        width: MediaQuery.of(context).size.width * 0.85, // 85% of screen width
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../theme/app_theme.dart';
+
 class ButtonData {
   final String label;
   final Color color;
@@ -31,14 +33,14 @@ class WorkButtons extends StatelessWidget {
               child: OutlinedButton(
                 onPressed: btn.onPressed,
                 style: OutlinedButton.styleFrom(
-                  side: const BorderSide(color: Color(0xFFF7B22C)),
+                  side: const BorderSide(color: AppColors.background),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(5),
                   ),
                 ),
                 child: Text(
                   btn.label,
-                  style: const TextStyle(color: Color(0xFFF7B22C)),
+                  style: const TextStyle(color: AppColors.black),
                 ),
               ),
             );
@@ -48,14 +50,14 @@ class WorkButtons extends StatelessWidget {
               child: ElevatedButton(
                 onPressed: btn.onPressed,
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: const Color(0xFFF7B22C),
+                  backgroundColor: AppColors.background,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(5),
                   ),
                 ),
                 child: Text(
                   btn.label,
-                  style: const TextStyle(color: Color(0xFF3C312B)),
+                  style:  TextStyle(color:AppColors.black),
                 ),
               ),
             );

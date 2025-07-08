@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../theme/app_theme.dart';
 import 'drawer_menu_item.dart';
 
 class DrawerMenuItemData {
@@ -20,8 +21,8 @@ class DrawerMenuItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      leading: Icon(item.icon, color: Color(0xFFF7B22C)),
-      title: Text(item.title, style: const TextStyle(color: Color(0xFFF7B22C))),
+      leading: Icon(item.icon, color: AppColors.black),
+      title: Text(item.title, style: const TextStyle(color: AppColors.black)),
       onTap: item.onTap,
     );
   }
@@ -35,18 +36,18 @@ class CustomEndDrawer extends StatelessWidget {
   Widget build(BuildContext context) {
     return Drawer(
       child: Container(
-        color: const Color(0xFF3C312B),
+        color: AppColors.background,
         child: ListView(
           padding: EdgeInsets.zero,
           children: <Widget>[
             Align(
               alignment: Alignment.topRight,
               child: Padding(
-                padding: const EdgeInsets.only(top: 20.0, right: 16.0),
+                padding: const EdgeInsets.only(top: 50.0, right: 260.0),
                 child: IconButton(
                   icon: const Icon(
-                    Icons.close,
-                    color: Color(0xFFF7B22C),
+                    Icons.arrow_back_ios_new,
+                    color: AppColors.black,
                     size: 30,
                   ),
                   onPressed: () {
