@@ -5,7 +5,7 @@ import 'core/themes/app_theme.dart';
 import 'domain/providers/employee_provider.dart';
 import 'package:hris_project/presentation/view_model/home_view_model.dart';
 
-//hey
+
 void main() {
   runApp(
     MultiProvider(
@@ -33,4 +33,3 @@ class HRMSApp extends StatelessWidget {
     );
   }
 }
-github test
