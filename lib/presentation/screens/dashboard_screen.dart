@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hris_project/data/models/login_user.dart';
 import 'package:hris_project/presentation/widgets/user_account_info.dart';
 import 'package:hris_project/presentation/widgets/work_buttons.dart';
 import 'package:hris_project/presentation/widgets/attendance_view.dart';
@@ -10,7 +11,9 @@ import 'package:hris_project/presentation/view_model/home_view_model.dart';
 import 'package:hris_project/presentation/theme/app_theme.dart';
 
 class DashboardScreen extends StatelessWidget {
-  const DashboardScreen({super.key});
+  final LoginUser user;
+
+  const DashboardScreen({super.key, required this.user});
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +22,7 @@ class DashboardScreen extends StatelessWidget {
       backgroundColor: AppColors.background,
       endDrawer: CustomEndDrawer(menuItems: viewModel.menuItems),
       appBar: PreferredSize(
-        preferredSize: Size.fromHeight(48),
+        preferredSize: const Size.fromHeight(48),
         child: AppBar(
           title: const Text(
             'HRIS',
@@ -64,10 +67,10 @@ class DashboardScreen extends StatelessWidget {
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      const Center(
+                      Center(
                         child: UserAccountInfo(
-                          name: 'Azib Naeem',
-                          role: 'Intern',
+                          name: user.name,
+                          role: user.role,
                         ),
                       ),
                       const SizedBox(height: 20),
@@ -121,48 +124,24 @@ class DashboardScreen extends StatelessWidget {
           type: BottomNavigationBarType.fixed,
           selectedItemColor: AppColors.black,
           unselectedItemColor: AppColors.black,
-          iconSize: 28, // optional: sets default size
+          iconSize: 28,
           currentIndex: 0,
           onTap: (index) {},
-          items: [
+          items: const [
             BottomNavigationBarItem(
-              icon: SizedBox(
-                height: 5,
-                child: Align(
-                  alignment: Alignment.center,
-                  child: Icon(Icons.home, size: 40),
-                ),
-              ),
+              icon: Icon(Icons.home, size: 40),
               label: '',
             ),
             BottomNavigationBarItem(
-              icon: SizedBox(
-                height: 2,
-                child: Align(
-                  alignment: Alignment.center,
-                  child: Icon(Icons.calendar_today, size: 33),
-                ),
-              ),
+              icon: Icon(Icons.calendar_today, size: 33),
               label: '',
             ),
             BottomNavigationBarItem(
-              icon: SizedBox(
-                height: 2,
-                child: Align(
-                  alignment: Alignment.center,
-                  child: Icon(Icons.message, size: 35),
-                ),
-              ),
+              icon: Icon(Icons.message, size: 35),
               label: '',
             ),
             BottomNavigationBarItem(
-              icon: SizedBox(
-                height: 5,
-                child: Align(
-                  alignment: Alignment.center,
-                  child: Icon(Icons.person, size: 36),
-                ),
-              ),
+              icon: Icon(Icons.person, size: 36),
               label: '',
             ),
           ],
@@ -229,7 +208,7 @@ class DashboardScreen extends StatelessWidget {
           crossAxisCount: 2,
           crossAxisSpacing: 12,
           mainAxisSpacing: 12,
-          childAspectRatio: 0.9, // More vertical space for card content
+          childAspectRatio: 0.9,
         ),
         itemBuilder: (context, index) => Card(
           elevation: 6,
@@ -253,7 +232,7 @@ class _ScheduleBlock extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: MediaQuery.of(context).size.width * 0.18, // 18% of screen width
+      width: MediaQuery.of(context).size.width * 0.18,
       margin: const EdgeInsets.only(right: 12),
       decoration: BoxDecoration(
         color: active ? AppColors.scheduleActive : AppColors.white,
@@ -365,12 +344,12 @@ class _FuturisticCard extends StatelessWidget {
                 const SizedBox(height: 16),
                 Text(
                   card.title,
-                  style: TextStyle(fontSize: 13, color: AppColors.black),
+                  style: const TextStyle(fontSize: 13, color: AppColors.black),
                 ),
                 const SizedBox(height: 6),
                 Text(
                   card.value,
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.bold,
                     color: AppColors.black,
@@ -383,10 +362,7 @@ class _FuturisticCard extends StatelessWidget {
                 top: 0,
                 right: 0,
                 child: Container(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 6,
-                    vertical: 2,
-                  ),
+                  padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
                   decoration: BoxDecoration(
                     color: AppColors.black,
                     borderRadius: BorderRadius.circular(8),

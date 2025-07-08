@@ -3,20 +3,50 @@ import 'screens/login_screen.dart';
 import 'screens/dashboard_screen.dart';
 import 'screens/employee_directory_screen.dart';
 import 'screens/employee_report_screen.dart';
-import 'screens/home_screen.dart'; // ✅ Make sure this import exists
+import 'screens/home_screen.dart';
+import 'package:hris_project/data/models/login_user.dart';
 
 class AppRoutes {
   static const String login = '/login';
   static const String dashboard = '/dashboard';
   static const String employeeDirectory = '/employees';
   static const String report = '/report';
-  static const String home = '/home'; // ✅ Added missing route constant
+  static const String home = '/home';
 
-  static final Map<String, WidgetBuilder> routes = {
-    AppRoutes.login: (context) => const LoginScreen(),
-    AppRoutes.dashboard: (context) => const DashboardScreen(),
-    AppRoutes.employeeDirectory: (context) => const EmployeeDirectoryScreen(),
-    AppRoutes.report: (context) => const EmployeeReportScreen(),
-    AppRoutes.home: (context) => const HomeScreen(), // ✅ Moved inside map
-  };
+  static Route<dynamic> onGenerateRoute(RouteSettings settings) {
+    switch (settings.name) {
+      case login:
+        return MaterialPageRoute(builder: (_) => const LoginScreen());
+
+      case dashboard:
+        final user = settings.arguments;
+        if (user is! LoginUser) {
+          return _errorRoute('Missing or invalid user for dashboard.');
+        }
+        return MaterialPageRoute(
+          builder: (_) => DashboardScreen(user: user),
+        );
+
+      case employeeDirectory:
+        return MaterialPageRoute(builder: (_) => const EmployeeDirectoryScreen());
+
+      case report:
+        return MaterialPageRoute(builder: (_) => const EmployeeReportScreen());
+
+      case home:
+        return MaterialPageRoute(builder: (_) => const HomeScreen());
+
+      default:
+        return _errorRoute('Route not found: ${settings.name}');
+    }
+  }
+
+  static Route<dynamic> _errorRoute(String message) {
+    return MaterialPageRoute(
+      builder: (_) => Scaffold(
+        appBar: AppBar(title: const Text('Error')),
+        body: Center(child: Text(message)),
+      ),
+    );
+  }
 }

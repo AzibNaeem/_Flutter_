@@ -6,7 +6,7 @@ import '../widgets/custom_button.dart';
 import '../widgets/custom_text_field.dart';
 import '../routes.dart';
 import '../theme/app_theme.dart';
-
+import 'package:hris_project/presentation/screens/dashboard_screen.dart';
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
 
@@ -42,11 +42,23 @@ class _LoginScreenState extends State<LoginScreen> {
           (user) =>
       (user.email == input || user.employeeId == input) &&
           user.password == password,
-      orElse: () => LoginUser(email: '', password: '', employeeId: ''),
+      orElse: () => LoginUser(
+        email: '',
+        password: '',
+        employeeId: '',
+        name: '',
+        role: '',
+      ),
     );
 
     if (matchingUser.email.isNotEmpty) {
-      Navigator.pushReplacementNamed(context, AppRoutes.dashboard);
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(
+          builder: (_) => DashboardScreen(user: matchingUser),
+        ),
+      );
+
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text('Invalid email, ID or password')),

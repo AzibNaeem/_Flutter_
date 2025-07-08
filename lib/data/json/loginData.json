@@ -2,251 +2,351 @@
   {
     "email": "employee01@netsoltech.com",
     "password": "Password123!",
-    "employee_id": "1423"
+    "employee_id": "1423",
+    "name": "Employee 01",
+    "role": "Intern"
   },
   {
     "email": "employee02@netsoltech.com",
     "password": "Password123!",
-    "employee_id": "8291"
+    "employee_id": "8291",
+    "name": "Employee 02",
+    "role": "Software Analyst"
   },
   {
     "email": "employee03@netsoltech.com",
     "password": "Password123!",
-    "employee_id": "6712"
+    "employee_id": "6712",
+    "name": "Employee 03",
+    "role": "Team Lead"
   },
   {
     "email": "employee04@netsoltech.com",
     "password": "Password123!",
-    "employee_id": "3840"
+    "employee_id": "3840",
+    "name": "Employee 04",
+    "role": "Principal Engineer"
   },
   {
     "email": "employee05@netsoltech.com",
     "password": "Password123!",
-    "employee_id": "5023"
+    "employee_id": "5023",
+    "name": "Employee 05",
+    "role": "Head of Department"
   },
   {
     "email": "employee06@netsoltech.com",
     "password": "Password123!",
-    "employee_id": "9031"
+    "employee_id": "9031",
+    "name": "Employee 06",
+    "role": "Intern"
   },
   {
     "email": "employee07@netsoltech.com",
     "password": "Password123!",
-    "employee_id": "7520"
+    "employee_id": "7520",
+    "name": "Employee 07",
+    "role": "Software Analyst"
   },
   {
     "email": "employee08@netsoltech.com",
     "password": "Password123!",
-    "employee_id": "1902"
+    "employee_id": "1902",
+    "name": "Employee 08",
+    "role": "Team Lead"
   },
   {
     "email": "employee09@netsoltech.com",
     "password": "Password123!",
-    "employee_id": "6289"
+    "employee_id": "6289",
+    "name": "Employee 09",
+    "role": "Principal Engineer"
   },
   {
     "email": "employee10@netsoltech.com",
     "password": "Password123!",
-    "employee_id": "4187"
+    "employee_id": "4187",
+    "name": "Employee 10",
+    "role": "Head of Department"
   },
   {
     "email": "employee11@netsoltech.com",
     "password": "Password123!",
-    "employee_id": "3891"
+    "employee_id": "3891",
+    "name": "Employee 11",
+    "role": "Intern"
   },
   {
-    "email": "employee12@netsoltech.com",
-    "password": "Password123!",
-    "employee_id": "1056"
+    "email": "azib.naeem@netsoltech.com",
+    "password": "azib",
+    "employee_id": "8224",
+    "name": "Azib Naeem",
+    "role": "Software Analyst"
   },
   {
     "email": "employee13@netsoltech.com",
     "password": "Password123!",
-    "employee_id": "2317"
+    "employee_id": "2317",
+    "name": "Employee 13",
+    "role": "Team Lead"
   },
   {
     "email": "employee14@netsoltech.com",
     "password": "Password123!",
-    "employee_id": "7774"
+    "employee_id": "7774",
+    "name": "Employee 14",
+    "role": "Principal Engineer"
   },
   {
     "email": "employee15@netsoltech.com",
     "password": "Password123!",
-    "employee_id": "9960"
+    "employee_id": "9960",
+    "name": "Employee 15",
+    "role": "Head of Department"
   },
   {
     "email": "employee16@netsoltech.com",
     "password": "Password123!",
-    "employee_id": "3175"
+    "employee_id": "3175",
+    "name": "Employee 16",
+    "role": "Intern"
   },
   {
     "email": "employee17@netsoltech.com",
     "password": "Password123!",
-    "employee_id": "2408"
+    "employee_id": "2408",
+    "name": "Employee 17",
+    "role": "Software Analyst"
   },
   {
     "email": "employee18@netsoltech.com",
     "password": "Password123!",
-    "employee_id": "6294"
+    "employee_id": "6294",
+    "name": "Employee 18",
+    "role": "Team Lead"
   },
   {
     "email": "employee19@netsoltech.com",
     "password": "Password123!",
-    "employee_id": "8419"
+    "employee_id": "8419",
+    "name": "Employee 19",
+    "role": "Principal Engineer"
   },
   {
     "email": "employee20@netsoltech.com",
     "password": "Password123!",
-    "employee_id": "1085"
+    "employee_id": "1085",
+    "name": "Employee 20",
+    "role": "Head of Department"
   },
   {
     "email": "employee21@netsoltech.com",
     "password": "Password123!",
-    "employee_id": "7773"
+    "employee_id": "7773",
+    "name": "Employee 21",
+    "role": "Intern"
   },
   {
     "email": "employee22@netsoltech.com",
     "password": "Password123!",
-    "employee_id": "2002"
+    "employee_id": "2002",
+    "name": "Employee 22",
+    "role": "Software Analyst"
   },
   {
     "email": "employee23@netsoltech.com",
     "password": "Password123!",
-    "employee_id": "3107"
+    "employee_id": "3107",
+    "name": "Employee 23",
+    "role": "Team Lead"
   },
   {
     "email": "employee24@netsoltech.com",
     "password": "Password123!",
-    "employee_id": "9730"
+    "employee_id": "9730",
+    "name": "Employee 24",
+    "role": "Principal Engineer"
   },
   {
     "email": "employee25@netsoltech.com",
     "password": "Password123!",
-    "employee_id": "4642"
+    "employee_id": "4642",
+    "name": "Employee 25",
+    "role": "Head of Department"
   },
   {
     "email": "employee26@netsoltech.com",
     "password": "Password123!",
-    "employee_id": "5891"
+    "employee_id": "5891",
+    "name": "Employee 26",
+    "role": "Intern"
   },
   {
     "email": "employee27@netsoltech.com",
     "password": "Password123!",
-    "employee_id": "8320"
+    "employee_id": "8320",
+    "name": "Employee 27",
+    "role": "Software Analyst"
   },
   {
     "email": "employee28@netsoltech.com",
     "password": "Password123!",
-    "employee_id": "1980"
+    "employee_id": "1980",
+    "name": "Employee 28",
+    "role": "Team Lead"
   },
   {
     "email": "employee29@netsoltech.com",
     "password": "Password123!",
-    "employee_id": "4037"
+    "employee_id": "4037",
+    "name": "Employee 29",
+    "role": "Principal Engineer"
   },
   {
     "email": "employee30@netsoltech.com",
     "password": "Password123!",
-    "employee_id": "6149"
+    "employee_id": "6149",
+    "name": "Employee 30",
+    "role": "Head of Department"
   },
   {
     "email": "employee31@netsoltech.com",
     "password": "Password123!",
-    "employee_id": "7830"
+    "employee_id": "7830",
+    "name": "Employee 31",
+    "role": "Intern"
   },
   {
     "email": "employee32@netsoltech.com",
     "password": "Password123!",
-    "employee_id": "1461"
+    "employee_id": "1461",
+    "name": "Employee 32",
+    "role": "Software Analyst"
   },
   {
     "email": "employee33@netsoltech.com",
     "password": "Password123!",
-    "employee_id": "9156"
+    "employee_id": "9156",
+    "name": "Employee 33",
+    "role": "Team Lead"
   },
   {
     "email": "employee34@netsoltech.com",
     "password": "Password123!",
-    "employee_id": "2031"
+    "employee_id": "2031",
+    "name": "Employee 34",
+    "role": "Principal Engineer"
   },
   {
     "email": "employee35@netsoltech.com",
     "password": "Password123!",
-    "employee_id": "7701"
+    "employee_id": "7701",
+    "name": "Employee 35",
+    "role": "Head of Department"
   },
   {
     "email": "employee36@netsoltech.com",
     "password": "Password123!",
-    "employee_id": "6625"
+    "employee_id": "6625",
+    "name": "Employee 36",
+    "role": "Intern"
   },
   {
     "email": "employee37@netsoltech.com",
     "password": "Password123!",
-    "employee_id": "5555"
+    "employee_id": "5555",
+    "name": "Employee 37",
+    "role": "Software Analyst"
   },
   {
     "email": "employee38@netsoltech.com",
     "password": "Password123!",
-    "employee_id": "3824"
+    "employee_id": "3824",
+    "name": "Employee 38",
+    "role": "Team Lead"
   },
   {
     "email": "employee39@netsoltech.com",
     "password": "Password123!",
-    "employee_id": "1100"
+    "employee_id": "1100",
+    "name": "Employee 39",
+    "role": "Principal Engineer"
   },
   {
     "email": "employee40@netsoltech.com",
     "password": "Password123!",
-    "employee_id": "4200"
+    "employee_id": "4200",
+    "name": "Employee 40",
+    "role": "Head of Department"
   },
   {
     "email": "employee41@netsoltech.com",
     "password": "Password123!",
-    "employee_id": "9362"
+    "employee_id": "9362",
+    "name": "Employee 41",
+    "role": "Intern"
   },
   {
     "email": "employee42@netsoltech.com",
     "password": "Password123!",
-    "employee_id": "2529"
+    "employee_id": "2529",
+    "name": "Employee 42",
+    "role": "Software Analyst"
   },
   {
     "email": "employee43@netsoltech.com",
     "password": "Password123!",
-    "employee_id": "8840"
+    "employee_id": "8840",
+    "name": "Employee 43",
+    "role": "Team Lead"
   },
   {
     "email": "employee44@netsoltech.com",
     "password": "Password123!",
-    "employee_id": "6641"
+    "employee_id": "6641",
+    "name": "Employee 44",
+    "role": "Principal Engineer"
   },
   {
     "email": "employee45@netsoltech.com",
     "password": "Password123!",
-    "employee_id": "7803"
+    "employee_id": "7803",
+    "name": "Employee 45",
+    "role": "Head of Department"
   },
   {
     "email": "employee46@netsoltech.com",
     "password": "Password123!",
-    "employee_id": "3349"
+    "employee_id": "3349",
+    "name": "Employee 46",
+    "role": "Intern"
   },
   {
     "email": "employee47@netsoltech.com",
     "password": "Password123!",
-    "employee_id": "6711"
+    "employee_id": "6711",
+    "name": "Employee 47",
+    "role": "Software Analyst"
   },
   {
     "email": "employee48@netsoltech.com",
     "password": "Password123!",
-    "employee_id": "2938"
+    "employee_id": "2938",
+    "name": "Employee 48",
+    "role": "Team Lead"
   },
   {
     "email": "employee49@netsoltech.com",
     "password": "Password123!",
-    "employee_id": "5402"
+    "employee_id": "5402",
+    "name": "Employee 49",
+    "role": "Principal Engineer"
   },
   {
     "email": "employee50@netsoltech.com",
     "password": "Password123!",
-    "employee_id": "1164"
+    "employee_id": "1164",
+    "name": "Employee 50",
+    "role": "Head of Department"
   }
 ]
