@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:hris_project/data/models/login_user.dart';
 import 'package:hris_project/presentation/widgets/user_account_info.dart';
 import 'package:hris_project/presentation/widgets/work_buttons.dart';
-import 'package:hris_project/presentation/widgets/attendance_view.dart';
+import 'package:hris_project/data/models/attendance_day.dart';
+import 'package:hris_project/presentation/view_model/attendance_view_model.dart';
+import 'package:hris_project/presentation/widgets/attendance_calendar.dart';
 import 'package:hris_project/presentation/widgets/leaves_card.dart';
 import 'package:hris_project/presentation/widgets/date_filter.dart';
 import 'package:hris_project/presentation/widgets/custom_end_drawer.dart';
@@ -16,8 +18,10 @@ class DashboardScreen extends StatelessWidget {
 
   const DashboardScreen({super.key, required this.user});
 
+
   @override
   Widget build(BuildContext context) {
+
     final viewModel = Provider.of<HomeViewModel>(context);
     return Scaffold(
       backgroundColor: AppColors.background,
