@@ -1,12 +1,13 @@
-import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import '../../data/models/login_user.dart';
-import '../widgets/custom_button.dart';
-import '../widgets/custom_text_field.dart';
-import '../routes.dart';
-import '../theme/app_theme.dart';
+import 'package:provider/provider.dart';
+import 'package:hris_project/presentation/view_model/login_auth_view_model.dart';
 import 'package:hris_project/presentation/screens/dashboard_screen.dart';
+import 'package:hris_project/data/models/login_user.dart';
+import '../view_model/login_auth_view_model.dart';
+import '../widgets/custom_text_field.dart';
+import '../widgets/custom_button.dart';
+import '../theme/app_theme.dart';
+
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
 
@@ -17,20 +18,12 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   final emailOrIdController = TextEditingController();
   final passwordController = TextEditingController();
-  List<LoginUser> users = [];
 
   @override
   void initState() {
     super.initState();
-    loadLoginData();
-  }
-
-  Future<void> loadLoginData() async {
-    final String jsonString =
-    await rootBundle.loadString('lib/data/json/loginData.json');
-    final List<dynamic> jsonData = json.decode(jsonString);
-    setState(() {
-      users = jsonData.map((e) => LoginUser.fromJson(e)).toList();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      Provider.of<AuthViewModel>(context, listen: false).loadUsersFromJson();
     });
   }
 
@@ -38,27 +31,16 @@ class _LoginScreenState extends State<LoginScreen> {
     final input = emailOrIdController.text.trim();
     final password = passwordController.text;
 
-    final matchingUser = users.firstWhere(
-          (user) =>
-      (user.email == input || user.employeeId == input) &&
-          user.password == password,
-      orElse: () => LoginUser(
-        email: '',
-        password: '',
-        employeeId: '',
-        name: '',
-        role: '',
-      ),
-    );
+    final authViewModel = Provider.of<AuthViewModel>(context, listen: false);
+    final matchingUser = authViewModel.validateUser(input, password);
 
-    if (matchingUser.email.isNotEmpty) {
+    if (matchingUser != null) {
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(
           builder: (_) => DashboardScreen(user: matchingUser),
         ),
       );
-
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text('Invalid email, ID or password')),
