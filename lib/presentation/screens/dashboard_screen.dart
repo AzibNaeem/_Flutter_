@@ -10,6 +10,7 @@ import 'package:provider/provider.dart';
 import 'package:hris_project/presentation/view_model/home_view_model.dart';
 import 'package:hris_project/presentation/theme/app_theme.dart';
 
+
 class DashboardScreen extends StatelessWidget {
   final LoginUser user;
 
@@ -24,6 +25,7 @@ class DashboardScreen extends StatelessWidget {
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(48),
         child: AppBar(
+          automaticallyImplyLeading: false,
           title: const Text(
             'HRIS',
             style: TextStyle(
