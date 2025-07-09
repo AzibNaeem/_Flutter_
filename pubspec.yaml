@@ -60,6 +60,7 @@ flutter_icons:
 flutter:
   assets:
     - lib/data/json/loginData.json
+    - lib/data/json/attendance_record.json
     - lib/assets/images/HRIS.png
 
   # The following line ensures that the Material Icons font is

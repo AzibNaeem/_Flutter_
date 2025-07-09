@@ -1,0 +1,37 @@
+[
+  { "dayName": "Mon", "dayDate": 1, "timeIn": "09:02 AM", "timeOut": "05:00 PM", "status": "Present", "isWeekend": false, "isLate": true },
+  { "dayName": "Tue", "dayDate": 2, "timeIn": "09:00 AM", "timeOut": "05:00 PM", "status": "Present", "isWeekend": false, "isLate": false },
+  { "dayName": "Wed", "dayDate": 3, "timeIn": "09:05 AM", "timeOut": "05:00 PM", "status": "Present", "isWeekend": false, "isLate": true },
+  { "dayName": "Thu", "dayDate": 4, "timeIn": "09:00 AM", "timeOut": "05:00 PM", "status": "Present", "isWeekend": false, "isLate": false },
+  { "dayName": "Fri", "dayDate": 5, "timeIn": "09:00 AM", "timeOut": "05:00 PM", "status": "Present", "isWeekend": false, "isLate": false },
+  { "dayName": "Sat", "dayDate": 6, "timeIn": null, "timeOut": null, "status": "Weekend", "isWeekend": true, "isLate": false },
+  { "dayName": "Sun", "dayDate": 7, "timeIn": null, "timeOut": null, "status": "Weekend", "isWeekend": true, "isLate": false },
+
+  { "dayName": "Mon", "dayDate": 8, "timeIn": "09:01 AM", "timeOut": "05:00 PM", "status": "Present", "isWeekend": false, "isLate": true },
+  { "dayName": "Tue", "dayDate": 9, "timeIn": "09:00 AM", "timeOut": "05:00 PM", "status": "Present", "isWeekend": false, "isLate": false },
+  { "dayName": "Wed", "dayDate": 10, "timeIn": "09:10 AM", "timeOut": "05:00 PM", "status": "Present", "isWeekend": false, "isLate": true },
+  { "dayName": "Thu", "dayDate": 11, "timeIn": "09:00 AM", "timeOut": "05:00 PM", "status": "Present", "isWeekend": false, "isLate": false },
+  { "dayName": "Fri", "dayDate": 12, "timeIn": "09:20 AM", "timeOut": "05:00 PM", "status": "Present", "isWeekend": false, "isLate": true },
+  { "dayName": "Sat", "dayDate": 13, "timeIn": null, "timeOut": null, "status": "Weekend", "isWeekend": true, "isLate": false },
+  { "dayName": "Sun", "dayDate": 14, "timeIn": null, "timeOut": null, "status": "Weekend", "isWeekend": true, "isLate": false },
+
+  { "dayName": "Mon", "dayDate": 15, "timeIn": null, "timeOut": null, "status": "Sick Leave", "isWeekend": false, "isLate": false },
+  { "dayName": "Tue", "dayDate": 16, "timeIn": "09:00 AM", "timeOut": "05:00 PM", "status": "Present", "isWeekend": false, "isLate": false },
+  { "dayName": "Wed", "dayDate": 17, "timeIn": "09:03 AM", "timeOut": "05:00 PM", "status": "Present", "isWeekend": false, "isLate": true },
+  { "dayName": "Thu", "dayDate": 18, "timeIn": "09:00 AM", "timeOut": "05:00 PM", "status": "Present", "isWeekend": false, "isLate": false },
+  { "dayName": "Fri", "dayDate": 19, "timeIn": "09:00 AM", "timeOut": "05:00 PM", "status": "Present", "isWeekend": false, "isLate": false },
+  { "dayName": "Sat", "dayDate": 20, "timeIn": null, "timeOut": null, "status": "Weekend", "isWeekend": true, "isLate": false },
+  { "dayName": "Sun", "dayDate": 21, "timeIn": null, "timeOut": null, "status": "Weekend", "isWeekend": true, "isLate": false },
+
+  { "dayName": "Mon", "dayDate": 22, "timeIn": "09:12 AM", "timeOut": "05:00 PM", "status": "Present", "isWeekend": false, "isLate": true },
+  { "dayName": "Tue", "dayDate": 23, "timeIn": "09:00 AM", "timeOut": "05:00 PM", "status": "Present", "isWeekend": false, "isLate": false },
+  { "dayName": "Wed", "dayDate": 24, "timeIn": "09:06 AM", "timeOut": "05:00 PM", "status": "Present", "isWeekend": false, "isLate": true },
+  { "dayName": "Thu", "dayDate": 25, "timeIn": "09:00 AM", "timeOut": "05:00 PM", "status": "Present", "isWeekend": false, "isLate": false },
+  { "dayName": "Fri", "dayDate": 26, "timeIn": "09:08 AM", "timeOut": "05:00 PM", "status": "Present", "isWeekend": false, "isLate": true },
+  { "dayName": "Sat", "dayDate": 27, "timeIn": null, "timeOut": null, "status": "Weekend", "isWeekend": true, "isLate": false },
+  { "dayName": "Sun", "dayDate": 28, "timeIn": null, "timeOut": null, "status": "Weekend", "isWeekend": true, "isLate": false },
+
+  { "dayName": "Mon", "dayDate": 29, "timeIn": "09:02 AM", "timeOut": "05:00 PM", "status": "Present", "isWeekend": false, "isLate": true },
+  { "dayName": "Tue", "dayDate": 30, "timeIn": "09:00 AM", "timeOut": "05:00 PM", "status": "Present", "isWeekend": false, "isLate": false },
+  { "dayName": "Wed", "dayDate": 31, "timeIn": null, "timeOut": null, "status": "Casual Leave", "isWeekend": false, "isLate": false }
+]
