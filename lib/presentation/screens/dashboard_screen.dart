@@ -5,6 +5,7 @@ import 'package:hris_project/presentation/widgets/work_buttons.dart';
 import 'package:hris_project/data/models/attendance_day.dart';
 import 'package:hris_project/presentation/view_model/attendance_view_model.dart';
 import 'package:hris_project/presentation/widgets/attendance_calendar.dart';
+import 'package:hris_project/presentation/widgets/attendance_view.dart';
 import 'package:hris_project/presentation/widgets/leaves_card.dart';
 import 'package:hris_project/presentation/widgets/date_filter.dart';
 import 'package:hris_project/presentation/widgets/custom_end_drawer.dart';
@@ -12,16 +13,25 @@ import 'package:provider/provider.dart';
 import 'package:hris_project/presentation/view_model/home_view_model.dart';
 import 'package:hris_project/presentation/theme/app_theme.dart';
 
-
-class DashboardScreen extends StatelessWidget {
+class DashboardScreen extends StatefulWidget {
   final LoginUser user;
-
   const DashboardScreen({super.key, required this.user});
 
+  @override
+  State<DashboardScreen> createState() => _DashboardScreenState();
+}
+
+class _DashboardScreenState extends State<DashboardScreen> {
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      Provider.of<AttendanceViewModel>(context, listen: false).loadAttendance();
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
-
     final viewModel = Provider.of<HomeViewModel>(context);
     return Scaffold(
       backgroundColor: AppColors.background,
@@ -75,8 +85,8 @@ class DashboardScreen extends StatelessWidget {
                     children: [
                       Center(
                         child: UserAccountInfo(
-                          name: user.name,
-                          role: user.role,
+                          name: widget.user.name,
+                          role: widget.user.role,
                         ),
                       ),
                       const SizedBox(height: 20),
