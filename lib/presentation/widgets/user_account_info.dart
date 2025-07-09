@@ -28,15 +28,15 @@ class UserAccountInfo extends StatelessWidget {
             Text(
               name,
               overflow: TextOverflow.ellipsis,
-              style: const TextStyle(
-                color: AppColors.black,
+              style:TextStyle(
+                color: Theme.of(context).primaryColor,
                 fontSize: 14,
               ),
             ),
             Text(
               role,
-              style: const TextStyle(
-                color: AppColors.black,
+              style: TextStyle(
+                color: Theme.of(context).primaryColor,
                 fontSize: 12,
               ),
             ),

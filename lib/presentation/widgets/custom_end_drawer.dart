@@ -21,8 +21,8 @@ class DrawerMenuItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      leading: Icon(item.icon, color: AppColors.black),
-      title: Text(item.title, style: const TextStyle(color: AppColors.black)),
+      leading: Icon(item.icon, color: Theme.of(context).primaryColor),
+      title: Text(item.title, style: TextStyle(color: Theme.of(context).textTheme.bodyLarge?.color)),
       onTap: item.onTap,
     );
   }
@@ -45,9 +45,9 @@ class CustomEndDrawer extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsets.only(top: 50.0, right: 260.0),
                 child: IconButton(
-                  icon: const Icon(
+                  icon: Icon(
                     Icons.arrow_back_ios_new,
-                    color: AppColors.black,
+                    color: AppColors.primary,
                     size: 30,
                   ),
                   onPressed: () {

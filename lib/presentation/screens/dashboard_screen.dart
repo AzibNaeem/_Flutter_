@@ -351,10 +351,10 @@ class _FuturisticCard extends StatelessWidget {
                 const SizedBox(height: 6),
                 Text(
                   card.value,
-                  style: const TextStyle(
+                  style: TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.bold,
-                    color: AppColors.black,
+                    color: AppColors.primary,
                   ),
                 ),
               ],
@@ -366,7 +366,7 @@ class _FuturisticCard extends StatelessWidget {
                 child: Container(
                   padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
                   decoration: BoxDecoration(
-                    color: AppColors.black,
+                    color: AppColors.background,
                     borderRadius: BorderRadius.circular(8),
                   ),
                   child: Text(

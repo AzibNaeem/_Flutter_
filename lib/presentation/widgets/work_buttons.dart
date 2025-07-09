@@ -33,20 +33,20 @@ class WorkButtons extends StatelessWidget {
               child: OutlinedButton(
                 onPressed: btn.onPressed,
                 style: OutlinedButton.styleFrom(
-                  side: const BorderSide(color: AppColors.background),
+                  side: BorderSide(color: AppColors.background),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(5),
                   ),
                 ),
                 child: Text(
                   btn.label,
-                  style: const TextStyle(color: AppColors.black),
+                  style: TextStyle(color: AppColors.black),
                 ),
               ),
             );
           } else {
             return Padding(
-              padding: const EdgeInsets.only(right: 8.0),
+              padding:  EdgeInsets.only(right: 8.0),
               child: ElevatedButton(
                 onPressed: btn.onPressed,
                 style: ElevatedButton.styleFrom(
@@ -57,7 +57,7 @@ class WorkButtons extends StatelessWidget {
                 ),
                 child: Text(
                   btn.label,
-                  style:  TextStyle(color:AppColors.black),
+                  style:  TextStyle(color: AppColors.black),
                 ),
               ),
             );
