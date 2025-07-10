@@ -39,7 +39,7 @@ class _AttendanceLeavesScreenState extends State<AttendanceLeavesScreen> {
           style: TextStyle(color: AppColors.primary),
         ),
         backgroundColor: AppColors.background,
-        foregroundColor: Colors.white,
+        foregroundColor: AppColors.white,
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
