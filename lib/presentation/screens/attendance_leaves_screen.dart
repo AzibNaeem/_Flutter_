@@ -26,13 +26,16 @@ class _AttendanceLeavesScreenState extends State<AttendanceLeavesScreen> {
 
   @override
   Widget build(BuildContext context) {
+    AppColors.init(context); // ✅ Make sure colors reflect current theme
+
     final vm = context.watch<AttendanceViewModel>();
     final attendanceData = vm.attendanceDays;
 
-    print("🔥 isLoading: ${vm.isLoading}");
-    print("📊 attendance count: ${attendanceData.length}");
+    print("isLoading: ${vm.isLoading}");
+    print("attendance count: ${attendanceData.length}");
 
     return Scaffold(
+      backgroundColor: AppColors.white,
       appBar: AppBar(
         title: Text(
           'Leave & Attendance',
@@ -45,7 +48,7 @@ class _AttendanceLeavesScreenState extends State<AttendanceLeavesScreen> {
         padding: const EdgeInsets.all(16.0),
         child: ListView(
           children: [
-             Text(
+            Text(
               "Attendance",
               style: TextStyle(
                 fontSize: 18,
@@ -56,13 +59,13 @@ class _AttendanceLeavesScreenState extends State<AttendanceLeavesScreen> {
             const SizedBox(height: 8),
 
             if (vm.isLoading) const AttendanceCalendarShimmer()
-            else if (vm.attendanceDays.isEmpty)
+            else if (attendanceData.isEmpty)
               const Center(child: Text("No attendance data available."))
             else
-              AttendanceCalendar(attendanceDays: vm.attendanceDays),
+              AttendanceCalendar(attendanceDays: attendanceData),
 
             const SizedBox(height: 24),
-             Text(
+            Text(
               "Leaves",
               style: TextStyle(
                 fontSize: 18,
