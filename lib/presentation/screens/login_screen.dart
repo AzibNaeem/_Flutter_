@@ -50,12 +50,13 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
+    AppColors.init(context);
     return Scaffold(
       backgroundColor: AppColors.black,
       appBar: AppBar(
         backgroundColor: AppColors.white,
         elevation: 0.5,
-        title: const Text(
+        title: Text(
           "Login",
           style: TextStyle(
             color: AppColors.primary,
@@ -63,7 +64,7 @@ class _LoginScreenState extends State<LoginScreen> {
             fontWeight: FontWeight.bold,
           ),
         ),
-        iconTheme: const IconThemeData(color: AppColors.primary),
+        iconTheme:  IconThemeData(color: AppColors.primary),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),

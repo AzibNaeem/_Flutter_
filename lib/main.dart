@@ -31,7 +31,9 @@ class HRMSApp extends StatelessWidget {
     return MaterialApp(
       title: 'HR Connect',
       debugShowCheckedModeBanner: false,
-      theme: AppTheme.lightTheme,
+      theme: ThemeData.light(),
+      darkTheme: ThemeData.dark(),
+      themeMode: ThemeMode.system,
       initialRoute: AppRoutes.login,
       onGenerateRoute: AppRoutes.onGenerateRoute,
     );

@@ -1,14 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:hris_project/data/models/login_user.dart';
-import 'package:hris_project/data/models/attendance_day.dart';
 import 'package:hris_project/presentation/widgets/user_account_info.dart';
 import 'package:hris_project/presentation/widgets/work_buttons.dart';
-import 'package:hris_project/data/models/attendance_day.dart' hide AttendanceDay;
 import 'package:hris_project/presentation/view_model/attendance_view_model.dart';
-import 'package:hris_project/presentation/widgets/attendance_calendar.dart' hide AttendanceDay;
-import 'package:hris_project/presentation/widgets/attendance_view.dart';
-import 'package:hris_project/presentation/widgets/leaves_card.dart';
-import 'package:hris_project/presentation/widgets/date_filter.dart';
 import 'package:hris_project/presentation/widgets/custom_end_drawer.dart';
 import 'package:provider/provider.dart';
 import 'package:hris_project/presentation/view_model/home_view_model.dart';
@@ -35,6 +29,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
 
   @override
   Widget build(BuildContext context) {
+    AppColors.init(context);
     final viewModel = Provider.of<HomeViewModel>(context);
     return Scaffold(
       backgroundColor: AppColors.background,
@@ -56,7 +51,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
           actions: [
             Builder(
               builder: (context) => IconButton(
-                icon: const Icon(
+                icon:  Icon(
                   Icons.menu,
                   color: AppColors.primary,
                   size: 30,
@@ -66,7 +61,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
             ),
             const SizedBox(width: 8, height: 50),
           ],
-          iconTheme: const IconThemeData(color: AppColors.primary),
+          iconTheme:  IconThemeData(color: AppColors.primary),
         ),
       ),
       body: SingleChildScrollView(
@@ -74,7 +69,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
           children: [
             const SizedBox(height: 16),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16),
+              padding:  EdgeInsets.symmetric(horizontal: 16),
               child: Card(
                 elevation: 4,
                 color: AppColors.primaryLight,
@@ -118,7 +113,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
             const SizedBox(height: 24),
             _buildGridCards(context),
             const SizedBox(height: 24),
-            const Padding(
+            Padding(
               padding: EdgeInsets.symmetric(horizontal: 16),
               child: Align(
                 alignment: Alignment.centerLeft,
@@ -193,6 +188,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
         icon: Icons.calendar_today,
         color: AppColors.primaryLight,
         route: '/attendance-leaves',
+        textColor: AppColors.lightText
       ),
       _DashboardCardData(
         title: 'Employee Report',
@@ -200,6 +196,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
         icon: Icons.bar_chart,
         color: AppColors.primaryLight,
         route: '/report',
+          textColor: AppColors.lightText
       ),
       _DashboardCardData(
         title: 'Salary Management',
@@ -207,6 +204,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
         icon: Icons.attach_money,
         color: AppColors.primaryLight,
         route: '/payslip',
+          textColor: AppColors.lightText
       ),
       _DashboardCardData(
         title: 'Onboarding & Training',
@@ -214,6 +212,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
         icon: Icons.school,
         color: AppColors.primaryLight,
         route: '/onboarding',
+          textColor: AppColors.lightText
       ),
     ];
 
@@ -289,7 +288,7 @@ class _DashboardCardData {
     required this.value,
     required this.icon,
     required this.color,
-    this.textColor = AppColors.lightText,
+    required this.textColor,
     required this.route,
     this.badge,
   });

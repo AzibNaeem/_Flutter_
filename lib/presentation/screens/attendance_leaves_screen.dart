@@ -34,7 +34,7 @@ class _AttendanceLeavesScreenState extends State<AttendanceLeavesScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text(
+        title: Text(
           'Leave & Attendance',
           style: TextStyle(color: AppColors.primary),
         ),
@@ -45,7 +45,7 @@ class _AttendanceLeavesScreenState extends State<AttendanceLeavesScreen> {
         padding: const EdgeInsets.all(16.0),
         child: ListView(
           children: [
-            const Text(
+             Text(
               "Attendance",
               style: TextStyle(
                 fontSize: 18,
@@ -55,7 +55,6 @@ class _AttendanceLeavesScreenState extends State<AttendanceLeavesScreen> {
             ),
             const SizedBox(height: 8),
 
-            // ✅ Correct conditional rendering inside children list
             if (vm.isLoading) const AttendanceCalendarShimmer()
             else if (vm.attendanceDays.isEmpty)
               const Center(child: Text("No attendance data available."))
@@ -63,7 +62,7 @@ class _AttendanceLeavesScreenState extends State<AttendanceLeavesScreen> {
               AttendanceCalendar(attendanceDays: vm.attendanceDays),
 
             const SizedBox(height: 24),
-            const Text(
+             Text(
               "Leaves",
               style: TextStyle(
                 fontSize: 18,
