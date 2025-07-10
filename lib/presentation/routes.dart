@@ -5,6 +5,7 @@ import 'screens/employee_directory_screen.dart';
 import 'screens/employee_report_screen.dart';
 import 'screens/home_screen.dart';
 import 'package:hris_project/data/models/login_user.dart';
+import 'package:hris_project/presentation/screens/attendance_leaves_screen.dart'; // New import
 
 class AppRoutes {
   static const String login = '/login';
@@ -12,6 +13,7 @@ class AppRoutes {
   static const String employeeDirectory = '/employees';
   static const String report = '/report';
   static const String home = '/home';
+  static const String attendanceLeaves = '/attendance-leaves'; // New route constant
 
   static Route<dynamic> onGenerateRoute(RouteSettings settings) {
     switch (settings.name) {
@@ -28,13 +30,19 @@ class AppRoutes {
         );
 
       case employeeDirectory:
-        return MaterialPageRoute(builder: (_) => const EmployeeDirectoryScreen());
+        return MaterialPageRoute(
+            builder: (_) => const EmployeeDirectoryScreen());
 
       case report:
-        return MaterialPageRoute(builder: (_) => const EmployeeReportScreen());
+        return MaterialPageRoute(
+            builder: (_) => const EmployeeReportScreen());
 
       case home:
         return MaterialPageRoute(builder: (_) => const HomeScreen());
+
+      case attendanceLeaves:
+        return MaterialPageRoute(
+            builder: (_) => const AttendanceLeavesScreen());
 
       default:
         return _errorRoute('Route not found: ${settings.name}');

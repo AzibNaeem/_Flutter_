@@ -1,24 +1,5 @@
 import 'package:flutter/material.dart';
-
-class AttendanceDay {
-  final String dayName;
-  final int dayDate;
-  final String? timeIn;
-  final String? timeOut;
-  final String? status;
-  final bool isWeekend;
-  final bool isLate;
-
-  const AttendanceDay({
-    required this.dayName,
-    required this.dayDate,
-    this.timeIn,
-    this.timeOut,
-    this.status,
-    this.isWeekend = false,
-    this.isLate = false,
-  });
-}
+import 'package:hris_project/data/models/attendance_day.dart';
 
 class AttendanceCalendar extends StatelessWidget {
   final List<AttendanceDay> attendanceDays;
@@ -26,6 +7,10 @@ class AttendanceCalendar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    if (attendanceDays.isEmpty) {
+      return const Center(child: Text("No attendance data available."));
+    }
+
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
       child: Row(
@@ -44,7 +29,7 @@ class _AttendanceDayCell extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: MediaQuery.of(context).size.width * 0.4, // 40% of screen width
+      width: MediaQuery.of(context).size.width * 0.4,
       decoration: BoxDecoration(
         border: Border(right: BorderSide(color: Colors.grey[300]!)),
       ),
@@ -107,31 +92,33 @@ class _AttendanceDayCell extends StatelessWidget {
           day.dayDate.toString(),
           style: TextStyle(fontSize: 28, color: Colors.grey[600]),
         ),
-        if (day.timeIn != null)
-          Text.rich(
-            TextSpan(
-              text: 'Time-in: ',
-              style: TextStyle(color: Colors.grey[600]),
-              children: [
-                TextSpan(
-                  text: day.timeIn!,
-                  style: TextStyle(
-                    color: day.isLate ? Colors.red : Colors.green,
-                  ),
-                ),
-              ],
-            ),
-          ),
-        if (day.timeOut != null)
-          Text(
-            'Time-Out: ${day.timeOut!}',
+
+        Text.rich(
+          TextSpan(
+            text: 'Time-in: ',
             style: TextStyle(color: Colors.grey[600]),
+            children: [
+              TextSpan(
+                text: day.timeIn ?? '-',
+                style: TextStyle(
+                  color: day.timeIn == null
+                      ? Colors.grey
+                      : (day.isLate ? Colors.red : Colors.green),
+                ),
+              ),
+            ],
           ),
-        if (day.status != null)
-          Text(
-            'Status: ${day.status!}',
-            style: const TextStyle(color: Colors.green),
-          ),
+        ),
+
+        Text(
+          'Time-Out: ${day.timeOut ?? '-'}',
+          style: TextStyle(color: Colors.grey[600]),
+        ),
+
+        Text(
+          'Status: ${day.status ?? '-'}',
+          style: const TextStyle(color: Colors.green),
+        ),
       ],
     );
   }

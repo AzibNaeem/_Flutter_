@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:hris_project/data/models/login_user.dart';
+import 'package:hris_project/data/models/attendance_day.dart';
 import 'package:hris_project/presentation/widgets/user_account_info.dart';
 import 'package:hris_project/presentation/widgets/work_buttons.dart';
-import 'package:hris_project/data/models/attendance_day.dart';
+import 'package:hris_project/data/models/attendance_day.dart' hide AttendanceDay;
 import 'package:hris_project/presentation/view_model/attendance_view_model.dart';
-import 'package:hris_project/presentation/widgets/attendance_calendar.dart';
+import 'package:hris_project/presentation/widgets/attendance_calendar.dart' hide AttendanceDay;
 import 'package:hris_project/presentation/widgets/attendance_view.dart';
 import 'package:hris_project/presentation/widgets/leaves_card.dart';
 import 'package:hris_project/presentation/widgets/date_filter.dart';
@@ -23,12 +24,14 @@ class DashboardScreen extends StatefulWidget {
 
 class _DashboardScreenState extends State<DashboardScreen> {
   @override
+  @override
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
       Provider.of<AttendanceViewModel>(context, listen: false).loadAttendance();
     });
   }
+
 
   @override
   Widget build(BuildContext context) {
@@ -226,13 +229,18 @@ class _DashboardScreenState extends State<DashboardScreen> {
           mainAxisSpacing: 12,
           childAspectRatio: 0.9,
         ),
-        itemBuilder: (context, index) => Card(
-          elevation: 6,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(16),
+        itemBuilder: (context, index) => GestureDetector(
+          onTap: () {
+            Navigator.pushNamed(context, cards[index].route);
+          },
+          child: Card(
+            elevation: 6,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(16),
+            ),
+            color: cards[index].color,
+            child: _FuturisticCard(card: cards[index]),
           ),
-          color: cards[index].color,
-          child: _FuturisticCard(card: cards[index]),
         ),
       ),
     );
@@ -294,107 +302,53 @@ class _FuturisticCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {
-        if (card.route == '/attendance-leaves') {
-          showModalBottomSheet(
-            context: context,
-            isScrollControlled: true,
-            shape: const RoundedRectangleBorder(
-              borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
-            ),
-            builder: (_) => DraggableScrollableSheet(
-              expand: false,
-              initialChildSize: 0.9,
-              minChildSize: 0.5,
-              maxChildSize: 0.95,
-              builder: (context, scrollController) {
-                return Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: SingleChildScrollView(
-                    controller: scrollController,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: const [
-                        Text(
-                          "Attendance",
-                          style: TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold,
-                            color: AppColors.lightText,
-                          ),
-                        ),
-                        SizedBox(height: 8),
-                        AttendanceSection(),
-                        SizedBox(height: 24),
-                        Text(
-                          "Leaves",
-                          style: TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold,
-                            color: AppColors.lightText,
-                          ),
-                        ),
-                        SizedBox(height: 8),
-                        LeavesCard(leaves: []),
-                      ],
-                    ),
-                  ),
-                );
-              },
-            ),
-          );
-        } else {
-          Navigator.pushNamed(context, card.route);
-        }
-      },
-      child: Container(
-        padding: const EdgeInsets.all(16),
-        child: Stack(
-          children: [
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Icon(card.icon, size: 26, color: card.textColor),
-                const SizedBox(height: 16),
-                Text(
-                  card.title,
-                  style: const TextStyle(fontSize: 13, color: AppColors.black),
+    return Container(
+      padding: const EdgeInsets.all(16),
+      child: Stack(
+        children: [
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Icon(card.icon, size: 26, color: card.textColor),
+              const SizedBox(height: 16),
+              Text(
+                card.title,
+                style: const TextStyle(fontSize: 13, color: Colors.black),
+              ),
+              const SizedBox(height: 6),
+              Text(
+                card.value,
+                style: const TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                  color: Color(0xFF1A237E),
                 ),
-                const SizedBox(height: 6),
-                Text(
-                  card.value,
-                  style: TextStyle(
-                    fontSize: 18,
+              ),
+            ],
+          ),
+          if (card.badge != null)
+            Positioned(
+              top: 0,
+              right: 0,
+              child: Container(
+                padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
+                decoration: BoxDecoration(
+                  color: Colors.grey[200],
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                child: Text(
+                  card.badge!,
+                  style: const TextStyle(
+                    fontSize: 10,
                     fontWeight: FontWeight.bold,
-                    color: AppColors.primary,
-                  ),
-                ),
-              ],
-            ),
-            if (card.badge != null)
-              Positioned(
-                top: 0,
-                right: 0,
-                child: Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
-                  decoration: BoxDecoration(
-                    color: AppColors.background,
-                    borderRadius: BorderRadius.circular(8),
-                  ),
-                  child: Text(
-                    card.badge!,
-                    style: const TextStyle(
-                      fontSize: 10,
-                      fontWeight: FontWeight.bold,
-                    ),
                   ),
                 ),
               ),
-          ],
-        ),
+            ),
+        ],
       ),
     );
   }
 }
+

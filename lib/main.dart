@@ -15,8 +15,10 @@ void main() {
         ChangeNotifierProvider(create: (_) => HomeViewModel()),
         ChangeNotifierProvider(create: (_) => AuthViewModel()),
         ChangeNotifierProvider(create: (_) => AttendanceViewModel()),
+
       ],
       child: const HRMSApp(),
+
     ),
   );
 }
