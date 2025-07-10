@@ -48,14 +48,15 @@ class _AttendanceDayCell extends StatelessWidget {
               style: TextStyle(color: Colors.grey[600]),
             ),
           ),
-          Expanded(
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: SizedBox(
+              height: 150, // or any fixed height
               child: day.isWeekend
                   ? _buildWeekendContent()
                   : _buildWorkdayContent(),
             ),
-          ),
+          )
         ],
       ),
     );

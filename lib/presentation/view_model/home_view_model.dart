@@ -90,11 +90,28 @@ class HomeViewModel extends ChangeNotifier {
   ];
 
   List<AttendanceDay> get attendanceDaysForSelectedMonth => [
-    AttendanceDay(dayName: 'Mon', dayDate: 5, status: 'Present'),
-    AttendanceDay(dayName: 'Tue', dayDate: 12, status: 'Leave'),
+    AttendanceDay(
+      dayName: 'Mon',
+      dayDate: 5,
+      timeIn: '09:00 AM',
+      timeOut: '05:00 PM',
+      status: 'Present',
+      isWeekend: false,
+      isLate: false,
+    ),
+    AttendanceDay(
+      dayName: 'Tue',
+      dayDate: 12,
+      timeIn: null,
+      timeOut: null,
+      status: 'Leave',
+      isWeekend: false,
+      isLate: false,
+    ),
   ];
 
-  // ✅ Fixes End
+
+// ✅ Fixes End
 }
 
 class HomeScreen extends StatelessWidget {

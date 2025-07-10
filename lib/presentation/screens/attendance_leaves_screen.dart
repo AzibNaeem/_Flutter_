@@ -17,9 +17,9 @@ class _AttendanceLeavesScreenState extends State<AttendanceLeavesScreen> {
   @override
   void initState() {
     super.initState();
-    print("🔥 initState triggered");
+    print(" initState triggered");
     Future.microtask(() {
-      print("📞 Calling loadAttendance...");
+      print(" Calling loadAttendance...");
       context.read<AttendanceViewModel>().loadAttendance();
     });
   }
@@ -41,9 +41,7 @@ class _AttendanceLeavesScreenState extends State<AttendanceLeavesScreen> {
         backgroundColor: AppColors.background,
         foregroundColor: Colors.white,
       ),
-      body: vm.isLoading
-          ? const AttendanceCalendarShimmer()
-          : Padding(
+      body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: ListView(
           children: [
@@ -56,10 +54,14 @@ class _AttendanceLeavesScreenState extends State<AttendanceLeavesScreen> {
               ),
             ),
             const SizedBox(height: 8),
-            if (attendanceData.isEmpty)
+
+            // ✅ Correct conditional rendering inside children list
+            if (vm.isLoading) const AttendanceCalendarShimmer()
+            else if (vm.attendanceDays.isEmpty)
               const Center(child: Text("No attendance data available."))
             else
-              AttendanceCalendar(attendanceDays: attendanceData),
+              AttendanceCalendar(attendanceDays: vm.attendanceDays),
+
             const SizedBox(height: 24),
             const Text(
               "Leaves",

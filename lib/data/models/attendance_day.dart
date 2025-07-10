@@ -3,29 +3,29 @@ class AttendanceDay {
   final int dayDate;
   final String? timeIn;
   final String? timeOut;
-  final String? status;
+  final String status;
   final bool isWeekend;
   final bool isLate;
 
-  const AttendanceDay({
+  AttendanceDay({
     required this.dayName,
     required this.dayDate,
-    this.timeIn,
-    this.timeOut,
-    this.status,
-    this.isWeekend = false,
-    this.isLate = false,
+    required this.timeIn,
+    required this.timeOut,
+    required this.status,
+    required this.isWeekend,
+    required this.isLate,
   });
 
   factory AttendanceDay.fromJson(Map<String, dynamic> json) {
     return AttendanceDay(
-      dayName: json['dayName'],
-      dayDate: json['dayDate'],
-      timeIn: json['timeIn'],
-      timeOut: json['timeOut'],
-      status: json['status'],
-      isWeekend: json['isWeekend'] ?? false,
-      isLate: json['isLate'] ?? false,
+      dayName: json['dayName'] as String,
+      dayDate: json['dayDate'] as int,
+      timeIn: json['timeIn'], // nullable
+      timeOut: json['timeOut'], // nullable
+      status: json['status'] as String,
+      isWeekend: json['isWeekend'] as bool,
+      isLate: json['isLate'] as bool,
     );
   }
 }
