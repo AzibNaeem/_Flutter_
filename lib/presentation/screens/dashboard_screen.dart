@@ -22,7 +22,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      Provider.of<AttendanceViewModel>(context, listen: false).loadAttendance();
+      Provider.of<AttendanceViewModel>(context, listen: false).loadAttendance(widget.user.employeeId);
     });
   }
 
@@ -230,7 +230,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
         ),
         itemBuilder: (context, index) => GestureDetector(
           onTap: () {
-            Navigator.pushNamed(context, cards[index].route);
+            Navigator.pushNamed(context, cards[index].route,arguments: widget.user);
           },
           child: Card(
             elevation: 6,

@@ -41,8 +41,9 @@ class AppRoutes {
         return MaterialPageRoute(builder: (_) => const HomeScreen());
 
       case attendanceLeaves:
+        final args=settings.arguments as LoginUser;
         return MaterialPageRoute(
-            builder: (_) => const AttendanceLeavesScreen());
+            builder: (_) =>  AttendanceLeavesScreen(user:args));
 
       default:
         return _errorRoute('Route not found: ${settings.name}');

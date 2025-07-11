@@ -3,9 +3,10 @@ import 'package:flutter/services.dart';
 import '../../data/models/attendance_day.dart';
 
 class AttendanceService {
-  Future<List<AttendanceDay>> fetchAttendanceDays() async {
-    final String jsonString = await rootBundle.loadString('assets/data/attendance_data.json');
-    final List<dynamic> jsonList = json.decode(jsonString);
-    return jsonList.map((item) => AttendanceDay.fromJson(item)).toList();
+  Future<List<AttendanceDay>> fetchAttendanceDays(String employeeId) async {
+    final String jsonString = await rootBundle.loadString('lib/data/json/attendance_record.json');
+    final Map<String, dynamic> jsonMap = json.decode(jsonString);
+    final List<dynamic> employeeData=jsonMap [employeeId]??[];
+    return employeeData.map((item) => AttendanceDay.fromJson(item)).toList();
   }
 }

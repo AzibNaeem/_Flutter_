@@ -8,22 +8,25 @@ class AttendanceViewModel extends ChangeNotifier {
   bool _isLoading = true;
 
   List<AttendanceDay> get attendanceDays => _attendanceDays;
-
   bool get isLoading => _isLoading;
 
-  Future<void> loadAttendance() async {
+  Future<void> loadAttendance(String employeeId) async {
     _isLoading = true;
-    notifyListeners(); // Notify before starting
+    notifyListeners();
 
     try {
-      final String response = await rootBundle.loadString(
-          'lib/data/json/attendance_record.json');
-      final List<dynamic> data = json.decode(response);
+      final String response =
+      await rootBundle.loadString('lib/data/json/attendance_record.json');
+      final Map<String, dynamic> fullData = json.decode(response);
 
-      _attendanceDays =
-          data.map((item) => AttendanceDay.fromJson(item)).toList();
+      if (fullData.containsKey(employeeId)) {
+        final List<dynamic> data = fullData[employeeId];
+        _attendanceDays =
+            data.map((item) => AttendanceDay.fromJson(item)).toList();
+      } else {
+        _attendanceDays = [];
     } catch (e) {
-      debugPrint("❌ Error: $e");
+      debugPrint("Error loading attendance: $e");
       _attendanceDays = [];
     } finally {
       _isLoading = false;

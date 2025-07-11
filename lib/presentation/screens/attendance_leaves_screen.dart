@@ -5,9 +5,11 @@ import '../../presentation/widgets/attendance_calendar.dart';
 import '../../presentation/widgets/leaves_card.dart';
 import '../../presentation/theme/app_theme.dart';
 import '../widgets/shimmer/attendance_calendar_shimmer.dart';
+import '../../data/models/login_user.dart';
 
 class AttendanceLeavesScreen extends StatefulWidget {
-  const AttendanceLeavesScreen({super.key});
+  final LoginUser user;
+  const AttendanceLeavesScreen({super.key, required this.user});
 
   @override
   State<AttendanceLeavesScreen> createState() => _AttendanceLeavesScreenState();
@@ -20,7 +22,7 @@ class _AttendanceLeavesScreenState extends State<AttendanceLeavesScreen> {
     print(" initState triggered");
     Future.microtask(() {
       print(" Calling loadAttendance...");
-      context.read<AttendanceViewModel>().loadAttendance();
+      context.read<AttendanceViewModel>().loadAttendance(widget.user.employeeId);
     });
   }
 
