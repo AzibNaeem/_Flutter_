@@ -25,12 +25,14 @@ class AttendanceViewModel extends ChangeNotifier {
             data.map((item) => AttendanceDay.fromJson(item)).toList();
       } else {
         _attendanceDays = [];
+      }
+
     } catch (e) {
       debugPrint("Error loading attendance: $e");
       _attendanceDays = [];
     } finally {
       _isLoading = false;
-      notifyListeners(); // Notify after loading
+      notifyListeners();
     }
   }
 }

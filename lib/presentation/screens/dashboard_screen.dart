@@ -36,33 +36,37 @@ class _DashboardScreenState extends State<DashboardScreen> {
       endDrawer: CustomEndDrawer(menuItems: viewModel.menuItems),
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(48),
-        child: AppBar(
-          automaticallyImplyLeading: false,
-          title: const Text(
-            'HRIS',
-            style: TextStyle(
-              color: AppColors.black,
-              fontWeight: FontWeight.bold,
-              fontSize: 30,
-            ),
-          ),
-          backgroundColor: AppColors.white,
-          elevation: 0.5,
-          actions: [
-            Builder(
-              builder: (context) => IconButton(
-                icon:  Icon(
-                  Icons.menu,
-                  color: AppColors.primary,
-                  size: 30,
+          child: AppBar(
+            automaticallyImplyLeading: false,
+            centerTitle: true,
+            title: Container(
+              child: const Text(
+                'HRIS',
+                style: TextStyle(
+                  color: AppColors.black,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 30,
                 ),
-                onPressed: () => Scaffold.of(context).openEndDrawer(),
               ),
             ),
-            const SizedBox(width: 8, height: 50),
-          ],
-          iconTheme:  IconThemeData(color: AppColors.primary),
-        ),
+            backgroundColor: AppColors.white,
+            elevation: 0.5,
+            actions: [
+              Builder(
+                builder: (context) => IconButton(
+                  icon:  Icon(
+                    Icons.menu,
+                    color: AppColors.primary,
+                    size: 30,
+                  ),
+                  onPressed: () => Scaffold.of(context).openEndDrawer(),
+                ),
+              ),
+              const SizedBox(width: 8, height: 50),
+            ],
+            iconTheme:  IconThemeData(color: AppColors.primary),
+          ),
+
       ),
       body: SingleChildScrollView(
         child: Column(
