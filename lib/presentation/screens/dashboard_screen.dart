@@ -8,6 +8,9 @@ import 'package:provider/provider.dart';
 import 'package:hris_project/presentation/view_model/home_view_model.dart';
 import 'package:hris_project/presentation/theme/app_theme.dart';
 
+import '../widgets/drawer_menu_item.dart';
+import '../widgets/drawer_menu_list.dart';
+
 class DashboardScreen extends StatefulWidget {
   final LoginUser user;
   const DashboardScreen({super.key, required this.user});
@@ -33,7 +36,13 @@ class _DashboardScreenState extends State<DashboardScreen> {
     final viewModel = Provider.of<HomeViewModel>(context);
     return Scaffold(
       backgroundColor: AppColors.background,
-      endDrawer: CustomEndDrawer(menuItems: viewModel.menuItems),
+      endDrawer: CustomEndDrawer(
+        menuContent: DrawerMenuList(context: context, user: widget.user),
+
+      ),
+
+
+
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(48),
           child: AppBar(
@@ -354,4 +363,5 @@ class _FuturisticCard extends StatelessWidget {
     );
   }
 }
+
 

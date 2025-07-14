@@ -19,11 +19,16 @@ import 'package:hris_project/presentation/view_model/home_view_model.dart';
 import 'package:provider/provider.dart';
 import 'package:hris_project/presentation/screens/splash_screen.dart';
 
+import '../../data/models/login_user.dart';
+import '../widgets/drawer_menu_item.dart';
+import '../widgets/drawer_menu_list.dart';
+
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final LoginUser user;
     final viewModel = Provider.of<HomeViewModel>(context);
 
     final allocationCardWidget = AllocationCard(
@@ -34,7 +39,12 @@ class HomeScreen extends StatelessWidget {
     );
 
     return Scaffold(
-      endDrawer: CustomEndDrawer(menuItems: viewModel.menuItems),
+      // endDrawer: CustomEndDrawer(
+      //   menuContent: DrawerMenuList(context: context, user: widget.user),
+      //
+      // ),
+
+
       body: NestedScrollView(
         headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
           return <Widget>[

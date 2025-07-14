@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../data/models/attendance_day.dart';
 import '../widgets/custom_end_drawer.dart';
+import '../widgets/drawer_menu_item.dart';
+import '../widgets/drawer_menu_list.dart';
 import '../widgets/experience_card.dart';
 import '../widgets/leaves_card.dart';
 import '../widgets/monthly_status_card.dart';
@@ -37,27 +39,6 @@ class HomeViewModel extends ChangeNotifier {
   }
 
   // ✅ Fixes Begin
-
-  List<DrawerMenuItemData> get menuItems => [
-    DrawerMenuItemData(icon: Icons.dashboard, title: 'Dashboard', onTap: () {}),
-    DrawerMenuItemData(icon: Icons.person, title: 'Profile', onTap: () {}),
-    DrawerMenuItemData(
-        icon: Icons.calendar_today_outlined, title: 'Leave', onTap: () {}),
-    DrawerMenuItemData(
-        icon: Icons.airplanemode_active_outlined,
-        title: 'Travel',
-        onTap: () {}),
-    DrawerMenuItemData(
-        icon: Icons.account_tree_outlined, title: 'HCD Portal', onTap: () {}),
-    DrawerMenuItemData(
-        icon: Icons.access_time_outlined, title: 'Late Sitting', onTap: () {}),
-    DrawerMenuItemData(
-        icon: Icons.analytics_outlined, title: 'Reports', onTap: () {}),
-    DrawerMenuItemData(
-        icon: Icons.description_outlined, title: 'CFS', onTap: () {}),
-    DrawerMenuItemData(icon: Icons.school_outlined, title: 'TNA', onTap: () {}),
-  ];
-
   ExperienceData get experienceData => ExperienceData(
     title: 'Intern at OpenAI',
     details: [
@@ -117,6 +98,32 @@ class HomeViewModel extends ChangeNotifier {
 class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final menuItems = [
+      DrawerMenuItemData(
+        icon: Icons.dashboard,
+        title: 'Dashboard',
+        onTap: () {
+          Navigator.pop(context);
+          // Optional navigation
+        },
+      ),
+      DrawerMenuItemData(
+        icon: Icons.person,
+        title: 'Profile',
+        onTap: () {
+          Navigator.pop(context);
+          Navigator.pushNamed(context, '/profile');
+        },
+      ),
+      DrawerMenuItemData(
+        icon: Icons.calendar_today_outlined,
+        title: 'Leave',
+        onTap: () {
+          Navigator.pop(context);
+          Navigator.pushNamed(context, '/submitLeave');
+        },
+      ),
+    ];
     final viewModel = Provider.of<HomeViewModel>(context);
 
     return Scaffold(
@@ -133,7 +140,8 @@ class HomeScreen extends StatelessWidget {
         ],
       ),
       // Attach your custom end drawer here
-      endDrawer: CustomEndDrawer(menuItems: viewModel.menuItems),
+
+
       body: ListView(
         padding: const EdgeInsets.all(16.0),
         children: [

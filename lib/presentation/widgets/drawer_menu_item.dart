@@ -11,3 +11,17 @@ class DrawerMenuItemData {
     required this.onTap,
   });
 }
+
+class DrawerMenuItem extends StatelessWidget {
+  final DrawerMenuItemData item;
+  const DrawerMenuItem({Key? key, required this.item}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return ListTile(
+      leading: Icon(item.icon),
+      title: Text(item.title),
+      onTap: item.onTap,
+    );
+  }
+}

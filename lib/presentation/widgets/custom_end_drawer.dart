@@ -1,36 +1,10 @@
 import 'package:flutter/material.dart';
 import '../theme/app_theme.dart';
-import 'drawer_menu_item.dart';
-
-class DrawerMenuItemData {
-  final IconData icon;
-  final String title;
-  final VoidCallback onTap;
-
-  const DrawerMenuItemData({
-    required this.icon,
-    required this.title,
-    required this.onTap,
-  });
-}
-
-class DrawerMenuItem extends StatelessWidget {
-  final DrawerMenuItemData item;
-  const DrawerMenuItem({Key? key, required this.item}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return ListTile(
-      leading: Icon(item.icon, color: Theme.of(context).primaryColor),
-      title: Text(item.title, style: TextStyle(color: Theme.of(context).textTheme.bodyLarge?.color)),
-      onTap: item.onTap,
-    );
-  }
-}
 
 class CustomEndDrawer extends StatelessWidget {
-  final List<DrawerMenuItemData> menuItems;
-  const CustomEndDrawer({super.key, required this.menuItems});
+  final Widget menuContent;
+
+  const CustomEndDrawer({super.key, required this.menuContent});
 
   @override
   Widget build(BuildContext context) {
@@ -57,7 +31,7 @@ class CustomEndDrawer extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 20),
-            ...menuItems.map((item) => DrawerMenuItem(item: item)),
+            menuContent,
           ],
         ),
       ),

@@ -6,7 +6,7 @@ import 'screens/employee_report_screen.dart';
 import 'screens/home_screen.dart';
 import 'package:hris_project/data/models/login_user.dart';
 import 'package:hris_project/presentation/screens/attendance_leaves_screen.dart'; // New import
-
+import 'screens/submit_leave_screen.dart';
 class AppRoutes {
   static const String login = '/login';
   static const String dashboard = '/dashboard';
@@ -14,6 +14,7 @@ class AppRoutes {
   static const String report = '/report';
   static const String home = '/home';
   static const String attendanceLeaves = '/attendance-leaves'; // New route constant
+  static const String submitLeaves='/submitLeave';
 
   static Route<dynamic> onGenerateRoute(RouteSettings settings) {
     switch (settings.name) {
@@ -39,6 +40,11 @@ class AppRoutes {
 
       case home:
         return MaterialPageRoute(builder: (_) => const HomeScreen());
+
+      case submitLeaves:
+        final args=settings.arguments as LoginUser;
+        return MaterialPageRoute(
+            builder: (_) =>  SubmitLeaveScreen(user:args));
 
       case attendanceLeaves:
         final args=settings.arguments as LoginUser;
