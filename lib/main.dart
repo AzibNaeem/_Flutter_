@@ -1,7 +1,4 @@
 
-
-
-// SmartDevice base class
 abstract class SmartDevice {
   String name;
   String location;
@@ -11,7 +8,7 @@ abstract class SmartDevice {
 
   void turnOn() {
     isOn = true;
-    print('$name in $location is now ON.');  // printing location
+    print('$name in $location is now ON.');
   }
 
   void turnOff() {
@@ -24,13 +21,11 @@ abstract class SmartDevice {
   }
 }
 
-// Schedulable Interface
 abstract class Schedulable {
   void scheduleOn(String time);
   void scheduleOff(String time);
 }
 
-// Light subclass
 class Light extends SmartDevice implements Schedulable {
   Light(String name, String location) : super(name, location);
 
@@ -45,7 +40,6 @@ class Light extends SmartDevice implements Schedulable {
   }
 }
 
-// Thermostat subclass
 class Thermostat extends SmartDevice implements Schedulable {
   double temperature = 22.0;
 
@@ -67,7 +61,6 @@ class Thermostat extends SmartDevice implements Schedulable {
   }
 }
 
-// SecurityCamera subclass
 class SecurityCamera extends SmartDevice {
   SecurityCamera(String name, String location) : super(name, location);
 
@@ -80,7 +73,6 @@ class SecurityCamera extends SmartDevice {
   }
 }
 
-// Factory Pattern to create devices
 class DeviceFactory {
   static SmartDevice create(String type, String name, String location) {
     switch (type.toLowerCase()) {
@@ -96,7 +88,6 @@ class DeviceFactory {
   }
 }
 
-// Room class (Aggregation)
 class Room {
   String name;
   List<SmartDevice> devices = [];
