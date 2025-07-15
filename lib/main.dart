@@ -11,7 +11,7 @@ abstract class SmartDevice {
 
   void turnOn() {
     isOn = true;
-    print('$name in $location is now ON.');
+    print('$name in $location is now ON.');  // printing location
   }
 
   void turnOff() {
