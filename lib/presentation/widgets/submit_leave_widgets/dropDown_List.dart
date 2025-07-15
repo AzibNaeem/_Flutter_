@@ -8,7 +8,7 @@ class CustomLeaveTypeDropdown extends StatelessWidget {
   final ValueChanged<LeaveType?> onChanged;
   final Color? labelColor;
   final Color? textColor;
-  final double? width; // Optional width control
+  final double? width; // optional control from parent
 
   const CustomLeaveTypeDropdown({
     Key? key,
@@ -22,12 +22,13 @@ class CustomLeaveTypeDropdown extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final fallbackColor = AppColors.primary;
+    final dropdownWidth = width ?? MediaQuery.of(context).size.width * 0.97;
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Padding(
-          padding: const EdgeInsets.only(bottom: 4.0),
+          padding: const EdgeInsets.only(bottom: 4.0, left: 4.0),
           child: Text(
             'Leave Type',
             style: TextStyle(
@@ -39,7 +40,7 @@ class CustomLeaveTypeDropdown extends StatelessWidget {
           ),
         ),
         Container(
-          width: width ?? double.infinity,
+          width: dropdownWidth,
           decoration: BoxDecoration(
             color: AppColors.white,
             borderRadius: BorderRadius.circular(10),
@@ -64,13 +65,13 @@ class CustomLeaveTypeDropdown extends StatelessWidget {
                 );
               }).toList(),
               dropdownStyleData: DropdownStyleData(
-                maxHeight: 200,
-                width: width, // Match dropdown width to container
+                width: dropdownWidth, // Ensures popup matches field
+                maxHeight: 150,
                 decoration: BoxDecoration(
                   color: AppColors.white,
                   borderRadius: BorderRadius.circular(10),
                 ),
-                offset: const Offset(0, 8), // Show dropdown below
+                offset: const Offset(0, 8), // push dropdown below
               ),
               iconStyleData: IconStyleData(
                 icon: Icon(Icons.arrow_drop_down, color: fallbackColor),

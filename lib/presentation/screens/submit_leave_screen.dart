@@ -90,68 +90,68 @@ class _SubmitLeaveScreenState extends State<SubmitLeaveScreen> {
           ),
         ),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(10),
-        child: Form(
-          key: _formKey,
-          child: Column(
-            children: [
-              /// ✅ Wrap in full-width container
-              SizedBox(
-                width: double.infinity,
-                child: CustomLeaveTypeDropdown(
+      body: SafeArea(
+        child: SingleChildScrollView(
+          padding: const EdgeInsets.all(10),
+          child: Form(
+            key: _formKey,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                CustomLeaveTypeDropdown(
                   value: _leaveType,
                   onChanged: (val) => setState(() => _leaveType = val!),
                   textColor: AppColors.primary,
                   labelColor: AppColors.primary,
                 ),
-              ),
+                const SizedBox(height: 10),
 
-              const SizedBox(height: 10),
+                DatePickerTile(
+                  label: 'Start Date',
+                  date: _startDate,
+                  onTap: () => _pickDate(context, true),
+                  labelColor: AppColors.primary,
+                  labelStyle: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                    color: AppColors.primary,
+                  ),
+                ),
+                DatePickerTile(
+                  label: 'End Date',
+                  date: _endDate,
+                  onTap: () => _pickDate(context, false),
+                  labelColor: AppColors.primary,
+                  labelStyle: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                    color: AppColors.primary,
+                  ),
+                ),
+                CustomTextFormField(
+                  label: 'Reason',
+                  labelColor: AppColors.primary,
+                  validator: (val) => val!.isEmpty ? 'Please provide a reason' : null,
+                  errorColor: AppColors.primary,
+                  onChanged: (val) => _reason = val,
+                ),
+                const SizedBox(height: 20),
 
-              DatePickerTile(
-                label: 'Start Date',
-                date: _startDate,
-                onTap: () => _pickDate(context, true),
-                labelColor: AppColors.primary,
-                labelStyle: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                  color: AppColors.primary,
+                Center(
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: AppColors.white,
+                      foregroundColor: AppColors.primary,
+                    ),
+                    onPressed: _submit,
+                    child: Text(
+                      'Submit Leave',
+                      style: TextStyle(color: AppColors.primary),
+                    ),
+                  ),
                 ),
-              ),
-              DatePickerTile(
-                label: 'End Date',
-                date: _endDate,
-                onTap: () => _pickDate(context, false),
-                labelColor: AppColors.primary,
-                labelStyle: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                  color: AppColors.primary,
-                ),
-              ),
-              CustomTextFormField(
-                label: 'Reason',
-                labelColor: AppColors.primary,
-                validator: (val) =>
-                val!.isEmpty ? 'Please provide a reason' : null,
-                errorColor: AppColors.primary,
-                onChanged: (val) => _reason = val,
-              ),
-              const SizedBox(height: 20),
-              ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: AppColors.white,
-                  foregroundColor: AppColors.primary,
-                ),
-                onPressed: _submit,
-                child: Text(
-                  'Submit Leave',
-                  style: TextStyle(color: AppColors.primary),
-                ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),
