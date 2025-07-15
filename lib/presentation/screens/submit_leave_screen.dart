@@ -55,7 +55,8 @@ class _SubmitLeaveScreenState extends State<SubmitLeaveScreen> {
     }
   }
 
-  void _submit() {
+
+  void _submit() async {
     if (_formKey.currentState!.validate() &&
         _startDate != null &&
         _endDate != null) {
@@ -67,11 +68,30 @@ class _SubmitLeaveScreenState extends State<SubmitLeaveScreen> {
         reason: _reason,
       );
 
-      Provider.of<LeaveViewModel>(context, listen: false).submitLeave(request);
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Leave submitted successfully')),
+      // Show loading while submitting
+      showDialog(
+        context: context,
+        barrierDismissible: false,
+        builder: (_) => const Center(child: CircularProgressIndicator()),
       );
-      Navigator.pop(context);
+
+      try {
+        await Provider.of<LeaveViewModel>(context, listen: false)
+            .submitLeave(request);
+
+        // Close loading spinner
+        Navigator.of(context).pop();
+
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text('Leave submitted successfully')),
+        );
+        Navigator.pop(context); // Go back to previous screen
+      } catch (e) {
+        Navigator.of(context).pop(); // Close loading spinner
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Error: ${e.toString()}')),
+        );
+      }
     }
   }
 

@@ -3,24 +3,27 @@ import '../../data/models/leave_request.dart';
 import '../../domain/services/leave_service.dart';
 
 class LeaveViewModel extends ChangeNotifier {
-  final LeaveService _leaveService = LeaveService();
-
+  final LeaveApiService _leaveService = LeaveApiService();
   List<LeaveRequest> _leaveRequests = [];
   List<LeaveRequest> get leaveRequests => _leaveRequests;
 
-  Future<void> init() async {
-    await _leaveService.init();
-  }
-
+  /// Submit leave request to the API
   Future<void> submitLeave(LeaveRequest request) async {
-    await _leaveService.submitLeave(request);
-    _leaveRequests =
-        _leaveService.getLeavesByEmployee(request.employeeId);
-    notifyListeners();
+    try {
+      await _leaveService.submitLeave(request);
+      // await loadLeaves(request.employeeId);
+    } catch (e) {
+      rethrow;
+    }
   }
 
-  void loadLeaves(String employeeId) {
-    _leaveRequests = _leaveService.getLeavesByEmployee(employeeId);
-    notifyListeners();
-  }
+  /// Fetch leaves for the logged-in employee
+  // Future<void> loadLeaves(String employeeId) async {
+  //   try {
+  //     _leaveRequests = await _leaveService.getLeavesByEmployee(employeeId);
+  //     notifyListeners();
+  //   } catch (e) {
+  //     rethrow;
+  //   }
+  // }
 }

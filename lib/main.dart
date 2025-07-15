@@ -11,12 +11,12 @@ import 'presentation/view_model/home_view_model.dart';
 import 'data/models/leave_request.dart';
 
 void main() async {
- WidgetsFlutterBinding.ensureInitialized();
- await Hive.initFlutter();
-
- Hive.registerAdapter(LeaveRequestAdapter());
-
- await Hive.openBox<LeaveRequest>('leaveRequests');
+ // WidgetsFlutterBinding.ensureInitialized();
+ // await Hive.initFlutter();
+ //
+ // Hive.registerAdapter(LeaveRequestAdapter());
+ //
+ // await Hive.openBox<LeaveRequest>('leaveRequests');
 
   runApp(
     MultiProvider(
