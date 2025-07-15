@@ -18,12 +18,21 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   final emailOrIdController = TextEditingController();
   final passwordController = TextEditingController();
+  bool _isLoading = true;
 
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      Provider.of<AuthViewModel>(context, listen: false).loadUsersFromJson();
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      try {
+        await Provider.of<AuthViewModel>(context, listen: false).loadUsers();
+      } catch (e) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Error loading users: $e')),
+        );
+      } finally {
+        setState(() => _isLoading = false);
+      }
     });
   }
 
@@ -48,6 +57,7 @@ class _LoginScreenState extends State<LoginScreen> {
     }
   }
 
+
   @override
   Widget build(BuildContext context) {
     AppColors.init(context);
@@ -64,9 +74,11 @@ class _LoginScreenState extends State<LoginScreen> {
             fontWeight: FontWeight.bold,
           ),
         ),
-        iconTheme:  IconThemeData(color: AppColors.primary),
+        iconTheme: IconThemeData(color: AppColors.primary),
       ),
-      body: Padding(
+      body: _isLoading
+          ? const Center(child: CircularProgressIndicator())
+          : Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
@@ -100,4 +112,5 @@ class _LoginScreenState extends State<LoginScreen> {
       ),
     );
   }
+
 }

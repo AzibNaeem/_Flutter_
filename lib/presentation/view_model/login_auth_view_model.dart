@@ -1,24 +1,25 @@
-import 'dart:convert';
-import 'package:flutter/services.dart';
-import 'package:flutter/foundation.dart';
-import 'package:hris_project/data/models/login_user.dart';
-import 'package:hris_project/domain/services/login_validation.dart';
+import 'package:flutter/material.dart';
+import '../../data/models/login_user.dart';
+import '../../domain/services/auth_service.dart';
 
 class AuthViewModel extends ChangeNotifier {
+  final AuthService _authService = AuthService();
   List<LoginUser> _users = [];
 
-  Future<void> loadUsersFromJson() async {
-    final String jsonString =
-    await rootBundle.loadString('lib/data/json/loginData.json');
-    final List<dynamic> jsonData = json.decode(jsonString);
-    _users = jsonData.map((e) => LoginUser.fromJson(e)).toList();
+  Future<void> loadUsers() async {
+    _users = await _authService.fetchUsers();
+    notifyListeners();
   }
 
   LoginUser? validateUser(String input, String password) {
-    return LoginValidator.validate(
-      users: _users,
-      input: input,
-      password: password,
-    );
+    try {
+      return _users.firstWhere(
+            (u) =>
+        (u.email == input || u.employeeId == input) &&
+            u.password == password,
+      );
+    } catch (e) {
+      return null;
+    }
   }
 }
