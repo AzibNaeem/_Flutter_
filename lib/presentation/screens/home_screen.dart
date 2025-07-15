@@ -92,7 +92,7 @@ class HomeScreen extends StatelessWidget {
                         name: 'Abdullah Umar',
                         role: 'Intern',
                         avatarUrl:
-                        'https://via.placeholder.com/150', // Use a valid placeholder
+                        'https://i.pravatar.cc/300', // Use a valid placeholder
                       ),
                     ),
                     const SizedBox(height: 20),
