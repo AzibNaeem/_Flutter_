@@ -237,7 +237,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                         Align(
                           alignment: Alignment.centerLeft,
                           child: Text(
-                            "Today Schedule",
+                            "Today's Meeting Schedule",
                             style: ThemeService.titleMedium.copyWith(
                               fontSize: 16,
                               color: AppColors.primary,
@@ -291,10 +291,10 @@ class _DashboardScreenState extends State<DashboardScreen> {
         scrollDirection: Axis.horizontal,
         padding: EdgeInsets.symmetric(horizontal: isTablet ? 32 : 16),
         children: const [
-          _ScheduleBlock(time: '08:00'),
-          _ScheduleBlock(time: '09:00'),
-          _ScheduleBlock(time: '09:35'),
-          _ScheduleBlock(time: '10:00', active: true),
+          _ScheduleBlock(time: '8:00 AM', active: true),
+          _ScheduleBlock(time: '9:00 AM'),
+          _ScheduleBlock(time: '9:35 AM'),
+          _ScheduleBlock(time: '3:00 PM', active: true),
         ],
       ),
     );
@@ -304,7 +304,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
     final cards = [
       _DashboardCardData(
         title: 'Leave & Attendance',
-        value: '2.600',
+        value: '',
         icon: Icons.calendar_today,
         color: AppColors.primaryLight,
         route: '/attendance-leaves',
@@ -312,7 +312,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
       ),
       _DashboardCardData(
         title: 'Employee Report',
-        value: '2.600',
+        value: '',
         icon: Icons.bar_chart,
         color: AppColors.primaryLight,
         route: '/report',
@@ -320,7 +320,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
       ),
       _DashboardCardData(
         title: 'Salary Management',
-        value: '2.600',
+        value: '',
         icon: Icons.attach_money,
         color: AppColors.primaryLight,
         route: '/payslip',
@@ -328,7 +328,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
       ),
       _DashboardCardData(
         title: 'Onboarding & Training',
-        value: '2.600',
+        value: '',
         icon: Icons.school,
         color: AppColors.primaryLight,
         route: '/onboarding',
