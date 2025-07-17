@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../theme/app_theme.dart';
+
 class DrawerMenuItemData {
   final IconData icon;
   final String title;
@@ -19,8 +21,8 @@ class DrawerMenuItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      leading: Icon(item.icon),
-      title: Text(item.title),
+      leading: Icon(item.icon, color: AppColors.primary),
+      title: Text(item.title, style: TextStyle(color: AppColors.primary),),
       onTap: item.onTap,
     );
   }

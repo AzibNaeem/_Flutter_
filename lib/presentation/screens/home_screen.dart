@@ -22,6 +22,7 @@ import 'package:hris_project/presentation/screens/splash_screen.dart';
 import '../../data/models/login_user.dart';
 import '../widgets/drawer_menu_item.dart';
 import '../widgets/drawer_menu_list.dart';
+import '../../core/themes/theme_service.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -31,6 +32,11 @@ class HomeScreen extends StatelessWidget {
     final LoginUser user;
     final viewModel = Provider.of<HomeViewModel>(context);
 
+    final size = MediaQuery.of(context).size;
+    final isTablet = size.width > 600;
+    final padding = isTablet ? 32.0 : 16.0;
+    final titleFontSize = isTablet ? 22.0 : 18.0;
+
     final allocationCardWidget = AllocationCard(
       month: 'June',
       year: '2025',
@@ -39,134 +45,259 @@ class HomeScreen extends StatelessWidget {
     );
 
     return Scaffold(
-      // endDrawer: CustomEndDrawer(
-      //   menuContent: DrawerMenuList(context: context, user: widget.user),
-      //
-      // ),
-
-
-      body: NestedScrollView(
-        headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
-          return <Widget>[
-            SliverAppBar(
-              title: const Text('HRIS',
-                  style: TextStyle(
-                      color: Colors.black,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 22)),
-              backgroundColor: Colors.white,
-              elevation: 1,
-              floating: true,
-              snap: true,
-              actions: [
-                Builder(
-                  builder: (context) => IconButton(
-                    icon: const Icon(Icons.menu, color: Colors.blue, size: 30),
-                    onPressed: () {
-                      Scaffold.of(context).openEndDrawer();
-                    },
+      body: LayoutBuilder(
+        builder: (context, constraints) {
+          return Padding(
+            padding: EdgeInsets.all(padding),
+            child: constraints.maxWidth > 700
+                ? Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Expanded(
+                        child: ListView(
+                          children: [
+                            Card(
+                              elevation: 4,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(16),
+                              ),
+                              child: Padding(
+                                padding: const EdgeInsets.all(20),
+                                child: Column(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    Center(
+                                      child: UserAccountInfo(
+                                        name: 'Abdullah Umar',
+                                        role: 'Intern',
+                                        avatarUrl: 'https://i.pravatar.cc/300',
+                                      ),
+                                    ),
+                                    const SizedBox(height: 20),
+                                    Center(
+                                      child: WorkButtons(
+                                        buttons: [
+                                          ButtonData(
+                                            label: 'Start Work',
+                                            color: Colors.teal,
+                                            onPressed: () {},
+                                          ),
+                                          ButtonData(
+                                            label: 'End Work',
+                                            color: Colors.grey,
+                                            onPressed: () {},
+                                            outlined: true,
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                            const SizedBox(height: 24),
+                            _TitledCard(
+                              title: 'Experience',
+                              child: ExperienceCard(
+                                data: viewModel.experienceData,
+                              ),
+                            ),
+                            const SizedBox(height: 16),
+                            _TitledCard(
+                              title: 'Monthly Status',
+                              child: MonthlyStatusCard(
+                                data: viewModel.monthlyStatusData,
+                              ),
+                            ),
+                            const SizedBox(height: 16),
+                            _TitledCard(
+                              title: 'Leaves',
+                              child: LeavesCard(leaves: viewModel.leavesData),
+                            ),
+                          ],
+                        ),
+                      ),
+                      const SizedBox(width: 24),
+                      Expanded(
+                        child: ListView(
+                          children: [
+                            _TitledCard(
+                              title: 'Attendance',
+                              child: const AttendanceSection(),
+                            ),
+                            const SizedBox(height: 24),
+                            _TitledCard(
+                              title: 'Reporting Manager',
+                              child: SizedBox(
+                                height: 250,
+                                child: ReportingManagerCard(
+                                  name: 'No Reporting Manager',
+                                ),
+                              ),
+                            ),
+                            const SizedBox(height: 16),
+                            _TitledCard(
+                              title: 'User Profile',
+                              child: SizedBox(
+                                height: 280,
+                                child: UserProfileCard.defaultCard(),
+                              ),
+                            ),
+                            const SizedBox(height: 16),
+                            _TitledCard(
+                              title: 'Allocation',
+                              child: allocationCardWidget,
+                            ),
+                            const SizedBox(height: 16),
+                            _TitledCard(
+                              title: 'MVP Stats',
+                              child: SizedBox(
+                                height: 300,
+                                child: MvpStatsCard(
+                                  stats: viewModel.mvpStatsData,
+                                ),
+                              ),
+                            ),
+                            const SizedBox(height: 24),
+                            _TitledCard(
+                              title: 'Perks',
+                              child: SizedBox(
+                                height: 250,
+                                child: PerksCard(perks: viewModel.perksData),
+                              ),
+                            ),
+                            const SizedBox(height: 16),
+                            _TitledCard(
+                              title: 'Miscellaneous Info',
+                              child: SizedBox(
+                                height: 300,
+                                child: MiscellaneousInfoCard(
+                                  items: viewModel.miscellaneousInfoData,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  )
+                : ListView(
+                    padding: EdgeInsets.all(padding),
+                    children: [
+                      Card(
+                        elevation: 4,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(16),
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.all(20),
+                          child: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Center(
+                                child: UserAccountInfo(
+                                  name: 'Abdullah Umar',
+                                  role: 'Intern',
+                                  avatarUrl: 'https://i.pravatar.cc/300',
+                                ),
+                              ),
+                              const SizedBox(height: 20),
+                              Center(
+                                child: WorkButtons(
+                                  buttons: [
+                                    ButtonData(
+                                      label: 'Start Work',
+                                      color: Colors.teal,
+                                      onPressed: () {},
+                                    ),
+                                    ButtonData(
+                                      label: 'End Work',
+                                      color: Colors.grey,
+                                      onPressed: () {},
+                                      outlined: true,
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      const SizedBox(height: 24),
+                      _TitledCard(
+                        title: 'Experience',
+                        child: ExperienceCard(data: viewModel.experienceData),
+                      ),
+                      const SizedBox(height: 16),
+                      _TitledCard(
+                        title: 'Monthly Status',
+                        child: MonthlyStatusCard(
+                          data: viewModel.monthlyStatusData,
+                        ),
+                      ),
+                      const SizedBox(height: 16),
+                      _TitledCard(
+                        title: 'Leaves',
+                        child: LeavesCard(leaves: viewModel.leavesData),
+                      ),
+                      const SizedBox(height: 24),
+                      _TitledCard(
+                        title: 'Attendance',
+                        child: const AttendanceSection(),
+                      ),
+                      const SizedBox(height: 24),
+                      _TitledCard(
+                        title: 'Reporting Manager',
+                        child: SizedBox(
+                          height: 250,
+                          child: ReportingManagerCard(
+                            name: 'No Reporting Manager',
+                          ),
+                        ),
+                      ),
+                      const SizedBox(height: 16),
+                      _TitledCard(
+                        title: 'User Profile',
+                        child: SizedBox(
+                          height: 280,
+                          child: UserProfileCard.defaultCard(),
+                        ),
+                      ),
+                      const SizedBox(height: 16),
+                      _TitledCard(
+                        title: 'Allocation',
+                        child: allocationCardWidget,
+                      ),
+                      const SizedBox(height: 16),
+                      _TitledCard(
+                        title: 'MVP Stats',
+                        child: SizedBox(
+                          height: 300,
+                          child: MvpStatsCard(stats: viewModel.mvpStatsData),
+                        ),
+                      ),
+                      const SizedBox(height: 24),
+                      _TitledCard(
+                        title: 'Perks',
+                        child: SizedBox(
+                          height: 250,
+                          child: PerksCard(perks: viewModel.perksData),
+                        ),
+                      ),
+                      const SizedBox(height: 16),
+                      _TitledCard(
+                        title: 'Miscellaneous Info',
+                        child: SizedBox(
+                          height: 300,
+                          child: MiscellaneousInfoCard(
+                            items: viewModel.miscellaneousInfoData,
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
-                ),
-                const SizedBox(width: 8),
-              ],
-            ),
-          ];
+          );
         },
-        body: ListView(
-          padding: const EdgeInsets.all(16.0),
-          children: [
-            // User profile section in a beautiful centered card
-            Card(
-              elevation: 4,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(16),
-              ),
-              child: Padding(
-                padding: const EdgeInsets.all(20),
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    // Center the user account info
-                    Center(
-                      child: UserAccountInfo(
-                        name: 'Abdullah Umar',
-                        role: 'Intern',
-                        avatarUrl:
-                        'https://i.pravatar.cc/300', // Use a valid placeholder
-                      ),
-                    ),
-                    const SizedBox(height: 20),
-                    // Center the work buttons
-                    Center(
-                      child: WorkButtons(
-                        buttons: [
-                          ButtonData(
-                              label: 'Start Work',
-                              color: Colors.teal,
-                              onPressed: () {}),
-                          ButtonData(
-                              label: 'End Work',
-                              color: Colors.grey,
-                              onPressed: () {},
-                              outlined: true),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-            const SizedBox(height: 24),
-            _TitledCard(
-                title: 'Experience',
-                child: ExperienceCard(data: viewModel.experienceData)),
-            const SizedBox(height: 16),
-            _TitledCard(
-                title: 'Monthly Status',
-                child: MonthlyStatusCard(data: viewModel.monthlyStatusData)),
-            const SizedBox(height: 16),
-            _TitledCard(
-                title: 'Leaves',
-                child: LeavesCard(leaves: viewModel.leavesData)),
-            const SizedBox(height: 24),
-            _TitledCard(
-              title: 'Attendance',
-              child: const AttendanceSection(),
-            ),
-            const SizedBox(height: 24),
-            _TitledCard(
-                title: 'Reporting Manager',
-                child: SizedBox(
-                    height: 250,
-                    child: ReportingManagerCard(name: 'No Reporting Manager'))),
-            const SizedBox(height: 16),
-            _TitledCard(
-              title: 'User Profile',
-              child:
-              SizedBox(height: 280, child: UserProfileCard.defaultCard()),
-            ),
-            const SizedBox(height: 16),
-            _TitledCard(title: 'Allocation', child: allocationCardWidget),
-            const SizedBox(height: 16),
-            _TitledCard(
-                title: 'MVP Stats',
-                child: SizedBox(
-                    height: 300,
-                    child: MvpStatsCard(stats: viewModel.mvpStatsData))),
-            const SizedBox(height: 24),
-            _TitledCard(
-                title: 'Perks',
-                child: SizedBox(
-                    height: 250, child: PerksCard(perks: viewModel.perksData))),
-            const SizedBox(height: 16),
-            _TitledCard(
-                title: 'Miscellaneous Info',
-                child: SizedBox(
-                    height: 300,
-                    child: MiscellaneousInfoCard(
-                        items: viewModel.miscellaneousInfoData))),
-          ],
-        ),
       ),
     );
   }
@@ -193,10 +324,7 @@ class _TitledCard extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          title,
-          style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-        ),
+        Text(title, style: ThemeService.titleMedium),
         const SizedBox(height: 8),
         child,
       ],

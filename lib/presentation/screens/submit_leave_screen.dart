@@ -8,6 +8,7 @@ import '../view_model/leave_view_model.dart';
 import '../widgets/submit_leave_widgets/datePicker_Tile.dart';
 import '../widgets/submit_leave_widgets/dropDown_List.dart';
 import '../widgets/submit_leave_widgets/textForm_Field.dart';
+import '../../core/themes/theme_service.dart';
 
 class SubmitLeaveScreen extends StatefulWidget {
   final LoginUser user;
@@ -55,7 +56,6 @@ class _SubmitLeaveScreenState extends State<SubmitLeaveScreen> {
     }
   }
 
-
   void _submit() async {
     if (_formKey.currentState!.validate() &&
         _startDate != null &&
@@ -76,8 +76,10 @@ class _SubmitLeaveScreenState extends State<SubmitLeaveScreen> {
       );
 
       try {
-        await Provider.of<LeaveViewModel>(context, listen: false)
-            .submitLeave(request);
+        await Provider.of<LeaveViewModel>(
+          context,
+          listen: false,
+        ).submitLeave(request);
 
         // Close loading spinner
         Navigator.of(context).pop();
@@ -88,15 +90,21 @@ class _SubmitLeaveScreenState extends State<SubmitLeaveScreen> {
         Navigator.pop(context); // Go back to previous screen
       } catch (e) {
         Navigator.of(context).pop(); // Close loading spinner
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Error: ${e.toString()}')),
-        );
+        ScaffoldMessenger.of(
+          context,
+        ).showSnackBar(SnackBar(content: Text('Error: ${e.toString()}')));
       }
     }
   }
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
+    final isTablet = size.width > 600;
+    final padding = isTablet ? 32.0 : 16.0;
+    final labelFontSize = isTablet ? 20.0 : 16.0;
+    final buttonFontSize = isTablet ? 20.0 : 16.0;
+
     return Scaffold(
       backgroundColor: AppColors.background,
       appBar: AppBar(
@@ -104,75 +112,90 @@ class _SubmitLeaveScreenState extends State<SubmitLeaveScreen> {
         iconTheme: IconThemeData(color: AppColors.primary),
         title: Text(
           'Submit Leave',
-          style: TextStyle(
+          style: ThemeService.appBar.copyWith(
             color: AppColors.primary,
-            fontWeight: FontWeight.bold,
+            fontSize: isTablet ? 24 : 20,
           ),
         ),
       ),
       body: SafeArea(
-        child: SingleChildScrollView(
-          padding: const EdgeInsets.all(10),
-          child: Form(
-            key: _formKey,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                CustomLeaveTypeDropdown(
-                  value: _leaveType,
-                  onChanged: (val) => setState(() => _leaveType = val!),
-                  textColor: AppColors.primary,
-                  labelColor: AppColors.primary,
-                ),
-                const SizedBox(height: 10),
-
-                DatePickerTile(
-                  label: 'Start Date',
-                  date: _startDate,
-                  onTap: () => _pickDate(context, true),
-                  labelColor: AppColors.primary,
-                  labelStyle: TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
-                    color: AppColors.primary,
+        child: LayoutBuilder(
+          builder: (context, constraints) {
+            return SingleChildScrollView(
+              padding: EdgeInsets.all(padding),
+              child: Center(
+                child: ConstrainedBox(
+                  constraints: BoxConstraints(
+                    maxWidth: isTablet ? 500 : double.infinity,
                   ),
-                ),
-                DatePickerTile(
-                  label: 'End Date',
-                  date: _endDate,
-                  onTap: () => _pickDate(context, false),
-                  labelColor: AppColors.primary,
-                  labelStyle: TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
-                    color: AppColors.primary,
-                  ),
-                ),
-                CustomTextFormField(
-                  label: 'Reason',
-                  labelColor: AppColors.primary,
-                  validator: (val) => val!.isEmpty ? 'Please provide a reason' : null,
-                  errorColor: AppColors.primary,
-                  onChanged: (val) => _reason = val,
-                ),
-                const SizedBox(height: 20),
-
-                Center(
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: AppColors.white,
-                      foregroundColor: AppColors.primary,
+                  child: Form(
+                    key: _formKey,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        CustomLeaveTypeDropdown(
+                          value: _leaveType,
+                          onChanged: (val) => setState(() => _leaveType = val!),
+                          textColor: AppColors.primary,
+                          labelColor: AppColors.primary,
+                        ),
+                        const SizedBox(height: 10),
+                        DatePickerTile(
+                          label: 'Start Date',
+                          date: _startDate,
+                          onTap: () => _pickDate(context, true),
+                          labelColor: AppColors.primary,
+                          labelStyle: ThemeService.label.copyWith(
+                            fontSize: labelFontSize,
+                            color: AppColors.primary,
+                          ),
+                        ),
+                        DatePickerTile(
+                          label: 'End Date',
+                          date: _endDate,
+                          onTap: () => _pickDate(context, false),
+                          labelColor: AppColors.primary,
+                          labelStyle: ThemeService.label.copyWith(
+                            fontSize: labelFontSize,
+                            color: AppColors.primary,
+                          ),
+                        ),
+                        CustomTextFormField(
+                          label: 'Reason',
+                          labelColor: AppColors.primary,
+                          validator: (val) =>
+                              val!.isEmpty ? 'Please provide a reason' : null,
+                          errorColor: AppColors.primary,
+                          onChanged: (val) => _reason = val,
+                        ),
+                        const SizedBox(height: 20),
+                        Center(
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: AppColors.white,
+                              foregroundColor: AppColors.primary,
+                              padding: EdgeInsets.symmetric(
+                                horizontal: isTablet ? 40 : 24,
+                                vertical: isTablet ? 18 : 12,
+                              ),
+                            ),
+                            onPressed: _submit,
+                            child: Text(
+                              'Submit Leave',
+                              style: ThemeService.button.copyWith(
+                                color: AppColors.primary,
+                                fontSize: buttonFontSize,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
-                    onPressed: _submit,
-                    child: Text(
-                      'Submit Leave',
-                      style: TextStyle(color: AppColors.primary),
-                    ),
                   ),
                 ),
-              ],
-            ),
-          ),
+              ),
+            );
+          },
         ),
       ),
     );

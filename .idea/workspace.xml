@@ -7,8 +7,20 @@
     <list default="true" id="3b49d461-bc12-4301-b2fe-a52dae436fd4" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/core/api_constants.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/core/api_constants.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/domain/services/auth_service.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/domain/services/auth_service.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/presentation/screens/attendance_leaves_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/presentation/screens/attendance_leaves_screen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/presentation/screens/dashboard_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/presentation/screens/dashboard_screen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/presentation/screens/employee_directory_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/presentation/screens/employee_directory_screen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/presentation/screens/employee_report_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/presentation/screens/employee_report_screen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/presentation/screens/home_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/presentation/screens/home_screen.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/presentation/screens/login_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/presentation/screens/login_screen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/presentation/screens/splash_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/presentation/screens/splash_screen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/presentation/screens/submit_leave_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/presentation/screens/submit_leave_screen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/presentation/view_model/attendance_view_model.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/presentation/view_model/attendance_view_model.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/presentation/view_model/login_auth_view_model.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/presentation/view_model/login_auth_view_model.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/presentation/widgets/attendance_calendar.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/presentation/widgets/attendance_calendar.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/presentation/widgets/drawer_menu_item.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/presentation/widgets/drawer_menu_item.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/presentation/widgets/work_buttons.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/presentation/widgets/work_buttons.dart" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

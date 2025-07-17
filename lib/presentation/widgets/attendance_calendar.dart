@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:hris_project/data/models/attendance_day.dart';
 
+import '../theme/app_theme.dart';
+
 class AttendanceCalendar extends StatelessWidget {
   final List<AttendanceDay> attendanceDays;
   const AttendanceCalendar({super.key, required this.attendanceDays});
@@ -79,7 +81,7 @@ class _AttendanceDayCell extends StatelessWidget {
               left: BorderSide(color: Color(0xFF1A237E), width: 4),
             ),
           ),
-          child: const Text('Weekend'),
+          child: Text('Weekend', style: TextStyle(color: AppColors.primary)),
         ),
       ],
     );

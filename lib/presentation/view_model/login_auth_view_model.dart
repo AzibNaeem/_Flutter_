@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import '../../data/models/login_user.dart';
 import '../../domain/services/auth_service.dart';
+import '../../domain/services/login_validation.dart';
 
 class AuthViewModel extends ChangeNotifier {
   final AuthService _authService = AuthService();
+
   List<LoginUser> _users = [];
 
   Future<void> loadUsers() async {
@@ -12,14 +14,10 @@ class AuthViewModel extends ChangeNotifier {
   }
 
   LoginUser? validateUser(String input, String password) {
-    try {
-      return _users.firstWhere(
-            (u) =>
-        (u.email == input || u.employeeId == input) &&
-            u.password == password,
-      );
-    } catch (e) {
-      return null;
-    }
+    return LoginValidator.validate(
+      users: _users,
+      input: input,
+      password: password,
+    );
   }
 }

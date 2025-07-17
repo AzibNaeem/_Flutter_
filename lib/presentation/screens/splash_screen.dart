@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:hris_project/presentation/screens/home_screen.dart';
+import '../../core/themes/theme_service.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -23,10 +24,14 @@ class _SplashScreenState extends State<SplashScreen>
       duration: const Duration(seconds: 2),
     );
 
-    _fadeAnimation =
-        CurvedAnimation(parent: _animationController, curve: Curves.easeIn);
-    _scaleAnimation =
-        CurvedAnimation(parent: _animationController, curve: Curves.easeOutBack);
+    _fadeAnimation = CurvedAnimation(
+      parent: _animationController,
+      curve: Curves.easeIn,
+    );
+    _scaleAnimation = CurvedAnimation(
+      parent: _animationController,
+      curve: Curves.easeOutBack,
+    );
 
     _animationController.forward();
 
@@ -95,11 +100,10 @@ class _SplashScreenState extends State<SplashScreen>
                     ),
                     const SizedBox(height: 24),
                     // Optional tagline
-                    const Text(
+                    Text(
                       "Empowering Workspaces",
-                      style: TextStyle(
+                      style: ThemeService.bodyMedium.copyWith(
                         color: Colors.white70,
-                        fontSize: 16,
                         fontWeight: FontWeight.w400,
                         letterSpacing: 1.2,
                       ),

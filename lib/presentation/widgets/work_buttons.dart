@@ -7,12 +7,14 @@ class ButtonData {
   final Color color;
   final VoidCallback onPressed;
   final bool outlined;
+  final Color? textColor;
 
   ButtonData({
     required this.label,
     required this.color,
     required this.onPressed,
     this.outlined = false,
+    this.textColor,
   });
 }
 
@@ -34,30 +36,31 @@ class WorkButtons extends StatelessWidget {
                 onPressed: btn.onPressed,
                 style: OutlinedButton.styleFrom(
                   side: BorderSide(color: AppColors.background),
+                  backgroundColor: btn.color,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(5),
                   ),
                 ),
                 child: Text(
                   btn.label,
-                  style: TextStyle(color: AppColors.black),
+                  style: TextStyle(color: btn.textColor ?? btn.color),
                 ),
               ),
             );
           } else {
             return Padding(
-              padding:  EdgeInsets.only(right: 8.0),
+              padding: EdgeInsets.only(right: 8.0),
               child: ElevatedButton(
                 onPressed: btn.onPressed,
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: AppColors.background,
+                  backgroundColor: btn.color,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(5),
                   ),
                 ),
                 child: Text(
                   btn.label,
-                  style:  TextStyle(color: AppColors.black),
+                  style: TextStyle(color: btn.textColor ?? AppColors.black),
                 ),
               ),
             );

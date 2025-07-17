@@ -7,6 +7,7 @@ import 'package:hris_project/presentation/widgets/custom_end_drawer.dart';
 import 'package:provider/provider.dart';
 import 'package:hris_project/presentation/view_model/home_view_model.dart';
 import 'package:hris_project/presentation/theme/app_theme.dart';
+import '../../core/themes/theme_service.dart';
 
 import '../widgets/drawer_menu_item.dart';
 import '../widgets/drawer_menu_list.dart';
@@ -20,130 +21,236 @@ class DashboardScreen extends StatefulWidget {
 }
 
 class _DashboardScreenState extends State<DashboardScreen> {
-  @override
+  bool _isWorking = false;
+
   @override
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      Provider.of<AttendanceViewModel>(context, listen: false).loadAttendance(widget.user.employeeId);
+      Provider.of<AttendanceViewModel>(
+        context,
+        listen: false,
+      ).loadAttendance(widget.user.employeeId);
     });
   }
 
+  void _toggleWork(bool start) {
+    setState(() {
+      _isWorking = start;
+    });
+    final now = TimeOfDay.now();
+    final timeString = now.format(context);
+    final action = start ? 'started' : 'ended';
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(content: Text('You have $action your work at $timeString')),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
     AppColors.init(context);
     final viewModel = Provider.of<HomeViewModel>(context);
+    final size = MediaQuery.of(context).size;
+    final isTablet = size.width > 600;
+    final padding = isTablet ? 32.0 : 16.0;
+    final titleFontSize = isTablet ? 28.0 : 22.0;
     return Scaffold(
       backgroundColor: AppColors.background,
       endDrawer: CustomEndDrawer(
         menuContent: DrawerMenuList(context: context, user: widget.user),
-
       ),
-
-
-
       appBar: PreferredSize(
-        preferredSize: const Size.fromHeight(48),
-          child: AppBar(
-            automaticallyImplyLeading: false,
-            centerTitle: true,
-            title: Container(
-              child: const Text(
-                'HRIS',
-                style: TextStyle(
-                  color: AppColors.black,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 30,
-                ),
-              ),
+        preferredSize: Size.fromHeight(isTablet ? 60 : 48),
+        child: AppBar(
+          automaticallyImplyLeading: false,
+          centerTitle: true,
+          title: Text(
+            'HRIS',
+            style: ThemeService.appBar.copyWith(
+              color: AppColors.black,
+              fontSize: titleFontSize,
             ),
-            backgroundColor: AppColors.white,
-            elevation: 0.5,
-            actions: [
-              Builder(
-                builder: (context) => IconButton(
-                  icon:  Icon(
-                    Icons.menu,
-                    color: AppColors.primary,
-                    size: 30,
-                  ),
-                  onPressed: () => Scaffold.of(context).openEndDrawer(),
-                ),
-              ),
-              const SizedBox(width: 8, height: 50),
-            ],
-            iconTheme:  IconThemeData(color: AppColors.primary),
           ),
-
-      ),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            const SizedBox(height: 16),
-            Padding(
-              padding:  EdgeInsets.symmetric(horizontal: 16),
-              child: Card(
-                elevation: 4,
-                color: AppColors.primaryLight,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(16),
+          backgroundColor: AppColors.white,
+          elevation: 0.5,
+          actions: [
+            Builder(
+              builder: (context) => IconButton(
+                icon: Icon(
+                  Icons.menu,
+                  color: AppColors.primary,
+                  size: isTablet ? 36 : 30,
                 ),
-                child: Padding(
-                  padding: const EdgeInsets.all(20),
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Center(
-                        child: UserAccountInfo(
-                          name: widget.user.name,
-                          role: widget.user.role,
-                        ),
-                      ),
-                      const SizedBox(height: 20),
-                      Center(
-                        child: WorkButtons(
-                          buttons: [
-                            ButtonData(
-                              label: 'Start Work',
-                              color: AppColors.primary,
-                              onPressed: () {},
-                            ),
-                            ButtonData(
-                              label: 'End Work',
-                              color: AppColors.primary,
-                              onPressed: () {},
-                              outlined: true,
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
+                onPressed: () => Scaffold.of(context).openEndDrawer(),
               ),
             ),
-            const SizedBox(height: 24),
-            _buildGridCards(context),
-            const SizedBox(height: 24),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 16),
-              child: Align(
-                alignment: Alignment.centerLeft,
-                child: Text(
-                  "Today Schedule",
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 16,
-                    color: AppColors.primary,
-                  ),
-                ),
-              ),
-            ),
-            const SizedBox(height: 12),
-            _buildScheduleTimeline(),
+            SizedBox(width: isTablet ? 16 : 8, height: isTablet ? 60 : 50),
           ],
+          iconTheme: IconThemeData(color: AppColors.primary),
         ),
+      ),
+      body: LayoutBuilder(
+        builder: (context, constraints) {
+          return SingleChildScrollView(
+            child: Padding(
+              padding: EdgeInsets.symmetric(horizontal: padding),
+              child: constraints.maxWidth > 700
+                  ? Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Expanded(
+                          child: Column(
+                            children: [
+                              SizedBox(height: isTablet ? 32 : 16),
+                              Card(
+                                elevation: 4,
+                                color: AppColors.primaryLight,
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(16),
+                                ),
+                                child: Padding(
+                                  padding: const EdgeInsets.all(20),
+                                  child: Column(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      Center(
+                                        child: UserAccountInfo(
+                                          name: widget.user.name,
+                                          role: widget.user.role,
+                                        ),
+                                      ),
+                                      SizedBox(height: isTablet ? 32 : 20),
+                                      Center(
+                                        child: WorkButtons(
+                                          buttons: [
+                                            ButtonData(
+                                              label: 'Start Work',
+                                              color: _isWorking
+                                                  ? AppColors.white
+                                                  : AppColors.background,
+                                              textColor: AppColors.primary,
+                                              onPressed: _isWorking
+                                                  ? () {}
+                                                  : () => _toggleWork(true),
+                                            ),
+                                            ButtonData(
+                                              label: 'End Work',
+                                              color: _isWorking
+                                                  ? AppColors.background
+                                                  : AppColors.white,
+                                              textColor: AppColors.primary,
+                                              onPressed: !_isWorking
+                                                  ? () {} // no-op when disabled
+                                                  : () => _toggleWork(false),
+                                              outlined: true,
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                              SizedBox(height: isTablet ? 32 : 24),
+                              _buildGridCards(context, isTablet: true),
+                            ],
+                          ),
+                        ),
+                        SizedBox(width: isTablet ? 32 : 24),
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              SizedBox(height: isTablet ? 32 : 24),
+                              Align(
+                                alignment: Alignment.centerLeft,
+                                child: Text(
+                                  "Today Schedule",
+                                  style: ThemeService.titleMedium.copyWith(
+                                    fontSize: isTablet ? 22 : 16,
+                                    color: AppColors.primary,
+                                  ),
+                                ),
+                              ),
+                              SizedBox(height: isTablet ? 24 : 12),
+                              _buildScheduleTimeline(isTablet: true),
+                            ],
+                          ),
+                        ),
+                      ],
+                    )
+                  : Column(
+                      children: [
+                        SizedBox(height: 16),
+                        Card(
+                          elevation: 4,
+                          color: AppColors.primaryLight,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(16),
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsets.all(20),
+                            child: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                Center(
+                                  child: UserAccountInfo(
+                                    name: widget.user.name,
+                                    role: widget.user.role,
+                                  ),
+                                ),
+                                const SizedBox(height: 20),
+                                Center(
+                                  child: WorkButtons(
+                                    buttons: [
+                                      ButtonData(
+                                        label: 'Start Work',
+                                        color: _isWorking
+                                            ? AppColors.white
+                                            : AppColors.background,
+                                        textColor: AppColors.primary,
+                                        onPressed: _isWorking
+                                            ? () {} // no-op when disabled
+                                            : () => _toggleWork(true),
+                                      ),
+                                      ButtonData(
+                                        label: 'End Work',
+                                        color: _isWorking
+                                            ? AppColors.background
+                                            : AppColors.white,
+                                        textColor: AppColors.primary,
+                                        onPressed: !_isWorking
+                                            ? () {} // no-op when disabled
+                                            : () => _toggleWork(false),
+                                        outlined: true,
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                        const SizedBox(height: 24),
+                        _buildGridCards(context),
+                        const SizedBox(height: 24),
+                        Align(
+                          alignment: Alignment.centerLeft,
+                          child: Text(
+                            "Today Schedule",
+                            style: ThemeService.titleMedium.copyWith(
+                              fontSize: 16,
+                              color: AppColors.primary,
+                            ),
+                          ),
+                        ),
+                        const SizedBox(height: 12),
+                        _buildScheduleTimeline(),
+                      ],
+                    ),
+            ),
+          );
+        },
       ),
       bottomNavigationBar: Theme(
         data: Theme.of(context).copyWith(canvasColor: AppColors.white),
@@ -177,12 +284,12 @@ class _DashboardScreenState extends State<DashboardScreen> {
     );
   }
 
-  Widget _buildScheduleTimeline() {
+  Widget _buildScheduleTimeline({bool isTablet = false}) {
     return SizedBox(
-      height: 80,
+      height: isTablet ? 100 : 80,
       child: ListView(
         scrollDirection: Axis.horizontal,
-        padding: const EdgeInsets.symmetric(horizontal: 16),
+        padding: EdgeInsets.symmetric(horizontal: isTablet ? 32 : 16),
         children: const [
           _ScheduleBlock(time: '08:00'),
           _ScheduleBlock(time: '09:00'),
@@ -193,7 +300,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
     );
   }
 
-  Widget _buildGridCards(BuildContext context) {
+  Widget _buildGridCards(BuildContext context, {bool isTablet = false}) {
     final cards = [
       _DashboardCardData(
         title: 'Leave & Attendance',
@@ -201,7 +308,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
         icon: Icons.calendar_today,
         color: AppColors.primaryLight,
         route: '/attendance-leaves',
-        textColor: AppColors.lightText
+        textColor: AppColors.lightText,
       ),
       _DashboardCardData(
         title: 'Employee Report',
@@ -209,7 +316,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
         icon: Icons.bar_chart,
         color: AppColors.primaryLight,
         route: '/report',
-          textColor: AppColors.lightText
+        textColor: AppColors.lightText,
       ),
       _DashboardCardData(
         title: 'Salary Management',
@@ -217,7 +324,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
         icon: Icons.attach_money,
         color: AppColors.primaryLight,
         route: '/payslip',
-          textColor: AppColors.lightText
+        textColor: AppColors.lightText,
       ),
       _DashboardCardData(
         title: 'Onboarding & Training',
@@ -225,25 +332,36 @@ class _DashboardScreenState extends State<DashboardScreen> {
         icon: Icons.school,
         color: AppColors.primaryLight,
         route: '/onboarding',
-          textColor: AppColors.lightText
+        textColor: AppColors.lightText,
       ),
     ];
 
+    // Always 2 columns, square cards
+    final crossAxisCount = 2;
+    final aspectRatio = 1.0;
+    final cardIconSize = isTablet ? 40.0 : 32.0;
+    final cardTitleFontSize = isTablet ? 16.0 : 14.0;
+    final cardValueFontSize = isTablet ? 20.0 : 16.0;
+
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16),
+      padding: EdgeInsets.symmetric(horizontal: isTablet ? 0 : 0),
       child: GridView.builder(
         shrinkWrap: true,
         physics: const NeverScrollableScrollPhysics(),
         itemCount: cards.length,
-        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 2,
-          crossAxisSpacing: 12,
-          mainAxisSpacing: 12,
-          childAspectRatio: 0.9,
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: crossAxisCount,
+          crossAxisSpacing: isTablet ? 24 : 12,
+          mainAxisSpacing: isTablet ? 24 : 12,
+          childAspectRatio: aspectRatio,
         ),
         itemBuilder: (context, index) => GestureDetector(
           onTap: () {
-            Navigator.pushNamed(context, cards[index].route,arguments: widget.user);
+            Navigator.pushNamed(
+              context,
+              cards[index].route,
+              arguments: widget.user,
+            );
           },
           child: Card(
             elevation: 6,
@@ -251,7 +369,35 @@ class _DashboardScreenState extends State<DashboardScreen> {
               borderRadius: BorderRadius.circular(16),
             ),
             color: cards[index].color,
-            child: _FuturisticCard(card: cards[index]),
+            child: Padding(
+              padding: EdgeInsets.all(isTablet ? 20 : 14),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Icon(
+                    cards[index].icon,
+                    size: cardIconSize,
+                    color: cards[index].textColor,
+                  ),
+                  const SizedBox(height: 12),
+                  Text(
+                    cards[index].title,
+                    textAlign: TextAlign.center,
+                    style: ThemeService.cardTitle.copyWith(
+                      fontSize: cardTitleFontSize,
+                    ),
+                  ),
+                  const SizedBox(height: 8),
+                  Text(
+                    cards[index].value,
+                    style: ThemeService.cardValue.copyWith(
+                      fontSize: cardValueFontSize,
+                    ),
+                  ),
+                ],
+              ),
+            ),
           ),
         ),
       ),
@@ -278,9 +424,9 @@ class _ScheduleBlock extends StatelessWidget {
       alignment: Alignment.center,
       child: Text(
         time,
-        style: TextStyle(
+        style: ThemeService.bodyMedium.copyWith(
           color: active ? AppColors.white : AppColors.lightText,
-          fontWeight: FontWeight.bold,
+          fontWeight: ThemeService.fontWeightBold,
         ),
       ),
     );
@@ -324,19 +470,9 @@ class _FuturisticCard extends StatelessWidget {
             children: [
               Icon(card.icon, size: 26, color: card.textColor),
               const SizedBox(height: 16),
-              Text(
-                card.title,
-                style: const TextStyle(fontSize: 13, color: Colors.black),
-              ),
+              Text(card.title, style: ThemeService.cardTitle),
               const SizedBox(height: 6),
-              Text(
-                card.value,
-                style: const TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
-                  color: Color(0xFF1A237E),
-                ),
-              ),
+              Text(card.value, style: ThemeService.cardValue),
             ],
           ),
           if (card.badge != null)
@@ -351,9 +487,9 @@ class _FuturisticCard extends StatelessWidget {
                 ),
                 child: Text(
                   card.badge!,
-                  style: const TextStyle(
+                  style: ThemeService.bodySmall.copyWith(
+                    fontWeight: ThemeService.fontWeightBold,
                     fontSize: 10,
-                    fontWeight: FontWeight.bold,
                   ),
                 ),
               ),
@@ -363,5 +499,3 @@ class _FuturisticCard extends StatelessWidget {
     );
   }
 }
-
-
