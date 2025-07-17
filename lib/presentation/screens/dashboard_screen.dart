@@ -5,12 +5,13 @@ import 'package:hris_project/presentation/widgets/work_buttons.dart';
 import 'package:hris_project/presentation/view_model/attendance_view_model.dart';
 import 'package:hris_project/presentation/widgets/custom_end_drawer.dart';
 import 'package:provider/provider.dart';
-import 'package:hris_project/presentation/view_model/home_view_model.dart';
+// import 'package:hris_project/presentation/view_model/home_view_model.dart';
 import 'package:hris_project/presentation/theme/app_theme.dart';
 import '../../core/themes/theme_service.dart';
-
-import '../widgets/drawer_menu_item.dart';
 import '../widgets/drawer_menu_list.dart';
+import '../../domain/services/dashboard_card_data_service.dart';
+import '../../domain/services/schedule_block_service.dart';
+import '../../domain/services/futuristic_card_service.dart';
 
 class DashboardScreen extends StatefulWidget {
   final LoginUser user;
@@ -49,7 +50,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
   @override
   Widget build(BuildContext context) {
     AppColors.init(context);
-    final viewModel = Provider.of<HomeViewModel>(context);
+    // final viewModel = Provider.of<HomeViewModel>(context);
     final size = MediaQuery.of(context).size;
     final isTablet = size.width > 600;
     final padding = isTablet ? 32.0 : 16.0;
@@ -130,7 +131,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                                                   : AppColors.background,
                                               textColor: AppColors.primary,
                                               onPressed: _isWorking
-                                                  ? () {}
+                                                  ? () {} // no-op when disabled
                                                   : () => _toggleWork(true),
                                             ),
                                             ButtonData(
@@ -291,10 +292,10 @@ class _DashboardScreenState extends State<DashboardScreen> {
         scrollDirection: Axis.horizontal,
         padding: EdgeInsets.symmetric(horizontal: isTablet ? 32 : 16),
         children: const [
-          _ScheduleBlock(time: '8:00 AM', active: true),
-          _ScheduleBlock(time: '9:00 AM'),
-          _ScheduleBlock(time: '9:35 AM'),
-          _ScheduleBlock(time: '3:00 PM', active: true),
+          ScheduleBlock(time: '8:00 AM', active: true),
+          ScheduleBlock(time: '9:00 AM'),
+          ScheduleBlock(time: '9:35 AM'),
+          ScheduleBlock(time: '3:00 PM', active: true),
         ],
       ),
     );
@@ -302,7 +303,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
 
   Widget _buildGridCards(BuildContext context, {bool isTablet = false}) {
     final cards = [
-      _DashboardCardData(
+      DashboardCardData(
         title: 'Leave & Attendance',
         value: '',
         icon: Icons.calendar_today,
@@ -310,7 +311,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
         route: '/attendance-leaves',
         textColor: AppColors.lightText,
       ),
-      _DashboardCardData(
+      DashboardCardData(
         title: 'Employee Report',
         value: '',
         icon: Icons.bar_chart,
@@ -318,7 +319,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
         route: '/report',
         textColor: AppColors.lightText,
       ),
-      _DashboardCardData(
+      DashboardCardData(
         title: 'Salary Management',
         value: '',
         icon: Icons.attach_money,
@@ -326,7 +327,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
         route: '/payslip',
         textColor: AppColors.lightText,
       ),
-      _DashboardCardData(
+      DashboardCardData(
         title: 'Onboarding & Training',
         value: '',
         icon: Icons.school,
@@ -339,9 +340,9 @@ class _DashboardScreenState extends State<DashboardScreen> {
     // Always 2 columns, square cards
     final crossAxisCount = 2;
     final aspectRatio = 1.0;
-    final cardIconSize = isTablet ? 40.0 : 32.0;
-    final cardTitleFontSize = isTablet ? 16.0 : 14.0;
-    final cardValueFontSize = isTablet ? 20.0 : 16.0;
+    // final cardIconSize = isTablet ? 40.0 : 32.0;
+    // final cardTitleFontSize = isTablet ? 16.0 : 14.0;
+    // final cardValueFontSize = isTablet ? 20.0 : 16.0;
 
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: isTablet ? 0 : 0),
@@ -371,130 +372,10 @@ class _DashboardScreenState extends State<DashboardScreen> {
             color: cards[index].color,
             child: Padding(
               padding: EdgeInsets.all(isTablet ? 20 : 14),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Icon(
-                    cards[index].icon,
-                    size: cardIconSize,
-                    color: cards[index].textColor,
-                  ),
-                  const SizedBox(height: 12),
-                  Text(
-                    cards[index].title,
-                    textAlign: TextAlign.center,
-                    style: ThemeService.cardTitle.copyWith(
-                      fontSize: cardTitleFontSize,
-                    ),
-                  ),
-                  const SizedBox(height: 8),
-                  Text(
-                    cards[index].value,
-                    style: ThemeService.cardValue.copyWith(
-                      fontSize: cardValueFontSize,
-                    ),
-                  ),
-                ],
-              ),
+              child: FuturisticCard(card: cards[index]),
             ),
           ),
         ),
-      ),
-    );
-  }
-}
-
-class _ScheduleBlock extends StatelessWidget {
-  final String time;
-  final bool active;
-
-  const _ScheduleBlock({required this.time, this.active = false});
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      width: MediaQuery.of(context).size.width * 0.18,
-      margin: const EdgeInsets.only(right: 12),
-      decoration: BoxDecoration(
-        color: active ? AppColors.scheduleActive : AppColors.white,
-        borderRadius: BorderRadius.circular(12),
-        border: Border.all(color: const Color(0xFFE0E0E0)),
-      ),
-      alignment: Alignment.center,
-      child: Text(
-        time,
-        style: ThemeService.bodyMedium.copyWith(
-          color: active ? AppColors.white : AppColors.lightText,
-          fontWeight: ThemeService.fontWeightBold,
-        ),
-      ),
-    );
-  }
-}
-
-class _DashboardCardData {
-  final String title;
-  final String value;
-  final IconData icon;
-  final Color color;
-  final Color textColor;
-  final String route;
-  final String? badge;
-
-  _DashboardCardData({
-    required this.title,
-    required this.value,
-    required this.icon,
-    required this.color,
-    required this.textColor,
-    required this.route,
-    this.badge,
-  });
-}
-
-class _FuturisticCard extends StatelessWidget {
-  final _DashboardCardData card;
-
-  const _FuturisticCard({required this.card});
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.all(16),
-      child: Stack(
-        children: [
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Icon(card.icon, size: 26, color: card.textColor),
-              const SizedBox(height: 16),
-              Text(card.title, style: ThemeService.cardTitle),
-              const SizedBox(height: 6),
-              Text(card.value, style: ThemeService.cardValue),
-            ],
-          ),
-          if (card.badge != null)
-            Positioned(
-              top: 0,
-              right: 0,
-              child: Container(
-                padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
-                decoration: BoxDecoration(
-                  color: Colors.grey[200],
-                  borderRadius: BorderRadius.circular(8),
-                ),
-                child: Text(
-                  card.badge!,
-                  style: ThemeService.bodySmall.copyWith(
-                    fontWeight: ThemeService.fontWeightBold,
-                    fontSize: 10,
-                  ),
-                ),
-              ),
-            ),
-        ],
       ),
     );
   }
