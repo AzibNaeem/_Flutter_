@@ -19,7 +19,7 @@ class LogoutService {
     // Dismiss shimmer/loading
     Navigator.of(context, rootNavigator: true).pop();
 
-    // Show snackbar
+    //show snack bar
     ScaffoldMessenger.of(
       context,
     ).showSnackBar(const SnackBar(content: Text('Successfully logged out')));

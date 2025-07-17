@@ -20,10 +20,21 @@ class DrawerMenuItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListTile(
-      leading: Icon(item.icon, color: AppColors.primary),
-      title: Text(item.title, style: TextStyle(color: AppColors.primary),),
-      onTap: item.onTap,
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 4.0, horizontal: 8.0),
+      child: Material(
+        elevation: 3,
+        borderRadius: BorderRadius.circular(12),
+        color: AppColors.background,
+        child: ListTile(
+          leading: Icon(item.icon, color: AppColors.primary),
+          title: Text(item.title, style: TextStyle(color: AppColors.primary)),
+          onTap: item.onTap,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(12),
+          ),
+        ),
+      ),
     );
   }
 }
