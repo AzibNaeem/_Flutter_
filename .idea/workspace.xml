@@ -5,26 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3b49d461-bc12-4301-b2fe-a52dae436fd4" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/lib/domain/services/attendance_service.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/domain/services/attendance/attendance_service.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/domain/services/auth_service.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/domain/services/login/login_auth_service.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/domain/services/dashboard_card_data_service.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/domain/services/dashboard_cards/dashboard_card_data_service.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/domain/services/department_allocation_service.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/domain/services/department_allocation/department_allocation_service.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/domain/services/department_allocation_validator.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/domain/services/department_allocation/department_allocation_validator.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/domain/services/futuristic_card_service.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/domain/services/futuristic_card/futuristic_card_service.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/domain/services/leave_json_service.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/domain/services/leaves/leave_json_service.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/domain/services/login_validation.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/domain/services/login/login_validator/login_validation.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/domain/services/logout_service.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/domain/services/logout/logout_service.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/domain/services/schedule_block_service.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/domain/services/schedule_service/schedule_block_service.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/domain/services/submit_leave_service.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/domain/services/leaves/submit_leaves/submit_leave_service.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/domain/services/work_service.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/domain/services/start_end_snackbar/work_service.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/data/json/loginData.json" beforeDir="false" afterPath="$PROJECT_DIR$/lib/data/json/loginData.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/presentation/screens/dashboard/dashboard_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/presentation/screens/dashboard/dashboard_screen.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/presentation/view_model/attendance_view_model/attendance_view_model.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/presentation/view_model/attendance_view_model/attendance_view_model.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/presentation/view_model/department_allocation_view_model/department_allocation_view_model.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/presentation/view_model/department_allocation_view_model/department_allocation_view_model.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/presentation/view_model/leaves_view_model/leaves_vm/leave_json_view_model.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/presentation/view_model/leaves_view_model/leaves_vm/leave_json_view_model.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/presentation/view_model/leaves_view_model/submit_leaves_view_model/submit_leave_view_model.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/presentation/view_model/leaves_view_model/submit_leaves_view_model/submit_leave_view_model.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/presentation/view_model/login_authorization_view_model/login_auth_view_model.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/presentation/view_model/login_authorization_view_model/login_auth_view_model.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/presentation/widgets/custom_end_drawer.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/presentation/widgets/custom_end_drawer.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/presentation/widgets/dashboard_grid.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/presentation/widgets/dashboard_grid.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/presentation/widgets/dashboard_allocation.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/presentation/widgets/dashboard_allocation.dart" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

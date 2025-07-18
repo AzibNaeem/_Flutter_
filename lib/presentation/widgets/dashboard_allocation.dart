@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '../../data/models/department_allocation.dart';
 import '../../core/themes/theme_service.dart';
 import '../theme/app_theme.dart';
+import 'package:fl_chart/fl_chart.dart';
 
 class DashboardAllocation extends StatelessWidget {
   final List<DepartmentAllocationItem> allocations;
@@ -10,6 +11,14 @@ class DashboardAllocation extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final isTablet = MediaQuery.of(context).size.width > 600;
+    final colors = [
+      Colors.blueAccent,
+      Colors.green,
+      Colors.orange,
+      Colors.purple,
+      Colors.redAccent,
+      Colors.teal,
+    ];
     return Card(
       color: AppColors.white,
       elevation: 4,
@@ -27,91 +36,71 @@ class DashboardAllocation extends StatelessWidget {
               ),
             ),
             SizedBox(height: isTablet ? 24 : 12),
-            ..._buildAllocationBars(allocations, isTablet),
+            SizedBox(
+              height: isTablet ? 220 : 160,
+              child: PieChart(
+                PieChartData(
+                  sections: List.generate(allocations.length, (i) {
+                    final alloc = allocations[i];
+                    final color = colors[i % colors.length];
+                    return PieChartSectionData(
+                      color: color,
+                      value: alloc.allocation * 100,
+                      title: '',
+                      radius: isTablet ? 70 : 50,
+                    );
+                  }),
+                  sectionsSpace: 2,
+                  centerSpaceRadius: 0,
+                ),
+              ),
+            ),
+            SizedBox(height: isTablet ? 24 : 12),
+            Wrap(
+              spacing: 16,
+              runSpacing: 8,
+              children: List.generate(allocations.length, (i) {
+                final alloc = allocations[i];
+                final color = colors[i % colors.length];
+                final label = alloc.project.isNotEmpty
+                    ? '${alloc.project} - ${alloc.department}'
+                    : alloc.department;
+                return Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Container(
+                      width: 16,
+                      height: 16,
+                      decoration: BoxDecoration(
+                        color: color,
+                        shape: BoxShape.circle,
+                        border: Border.all(color: Colors.black12, width: 1),
+                      ),
+                    ),
+                    SizedBox(width: 6),
+                    Text(
+                      label,
+                      style: TextStyle(
+                        color: AppColors.black,
+                        fontSize: isTablet ? 15 : 12,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                    SizedBox(width: 6),
+                    Text(
+                      '${(alloc.allocation * 100).toStringAsFixed(0)}%',
+                      style: TextStyle(
+                        color: Colors.black54,
+                        fontSize: isTablet ? 14 : 11,
+                      ),
+                    ),
+                  ],
+                );
+              }),
+            ),
           ],
         ),
       ),
     );
-  }
-
-  List<Widget> _buildAllocationBars(
-    List<DepartmentAllocationItem> items,
-    bool isTablet,
-  ) {
-    final colors = [
-      Colors.blueAccent,
-      Colors.green,
-      Colors.orange,
-      Colors.purple,
-      Colors.redAccent,
-      Colors.teal,
-    ];
-    return List.generate(items.length, (i) {
-      final alloc = items[i];
-      final color = colors[i % colors.length];
-      return Padding(
-        padding: const EdgeInsets.symmetric(vertical: 8.0),
-        child: Row(
-          children: [
-            Expanded(
-              child: Stack(
-                children: [
-                  Container(
-                    height: isTablet ? 38 : 26,
-                    decoration: BoxDecoration(
-                      color: color.withOpacity(0.15),
-                      borderRadius: BorderRadius.circular(12),
-                      border: Border.all(color: Colors.black, width: 1.2),
-                    ),
-                  ),
-                  FractionallySizedBox(
-                    widthFactor: alloc.allocation,
-                    child: Container(
-                      height: isTablet ? 38 : 26,
-                      decoration: BoxDecoration(
-                        color: color,
-                        borderRadius: BorderRadius.circular(12),
-                        border: Border.all(color: Colors.black, width: 1.2),
-                      ),
-                    ),
-                  ),
-                  Positioned.fill(
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 12.0),
-                          child: Text(
-                            alloc.project.isNotEmpty
-                                ? '${alloc.project} - ${alloc.department}'
-                                : alloc.department,
-                            style: TextStyle(
-                              color: AppColors.black,
-                              fontWeight: FontWeight.bold,
-                              fontSize: isTablet ? 15 : 12,
-                            ),
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 12.0),
-                          child: Text(
-                            '${(alloc.allocation * 100).toStringAsFixed(0)}%',
-                            style: TextStyle(
-                              color: AppColors.black,
-                              fontWeight: FontWeight.bold,
-                              fontSize: isTablet ? 16 : 13,
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ],
-        ),
-      );
-    });
   }
 }

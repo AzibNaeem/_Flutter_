@@ -118,35 +118,6 @@ class _DashboardScreenState extends State<DashboardScreen> {
           ),
         ),
       ),
-      bottomNavigationBar: Theme(
-        data: Theme.of(context).copyWith(canvasColor: AppColors.white),
-        child: BottomNavigationBar(
-          type: BottomNavigationBarType.fixed,
-          selectedItemColor: AppColors.black,
-          unselectedItemColor: AppColors.black,
-          iconSize: 28,
-          currentIndex: 0,
-          onTap: (index) {},
-          items: const [
-            BottomNavigationBarItem(
-              icon: Icon(Icons.home, size: 40),
-              label: '',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.calendar_today, size: 33),
-              label: '',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.message, size: 35),
-              label: '',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.person, size: 36),
-              label: '',
-            ),
-          ],
-        ),
-      ),
     );
   }
 
