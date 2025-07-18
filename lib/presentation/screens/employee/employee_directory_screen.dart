@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../../domain/providers/employee_provider.dart';
-import '../widgets/employee_tile.dart';
-import '../../core/themes/theme_service.dart';
+import '../../../domain/providers/employee_provider.dart';
+import '../../widgets/employee_tile.dart';
+import '../../../core/themes/theme_service.dart';
 
 class EmployeeDirectoryScreen extends StatefulWidget {
   const EmployeeDirectoryScreen({super.key});

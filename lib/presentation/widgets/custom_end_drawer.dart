@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import '../theme/app_theme.dart';
 import '../../domain/services/logout_service.dart';
-import '../screens/login_screen.dart';
+import '../screens/login_screen/login_screen.dart';
 
 class CustomEndDrawer extends StatelessWidget {
   final Widget menuContent;

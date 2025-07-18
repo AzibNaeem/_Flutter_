@@ -17,12 +17,12 @@ import 'package:hris_project/presentation/widgets/attendance_calendar.dart';
 import 'package:hris_project/presentation/widgets/date_filter.dart';
 import 'package:hris_project/presentation/view_model/home_view_model.dart';
 import 'package:provider/provider.dart';
-import 'package:hris_project/presentation/screens/splash_screen.dart';
+import 'package:hris_project/presentation/screens/splash_screen/splash_screen.dart';
 
-import '../../data/models/login_user.dart';
-import '../widgets/drawer_menu_item.dart';
-import '../widgets/drawer_menu_list.dart';
-import '../../core/themes/theme_service.dart';
+import '../../../data/models/login_user.dart';
+import '../../widgets/drawer_menu_item.dart';
+import '../../widgets/drawer_menu_list.dart';
+import '../../../core/themes/theme_service.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});

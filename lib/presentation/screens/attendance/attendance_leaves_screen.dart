@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../../presentation/view_model/attendance_view_model.dart';
-import '../../presentation/widgets/attendance_calendar.dart';
-import '../../presentation/widgets/leaves_card.dart';
-import '../../presentation/theme/app_theme.dart';
-import '../widgets/shimmer/attendance_calendar_shimmer.dart';
-import '../../data/models/login_user.dart';
-import '../../core/themes/theme_service.dart';
-import '../../data/models/leave.dart';
-import '../view_model/leave_json_view_model.dart';
+import '../../view_model/attendance_view_model/attendance_view_model.dart';
+import '../../widgets/attendance_calendar.dart';
+import '../../widgets/leaves_card.dart';
+import '../../theme/app_theme.dart';
+import '../../widgets/shimmer/attendance_calendar_shimmer.dart';
+import '../../../data/models/login_user.dart';
+import '../../../core/themes/theme_service.dart';
+import '../../../data/models/leave.dart';
+import '../../view_model/leaves_view_model/leaves_vm/leave_json_view_model.dart';
 
 class AttendanceLeavesScreen extends StatefulWidget {
   final LoginUser user;

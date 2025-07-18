@@ -1,18 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:hris_project/data/models/login_user.dart';
-import 'package:hris_project/presentation/view_model/attendance_view_model.dart';
+import 'package:hris_project/presentation/view_model/attendance_view_model/attendance_view_model.dart';
 import 'package:hris_project/presentation/widgets/custom_end_drawer.dart';
 import 'package:provider/provider.dart';
 import 'package:hris_project/presentation/theme/app_theme.dart';
-import '../../core/themes/theme_service.dart';
-import '../../domain/services/futuristic_card_service.dart';
-import '../widgets/dashboard_grid.dart';
-import '../widgets/drawer_menu_list.dart';
-import '../../domain/services/dashboard_card_data_service.dart';
-import '../../domain/services/schedule_block_service.dart';
-import '../widgets/profile_card.dart';
-import '../widgets/department_allocation.dart';
-import '../../domain/services/work_service.dart';
+import '../../../core/themes/theme_service.dart';
+import '../../../domain/services/futuristic_card_service.dart';
+import '../../widgets/dashboard_grid.dart';
+import '../../widgets/drawer_menu_list.dart';
+import '../../../domain/services/dashboard_card_data_service.dart';
+import '../../../domain/services/schedule_block_service.dart';
+import '../../widgets/profile_card.dart';
+import '../../widgets/department_allocation.dart';
+import '../../../domain/services/work_service.dart';
+import '../../widgets/dashboard_allocation.dart';
+import '../../view_model/department_allocation_view_model/department_allocation_view_model.dart';
 
 class DashboardScreen extends StatefulWidget {
   final LoginUser user;
@@ -33,6 +35,10 @@ class _DashboardScreenState extends State<DashboardScreen> {
         context,
         listen: false,
       ).loadAttendance(widget.user.employeeId);
+      Provider.of<DepartmentAllocationViewModel>(
+        context,
+        listen: false,
+      ).loadAllocations(widget.user.employeeId);
     });
   }
 
@@ -100,7 +106,14 @@ class _DashboardScreenState extends State<DashboardScreen> {
               SizedBox(height: 24),
               DashboardGrid(user: widget.user),
               SizedBox(height: 24),
-              ScheduleSection(),
+              Consumer<DepartmentAllocationViewModel>(
+                builder: (context, allocVm, _) {
+                  if (allocVm.isLoading) {
+                    return const Center(child: CircularProgressIndicator());
+                  }
+                  return DashboardAllocation(allocations: allocVm.allocations);
+                },
+              ),
             ],
           ),
         ),

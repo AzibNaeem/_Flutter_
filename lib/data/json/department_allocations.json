@@ -1,0 +1,762 @@
+[
+  {
+    "employee_id": "1423",
+    "name": "Employee 01",
+    "department_allocations": [
+      {
+        "department": "Customer Success",
+        "project": "NHRMS Mobile",
+        "allocation": 0.56
+      },
+      {
+        "department": "Finance",
+        "project": "Insight AI",
+        "allocation": 0.44
+      }
+    ]
+  },
+  {
+    "employee_id": "8291",
+    "name": "Employee 02",
+    "department_allocations": [
+      {
+        "department": "Operations",
+        "project": "Workflow360",
+        "allocation": 1.0
+      }
+    ]
+  },
+  {
+    "employee_id": "6712",
+    "name": "Employee 03",
+    "department_allocations": [
+      {
+        "department": "IT",
+        "project": "NHRMS Mobile",
+        "allocation": 0.29
+      },
+      {
+        "department": "IT",
+        "project": "Atlas Revamp",
+        "allocation": 0.57
+      },
+      {
+        "department": "Finance",
+        "project": "Atlas Revamp",
+        "allocation": 0.14
+      }
+    ]
+  },
+  {
+    "employee_id": "3840",
+    "name": "Employee 04",
+    "department_allocations": [
+      {
+        "department": "Design",
+        "project": "Project Mercury",
+        "allocation": 1.0
+      }
+    ]
+  },
+  {
+    "employee_id": "5023",
+    "name": "Employee 05",
+    "department_allocations": [
+      {
+        "department": "Finance",
+        "project": "Insight AI",
+        "allocation": 0.29
+      },
+      {
+        "department": "Operations",
+        "project": "Project Mercury",
+        "allocation": 0.71
+      }
+    ]
+  },
+  {
+    "employee_id": "9031",
+    "name": "Employee 06",
+    "department_allocations": [
+      {
+        "department": "Engineering",
+        "project": "NextGen CRM",
+        "allocation": 1.0
+      }
+    ]
+  },
+  {
+    "employee_id": "7520",
+    "name": "Employee 07",
+    "department_allocations": [
+      {
+        "department": "Customer Success",
+        "project": "Core Rebuild",
+        "allocation": 1.0
+      }
+    ]
+  },
+  {
+    "employee_id": "1902",
+    "name": "Employee 08",
+    "department_allocations": [
+      {
+        "department": "Marketing",
+        "project": "Project Mercury",
+        "allocation": 1.0
+      }
+    ]
+  },
+  {
+    "employee_id": "6289",
+    "name": "Employee 09",
+    "department_allocations": [
+      {
+        "department": "Design",
+        "project": "NHRMS Mobile",
+        "allocation": 0.6
+      },
+      {
+        "department": "Customer Success",
+        "project": "NextGen CRM",
+        "allocation": 0.4
+      }
+    ]
+  },
+  {
+    "employee_id": "4187",
+    "name": "Employee 10",
+    "department_allocations": [
+      {
+        "department": "Operations",
+        "project": "Insight AI",
+        "allocation": 1.0
+      }
+    ]
+  },
+  {
+    "employee_id": "3891",
+    "name": "Employee 11",
+    "department_allocations": [
+      {
+        "department": "Engineering",
+        "project": "Insight AI",
+        "allocation": 0.67
+      },
+      {
+        "department": "Customer Success",
+        "project": "NHRMS Mobile",
+        "allocation": 0.33
+      }
+    ]
+  },
+  {
+    "employee_id": "8224",
+    "name": "Azib Naeem",
+    "department_allocations": [
+      {
+        "department": "Engineering",
+        "project": "Atlas Revamp",
+        "allocation": 0.75
+      },
+      {
+        "department": "Design",
+        "project": "Project Mercury",
+        "allocation": 0.25
+      }
+    ]
+  },
+  {
+    "employee_id": "2317",
+    "name": "Employee 13",
+    "department_allocations": [
+      {
+        "department": "Design",
+        "project": "Project Mercury",
+        "allocation": 0.6
+      },
+      {
+        "department": "Finance",
+        "project": "NextGen CRM",
+        "allocation": 0.4
+      }
+    ]
+  },
+  {
+    "employee_id": "7774",
+    "name": "Employee 14",
+    "department_allocations": [
+      {
+        "department": "Customer Success",
+        "project": "Insight AI",
+        "allocation": 0.33
+      },
+      {
+        "department": "IT",
+        "project": "Atlas Revamp",
+        "allocation": 0.67
+      }
+    ]
+  },
+  {
+    "employee_id": "9960",
+    "name": "Employee 15",
+    "department_allocations": [
+      {
+        "department": "Marketing",
+        "project": "Atlas Revamp",
+        "allocation": 0.11
+      },
+      {
+        "department": "HR",
+        "project": "Insight AI",
+        "allocation": 0.56
+      },
+      {
+        "department": "Operations",
+        "project": "Atlas Revamp",
+        "allocation": 0.33
+      }
+    ]
+  },
+  {
+    "employee_id": "3175",
+    "name": "Employee 16",
+    "department_allocations": [
+      {
+        "department": "Design",
+        "project": "NextGen CRM",
+        "allocation": 1.0
+      }
+    ]
+  },
+  {
+    "employee_id": "2408",
+    "name": "Employee 17",
+    "department_allocations": [
+      {
+        "department": "Finance",
+        "project": "Atlas Revamp",
+        "allocation": 1.0
+      }
+    ]
+  },
+  {
+    "employee_id": "6294",
+    "name": "Employee 18",
+    "department_allocations": [
+      {
+        "department": "Design",
+        "project": "Workflow360",
+        "allocation": 0.38
+      },
+      {
+        "department": "Engineering",
+        "project": "Workflow360",
+        "allocation": 0.5
+      },
+      {
+        "department": "Customer Success",
+        "project": "Atlas Revamp",
+        "allocation": 0.13
+      }
+    ]
+  },
+  {
+    "employee_id": "8419",
+    "name": "Employee 19",
+    "department_allocations": [
+      {
+        "department": "Engineering",
+        "project": "Atlas Revamp",
+        "allocation": 0.11
+      },
+      {
+        "department": "Finance",
+        "project": "Atlas Revamp",
+        "allocation": 0.33
+      },
+      {
+        "department": "Customer Success",
+        "project": "NHRMS Mobile",
+        "allocation": 0.56
+      }
+    ]
+  },
+  {
+    "employee_id": "1085",
+    "name": "Employee 20",
+    "department_allocations": [
+      {
+        "department": "Operations",
+        "project": "NextGen CRM",
+        "allocation": 1.0
+      }
+    ]
+  },
+  {
+    "employee_id": "7773",
+    "name": "Employee 21",
+    "department_allocations": [
+      {
+        "department": "Sales",
+        "project": "Atlas Revamp",
+        "allocation": 0.17
+      },
+      {
+        "department": "Customer Success",
+        "project": "Core Rebuild",
+        "allocation": 0.5
+      },
+      {
+        "department": "Engineering",
+        "project": "NHRMS Mobile",
+        "allocation": 0.33
+      }
+    ]
+  },
+  {
+    "employee_id": "2002",
+    "name": "Employee 22",
+    "department_allocations": [
+      {
+        "department": "Marketing",
+        "project": "Project Mercury",
+        "allocation": 0.36
+      },
+      {
+        "department": "HR",
+        "project": "Core Rebuild",
+        "allocation": 0.18
+      },
+      {
+        "department": "HR",
+        "project": "Atlas Revamp",
+        "allocation": 0.45
+      }
+    ]
+  },
+  {
+    "employee_id": "3107",
+    "name": "Employee 23",
+    "department_allocations": [
+      {
+        "department": "HR",
+        "project": "Atlas Revamp",
+        "allocation": 1.0
+      }
+    ]
+  },
+  {
+    "employee_id": "9730",
+    "name": "Employee 24",
+    "department_allocations": [
+      {
+        "department": "Engineering",
+        "project": "NextGen CRM",
+        "allocation": 0.67
+      },
+      {
+        "department": "HR",
+        "project": "Project Mercury",
+        "allocation": 0.33
+      }
+    ]
+  },
+  {
+    "employee_id": "4642",
+    "name": "Employee 25",
+    "department_allocations": [
+      {
+        "department": "Sales",
+        "project": "Project Mercury",
+        "allocation": 1.0
+      }
+    ]
+  },
+  {
+    "employee_id": "5891",
+    "name": "Employee 26",
+    "department_allocations": [
+      {
+        "department": "Engineering",
+        "project": "Insight AI",
+        "allocation": 1.0
+      }
+    ]
+  },
+  {
+    "employee_id": "8320",
+    "name": "Employee 27",
+    "department_allocations": [
+      {
+        "department": "Design",
+        "project": "Project Mercury",
+        "allocation": 0.5
+      },
+      {
+        "department": "IT",
+        "project": "Project Mercury",
+        "allocation": 0.4
+      },
+      {
+        "department": "Design",
+        "project": "NextGen CRM",
+        "allocation": 0.1
+      }
+    ]
+  },
+  {
+    "employee_id": "1980",
+    "name": "Employee 28",
+    "department_allocations": [
+      {
+        "department": "IT",
+        "project": "NextGen CRM",
+        "allocation": 1.0
+      }
+    ]
+  },
+  {
+    "employee_id": "4037",
+    "name": "Employee 29",
+    "department_allocations": [
+      {
+        "department": "HR",
+        "project": "NextGen CRM",
+        "allocation": 0.83
+      },
+      {
+        "department": "Engineering",
+        "project": "Atlas Revamp",
+        "allocation": 0.17
+      }
+    ]
+  },
+  {
+    "employee_id": "6149",
+    "name": "Employee 30",
+    "department_allocations": [
+      {
+        "department": "IT",
+        "project": "Atlas Revamp",
+        "allocation": 0.12
+      },
+      {
+        "department": "Customer Success",
+        "project": "Insight AI",
+        "allocation": 0.25
+      },
+      {
+        "department": "Design",
+        "project": "Workflow360",
+        "allocation": 0.62
+      }
+    ]
+  },
+  {
+    "employee_id": "7830",
+    "name": "Employee 31",
+    "department_allocations": [
+      {
+        "department": "Marketing",
+        "project": "NHRMS Mobile",
+        "allocation": 0.83
+      },
+      {
+        "department": "Finance",
+        "project": "NextGen CRM",
+        "allocation": 0.17
+      }
+    ]
+  },
+  {
+    "employee_id": "1461",
+    "name": "Employee 32",
+    "department_allocations": [
+      {
+        "department": "HR",
+        "project": "NextGen CRM",
+        "allocation": 0.75
+      },
+      {
+        "department": "Operations",
+        "project": "NHRMS Mobile",
+        "allocation": 0.25
+      }
+    ]
+  },
+  {
+    "employee_id": "9156",
+    "name": "Employee 33",
+    "department_allocations": [
+      {
+        "department": "Sales",
+        "project": "Core Rebuild",
+        "allocation": 0.67
+      },
+      {
+        "department": "Sales",
+        "project": "Workflow360",
+        "allocation": 0.33
+      }
+    ]
+  },
+  {
+    "employee_id": "2031",
+    "name": "Employee 34",
+    "department_allocations": [
+      {
+        "department": "HR",
+        "project": "Project Mercury",
+        "allocation": 1.0
+      }
+    ]
+  },
+  {
+    "employee_id": "7701",
+    "name": "Employee 35",
+    "department_allocations": [
+      {
+        "department": "Operations",
+        "project": "Atlas Revamp",
+        "allocation": 0.4
+      },
+      {
+        "department": "Design",
+        "project": "Workflow360",
+        "allocation": 0.5
+      },
+      {
+        "department": "HR",
+        "project": "NextGen CRM",
+        "allocation": 0.1
+      }
+    ]
+  },
+  {
+    "employee_id": "6625",
+    "name": "Employee 36",
+    "department_allocations": [
+      {
+        "department": "Marketing",
+        "project": "Project Mercury",
+        "allocation": 0.56
+      },
+      {
+        "department": "Operations",
+        "project": "Insight AI",
+        "allocation": 0.44
+      }
+    ]
+  },
+  {
+    "employee_id": "5555",
+    "name": "Employee 37",
+    "department_allocations": [
+      {
+        "department": "Customer Success",
+        "project": "NextGen CRM",
+        "allocation": 0.6
+      },
+      {
+        "department": "Sales",
+        "project": "NextGen CRM",
+        "allocation": 0.4
+      }
+    ]
+  },
+  {
+    "employee_id": "3824",
+    "name": "Employee 38",
+    "department_allocations": [
+      {
+        "department": "HR",
+        "project": "NextGen CRM",
+        "allocation": 1.0
+      }
+    ]
+  },
+  {
+    "employee_id": "1100",
+    "name": "Employee 39",
+    "department_allocations": [
+      {
+        "department": "Finance",
+        "project": "Core Rebuild",
+        "allocation": 1.0
+      }
+    ]
+  },
+  {
+    "employee_id": "4200",
+    "name": "Employee 40",
+    "department_allocations": [
+      {
+        "department": "Finance",
+        "project": "Workflow360",
+        "allocation": 0.71
+      },
+      {
+        "department": "HR",
+        "project": "NHRMS Mobile",
+        "allocation": 0.29
+      }
+    ]
+  },
+  {
+    "employee_id": "9362",
+    "name": "Employee 41",
+    "department_allocations": [
+      {
+        "department": "Operations",
+        "project": "Workflow360",
+        "allocation": 1.0
+      }
+    ]
+  },
+  {
+    "employee_id": "2529",
+    "name": "Employee 42",
+    "department_allocations": [
+      {
+        "department": "Finance",
+        "project": "NextGen CRM",
+        "allocation": 1.0
+      }
+    ]
+  },
+  {
+    "employee_id": "8840",
+    "name": "Employee 43",
+    "department_allocations": [
+      {
+        "department": "Design",
+        "project": "NextGen CRM",
+        "allocation": 0.5
+      },
+      {
+        "department": "Marketing",
+        "project": "Core Rebuild",
+        "allocation": 0.17
+      },
+      {
+        "department": "Operations",
+        "project": "NHRMS Mobile",
+        "allocation": 0.33
+      }
+    ]
+  },
+  {
+    "employee_id": "6641",
+    "name": "Employee 44",
+    "department_allocations": [
+      {
+        "department": "Marketing",
+        "project": "Insight AI",
+        "allocation": 0.4
+      },
+      {
+        "department": "IT",
+        "project": "NHRMS Mobile",
+        "allocation": 0.6
+      }
+    ]
+  },
+  {
+    "employee_id": "7803",
+    "name": "Employee 45",
+    "department_allocations": [
+      {
+        "department": "Operations",
+        "project": "NextGen CRM",
+        "allocation": 1.0
+      }
+    ]
+  },
+  {
+    "employee_id": "3349",
+    "name": "Employee 46",
+    "department_allocations": [
+      {
+        "department": "Finance",
+        "project": "Project Mercury",
+        "allocation": 0.43
+      },
+      {
+        "department": "Sales",
+        "project": "NHRMS Mobile",
+        "allocation": 0.57
+      }
+    ]
+  },
+  {
+    "employee_id": "6711",
+    "name": "Employee 47",
+    "department_allocations": [
+      {
+        "department": "Design",
+        "project": "NHRMS Mobile",
+        "allocation": 0.14
+      },
+      {
+        "department": "Marketing",
+        "project": "Atlas Revamp",
+        "allocation": 0.57
+      },
+      {
+        "department": "IT",
+        "project": "Atlas Revamp",
+        "allocation": 0.29
+      }
+    ]
+  },
+  {
+    "employee_id": "2938",
+    "name": "Employee 48",
+    "department_allocations": [
+      {
+        "department": "Marketing",
+        "project": "NHRMS Mobile",
+        "allocation": 0.4
+      },
+      {
+        "department": "Operations",
+        "project": "Core Rebuild",
+        "allocation": 0.6
+      }
+    ]
+  },
+  {
+    "employee_id": "5402",
+    "name": "Employee 49",
+    "department_allocations": [
+      {
+        "department": "Design",
+        "project": "Insight AI",
+        "allocation": 1.0
+      }
+    ]
+  },
+  {
+    "employee_id": "1164",
+    "name": "Employee 50",
+    "department_allocations": [
+      {
+        "department": "HR",
+        "project": "Workflow360",
+        "allocation": 0.5
+      },
+      {
+        "department": "Design",
+        "project": "Atlas Revamp",
+        "allocation": 0.33
+      },
+      {
+        "department": "Operations",
+        "project": "NHRMS Mobile",
+        "allocation": 0.17
+      }
+    ]
+  }
+]
