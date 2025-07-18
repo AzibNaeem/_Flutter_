@@ -7,8 +7,20 @@
     <list default="true" id="3b49d461-bc12-4301-b2fe-a52dae436fd4" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/core/api_constants.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/core/api_constants.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/data/json/attendance_record.json" beforeDir="false" afterPath="$PROJECT_DIR$/lib/data/json/attendance_record.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/data/models/leave_type.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/data/models/leave_type.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/domain/services/auth_service.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/domain/services/auth_service.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/domain/services/leave_service.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/domain/services/leave_service.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/domain/services/login_validation.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/domain/services/login_validation.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/main.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/presentation/routes.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/presentation/routes.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/presentation/screens/dashboard_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/presentation/screens/dashboard_screen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/presentation/screens/home_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/presentation/screens/home_screen.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/presentation/screens/login_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/presentation/screens/login_screen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/presentation/screens/splash_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/presentation/screens/splash_screen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/presentation/view_model/leave_view_model.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/presentation/view_model/leave_view_model.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/presentation/view_model/login_auth_view_model.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/presentation/view_model/login_auth_view_model.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/presentation/widgets/submit_leave_widgets/dropDown_List.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/presentation/widgets/submit_leave_widgets/dropDown_List.dart" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,6 +54,18 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="ROOT_SYNC" value="DONT_SYNC" />
   </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;miznar&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/AzibNaeem/_Flutter_.git&quot;,
+    &quot;accountId&quot;: &quot;385b9640-15b7-4bac-8284-578fe154c5bc&quot;
+  }
+}</component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 2
 }</component>
@@ -74,13 +98,14 @@
     &quot;git-widget-placeholder&quot;: &quot;main&quot;,
     &quot;io.flutter.reload.alreadyRun&quot;: &quot;true&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/Rehman Computers/StudioProjects/hrisapp&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/My Apps/rc1/_Flutter_&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;AndroidSdkUpdater&quot;,
     &quot;show.migrate.to.gradle.popup&quot;: &quot;false&quot;
   }
 }</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\My Apps\rc1\_Flutter_\lib\domain\providers" />
       <recent name="U:\HRIS\lib\assets\images" />
     </key>
   </component>

@@ -13,7 +13,7 @@ class AppRoutes {
   static const String employeeDirectory = '/employees';
   static const String report = '/report';
   static const String home = '/home';
-  static const String attendanceLeaves = '/attendance-leaves'; // New route constant
+  static const String attendanceLeaves = '/attendance-leaves';
   static const String submitLeaves='/submitLeave';
 
   static Route<dynamic> onGenerateRoute(RouteSettings settings) {
@@ -27,7 +27,7 @@ class AppRoutes {
           return _errorRoute('Missing or invalid user for dashboard.');
         }
         return MaterialPageRoute(
-          builder: (_) => DashboardScreen(user: user),
+          builder: (_) => DashboardScreen(),
         );
 
       case employeeDirectory:
@@ -38,13 +38,13 @@ class AppRoutes {
         return MaterialPageRoute(
             builder: (_) => const EmployeeReportScreen());
 
-      case home:
-        return MaterialPageRoute(builder: (_) => const HomeScreen());
+      // case home:
+      //   return MaterialPageRoute(builder: (_) => const HomeScreen());
 
       case submitLeaves:
-        final args=settings.arguments as LoginUser;
-        return MaterialPageRoute(
-            builder: (_) =>  SubmitLeaveScreen(user:args));
+        // final args=settings.arguments as LoginRequest;
+        // return MaterialPageRoute(
+        //     builder: (_) =>  SubmitLeaveScreen(user:args));
 
       case attendanceLeaves:
         final args=settings.arguments as LoginUser;

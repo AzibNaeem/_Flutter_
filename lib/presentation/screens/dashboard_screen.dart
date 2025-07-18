@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hris_project/data/models/login_user.dart';
+import 'package:hris_project/domain/providers/user_provider.dart';
 import 'package:hris_project/presentation/widgets/user_account_info.dart';
 import 'package:hris_project/presentation/widgets/work_buttons.dart';
 import 'package:hris_project/presentation/view_model/attendance_view_model.dart';
@@ -7,13 +8,14 @@ import 'package:hris_project/presentation/widgets/custom_end_drawer.dart';
 import 'package:provider/provider.dart';
 import 'package:hris_project/presentation/view_model/home_view_model.dart';
 import 'package:hris_project/presentation/theme/app_theme.dart';
-
+import '../../domain/providers/user_provider.dart';
 import '../widgets/drawer_menu_item.dart';
 import '../widgets/drawer_menu_list.dart';
 
 class DashboardScreen extends StatefulWidget {
-  final LoginUser user;
-  const DashboardScreen({super.key, required this.user});
+  //final LoginUser user;
+  DashboardScreen({super.key});
+
 
   @override
   State<DashboardScreen> createState() => _DashboardScreenState();
@@ -25,19 +27,20 @@ class _DashboardScreenState extends State<DashboardScreen> {
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      Provider.of<AttendanceViewModel>(context, listen: false).loadAttendance(widget.user.employeeId);
+    //  Provider.of<AttendanceViewModel>(context, listen: false).loadAttendance(widget.user.employeeId);
     });
   }
 
 
   @override
   Widget build(BuildContext context) {
+    final user1=Provider.of<UserProvider>(context).user;
     AppColors.init(context);
     final viewModel = Provider.of<HomeViewModel>(context);
     return Scaffold(
       backgroundColor: AppColors.background,
       endDrawer: CustomEndDrawer(
-        menuContent: DrawerMenuList(context: context, user: widget.user),
+        menuContent: DrawerMenuList(context: context, user: user1!,),
 
       ),
 
@@ -96,8 +99,8 @@ class _DashboardScreenState extends State<DashboardScreen> {
                     children: [
                       Center(
                         child: UserAccountInfo(
-                          name: widget.user.name,
-                          role: widget.user.role,
+                          name: user1!.name,
+                          role: user1.role,
                         ),
                       ),
                       const SizedBox(height: 20),
@@ -243,7 +246,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
         ),
         itemBuilder: (context, index) => GestureDetector(
           onTap: () {
-            Navigator.pushNamed(context, cards[index].route,arguments: widget.user);
+        //    Navigator.pushNamed(context, cards[index].route,arguments: widget.user);
           },
           child: Card(
             elevation: 6,

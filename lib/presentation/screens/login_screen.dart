@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:hris_project/presentation/routes.dart';
 import 'package:provider/provider.dart';
 import 'package:hris_project/presentation/view_model/login_auth_view_model.dart';
 import 'package:hris_project/presentation/screens/dashboard_screen.dart';
 import 'package:hris_project/data/models/login_user.dart';
-import '../view_model/login_auth_view_model.dart';
+import '../../domain/providers/user_provider.dart';
 import '../widgets/custom_text_field.dart';
 import '../widgets/custom_button.dart';
 import '../theme/app_theme.dart';
@@ -23,39 +24,43 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) async {
-      try {
-        await Provider.of<AuthViewModel>(context, listen: false).loadUsers();
-      } catch (e) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Error loading users: $e')),
-        );
-      } finally {
-        setState(() => _isLoading = false);
-      }
-    });
+    _isLoading = false;
   }
 
-  void validateLogin() {
-    final input = emailOrIdController.text.trim();
+  void validateLogin() async {
+    final email = emailOrIdController.text.trim();
     final password = passwordController.text;
 
-    final authViewModel = Provider.of<AuthViewModel>(context, listen: false);
-    final matchingUser = authViewModel.validateUser(input, password);
+    if (email.isEmpty || password.isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Please enter email/ID and password')),
+      );
+      return;
+    }
 
-    if (matchingUser != null) {
-      Navigator.pushReplacement(
+    setState(() => _isLoading = true);
+
+    final authViewModel = Provider.of<AuthViewModel>(context, listen: false);
+    final result = await authViewModel.login(email, password,context);
+
+    setState(() => _isLoading = false);
+
+    if (result == null) {
+      // Login successful
+
+      Navigator.pushReplacementNamed(
         context,
-        MaterialPageRoute(
-          builder: (_) => DashboardScreen(user: matchingUser),
-        ),
+        AppRoutes.dashboard,
+        arguments: authViewModel.loggedInUser,
       );
     } else {
+      // Login failed - show specific message
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Invalid email, ID or password')),
+        SnackBar(content: Text(result)),
       );
     }
   }
+
 
 
   @override

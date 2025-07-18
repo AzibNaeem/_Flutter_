@@ -3,6 +3,7 @@ enum LeaveType {
   casual,
   annual,
   other,
+  check,
 }
 
 extension LeaveTypeExtension on LeaveType {
@@ -16,6 +17,8 @@ extension LeaveTypeExtension on LeaveType {
         return 'Annual';
       case LeaveType.other:
         return 'Other';
+      case LeaveType.check:
+        return 'check';
     }
   }
 }

@@ -16,7 +16,6 @@ class LeaveViewModel extends ChangeNotifier {
       rethrow;
     }
   }
-
   /// Fetch leaves for the logged-in employee
   // Future<void> loadLeaves(String employeeId) async {
   //   try {

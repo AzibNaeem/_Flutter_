@@ -1,25 +1,30 @@
 import 'package:flutter/material.dart';
-import '../../data/models/login_user.dart';
+import 'package:provider/provider.dart';
+import '../../domain/providers/user_provider.dart';
 import '../../domain/services/auth_service.dart';
+import '../../data/models/login_user.dart';
+import 'package:hris_project/data/models/login_request.dart';
 
-class AuthViewModel extends ChangeNotifier {
-  final AuthService _authService = AuthService();
-  List<LoginUser> _users = [];
+class AuthViewModel with ChangeNotifier {
+  final ApiService _apiService = ApiService();
+  LoginUser? _loggedInUser;
 
-  Future<void> loadUsers() async {
-    _users = await _authService.fetchUsers();
-    notifyListeners();
-  }
+  LoginUser? get loggedInUser => _loggedInUser;
 
-  LoginUser? validateUser(String input, String password) {
+  Future<String?> login(String email, String password,BuildContext context) async {
     try {
-      return _users.firstWhere(
-            (u) =>
-        (u.email == input || u.employeeId == input) &&
-            u.password == password,
-      );
+      LoginRequest request = LoginRequest(input: email, password: password);
+      final user = await _apiService.login(request);
+      if (user != null) {
+        _loggedInUser = user;
+        Provider.of<UserProvider>(context, listen: false).setUser(loggedInUser!);
+        notifyListeners();
+        return null; // success
+      } else {
+        return 'Invalid email/ID or password';
+      }
     } catch (e) {
-      return null;
+      return e.toString().replaceAll("Exception: ", "");
     }
   }
 }

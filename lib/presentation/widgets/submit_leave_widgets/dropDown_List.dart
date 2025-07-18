@@ -8,7 +8,7 @@ class CustomLeaveTypeDropdown extends StatelessWidget {
   final ValueChanged<LeaveType?> onChanged;
   final Color? labelColor;
   final Color? textColor;
-  final double? width; // optional control from parent
+  final double? width;
 
   const CustomLeaveTypeDropdown({
     Key? key,

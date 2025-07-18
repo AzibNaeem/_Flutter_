@@ -16,17 +16,5 @@ class LeaveApiService {
     }
   }
 
-  Future<List<LeaveRequest>> getLeavesByEmployee(String employeeId) async {
-    final response = await http.get(Uri.parse(ApiConstants.leaveRequestsEndpoint));
 
-    if (response.statusCode == 200) {
-      final List data = jsonDecode(response.body);
-      return data
-          .map((e) => LeaveRequest.fromJson(e))
-          .where((leave) => leave.employeeId == employeeId)
-          .toList();
-    } else {
-      throw Exception('Failed to load leave requests');
-    }
-  }
 }

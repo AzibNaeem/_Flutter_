@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hris_project/presentation/view_model/attendance_view_model.dart';
 import 'package:hris_project/presentation/view_model/leave_view_model.dart';
 import 'package:hris_project/presentation/view_model/login_auth_view_model.dart';
+import 'package:hris_project/domain/providers/user_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'presentation/routes.dart';
@@ -11,21 +12,15 @@ import 'presentation/view_model/home_view_model.dart';
 import 'data/models/leave_request.dart';
 
 void main() async {
- // WidgetsFlutterBinding.ensureInitialized();
- // await Hive.initFlutter();
- //
- // Hive.registerAdapter(LeaveRequestAdapter());
- //
- // await Hive.openBox<LeaveRequest>('leaveRequests');
-
-  runApp(
+   runApp(
     MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => EmployeeProvider()),
         ChangeNotifierProvider(create: (_) => HomeViewModel()),
         ChangeNotifierProvider(create: (_) => AuthViewModel()),
         ChangeNotifierProvider(create: (_) => AttendanceViewModel()),
-        ChangeNotifierProvider(create: (_) => LeaveViewModel()),
+        ChangeNotifierProvider(create: (_) => UserProvider()),
+      //  ChangeNotifierProvider(create: (_) => LeaveViewModel()),
       ],
       child: const HRMSApp(),
 
