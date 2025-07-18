@@ -11,7 +11,6 @@ import '../../widgets/drawer_menu_list.dart';
 import '../../../domain/services/dashboard_cards/dashboard_card_data_service.dart';
 import '../../../domain/services/schedule_service/schedule_block_service.dart';
 import '../../widgets/profile_card.dart';
-import '../../widgets/department_allocation.dart';
 import '../../../domain/services/start_end_snackbar/work_service.dart';
 import '../../widgets/dashboard_allocation.dart';
 import '../../view_model/department_allocation_view_model/department_allocation_view_model.dart';
