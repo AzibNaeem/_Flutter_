@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import '../../data/models/leave_request.dart';
-import '../../domain/services/leave_service.dart';
+import '../../../../data/models/leave_request.dart';
+import '../../../../domain/services/leaves/submit_leaves/submit_leave_service.dart';
 
 class LeaveViewModel extends ChangeNotifier {
   final LeaveApiService _leaveService = LeaveApiService();

@@ -5,4 +5,3 @@ class ApiConstants {
   static const String leaveRequestsEndpoint = '$baseUrl1/leaveRequests';
 
 }
-

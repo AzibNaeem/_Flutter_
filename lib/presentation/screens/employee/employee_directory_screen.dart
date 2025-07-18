@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../../domain/providers/employee_provider.dart';
-import '../widgets/employee_tile.dart';
+import '../../../domain/providers/employee_provider.dart';
+import '../../widgets/employee_tile.dart';
+import '../../../core/themes/theme_service.dart';
 
 class EmployeeDirectoryScreen extends StatefulWidget {
   const EmployeeDirectoryScreen({super.key});
 
   @override
-  State<EmployeeDirectoryScreen> createState() => _EmployeeDirectoryScreenState();
+  State<EmployeeDirectoryScreen> createState() =>
+      _EmployeeDirectoryScreenState();
 }
 
 class _EmployeeDirectoryScreenState extends State<EmployeeDirectoryScreen> {
@@ -16,12 +18,12 @@ class _EmployeeDirectoryScreenState extends State<EmployeeDirectoryScreen> {
   @override
   Widget build(BuildContext context) {
     final provider = Provider.of<EmployeeProvider>(context);
-    final results = _query.isEmpty ? provider.employees : provider.search(_query);
+    final results = _query.isEmpty
+        ? provider.employees
+        : provider.search(_query);
 
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Employee Directory'),
-      ),
+      appBar: AppBar(title: const Text('Employee Directory')),
       body: Column(
         children: [
           Padding(
@@ -37,7 +39,8 @@ class _EmployeeDirectoryScreenState extends State<EmployeeDirectoryScreen> {
           Expanded(
             child: ListView.builder(
               itemCount: results.length,
-              itemBuilder: (context, index) => EmployeeTile(employee: results[index]),
+              itemBuilder: (context, index) =>
+                  EmployeeTile(employee: results[index]),
             ),
           ),
         ],

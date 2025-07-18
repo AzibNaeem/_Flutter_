@@ -7,11 +7,11 @@
     "role": "Intern"
   },
   {
-    "email": "employee02@netsoltech.com",
-    "password": "Password123!",
-    "employee_id": "8291",
-    "name": "Employee 02",
-    "role": "Software Analyst"
+    "email": "hamna.sohail@netsoltech.com",
+    "password": "hamna",
+    "employee_id": "8260",
+    "name": "Hamna Sohail",
+    "role": "Mobile Dev Intern"
   },
   {
     "email": "employee03@netsoltech.com",

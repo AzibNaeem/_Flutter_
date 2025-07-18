@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'screens/login_screen.dart';
-import 'screens/dashboard_screen.dart';
-import 'screens/employee_directory_screen.dart';
-import 'screens/employee_report_screen.dart';
-import 'screens/home_screen.dart';
+import 'screens/login_screen/login_screen.dart';
+import 'screens/dashboard/dashboard_screen.dart';
+import 'screens/employee/employee_directory_screen.dart';
+import 'screens/employee/employee_report_screen.dart';
+import 'screens/home_screen/home_screen.dart';
 import 'package:hris_project/data/models/login_user.dart';
-import 'package:hris_project/presentation/screens/attendance_leaves_screen.dart'; // New import
-import 'screens/submit_leave_screen.dart';
+import 'package:hris_project/presentation/screens/attendance/attendance_leaves_screen.dart'; // New import
+import 'screens/submit_leaves/submit_leave_screen.dart';
 class AppRoutes {
   static const String login = '/login';
   static const String dashboard = '/dashboard';

@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:hris_project/presentation/routes.dart';
 import 'package:provider/provider.dart';
-import 'package:hris_project/presentation/view_model/login_auth_view_model.dart';
-import 'package:hris_project/presentation/screens/dashboard_screen.dart';
-import 'package:hris_project/data/models/login_user.dart';
-import '../../domain/providers/user_provider.dart';
-import '../widgets/custom_text_field.dart';
-import '../widgets/custom_button.dart';
-import '../theme/app_theme.dart';
+import 'package:hris_project/presentation/view_model/login_authorization_view_model/login_auth_view_model.dart';
+import 'package:hris_project/presentation/screens/dashboard/dashboard_screen.dart';
+import '../../widgets/custom_text_field.dart';
+import '../../widgets/custom_button.dart';
+import '../../theme/app_theme.dart';
+import '../../../core/themes/theme_service.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -45,11 +43,10 @@ class _LoginScreenState extends State<LoginScreen> {
 
     setState(() => _isLoading = false);
 
-    if (result == null) {
-      // Login successful
-
-      Navigator.pushReplacementNamed(
+    if (matchingUser != null) {
+      Navigator.pushReplacement(
         context,
+        MaterialPageRoute(builder: (_) => DashboardScreen(user: matchingUser)),
         AppRoutes.dashboard,
         arguments: authViewModel.loggedInUser,
       );
@@ -73,7 +70,7 @@ class _LoginScreenState extends State<LoginScreen> {
         elevation: 0.5,
         title: Text(
           "Login",
-          style: TextStyle(
+          style: ThemeService.appBar.copyWith(
             color: AppColors.primary,
             fontSize: 22,
             fontWeight: FontWeight.bold,
@@ -84,37 +81,34 @@ class _LoginScreenState extends State<LoginScreen> {
       body: _isLoading
           ? const Center(child: CircularProgressIndicator())
           : Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          children: [
-            CustomTextField(
-              label: "Email or Employee ID",
-              hint: "example@gmail.com or 1234",
-              controller: emailOrIdController,
-              icon: Icons.email,
-              fillColor: Colors.white,
-              textColor: Colors.black,
-              labelColor: Colors.grey[800],
+              padding: const EdgeInsets.all(16.0),
+              child: Column(
+                children: [
+                  CustomTextField(
+                    label: "Email or Employee ID",
+                    hint: "example@gmail.com or 1234",
+                    controller: emailOrIdController,
+                    icon: Icons.email,
+                    fillColor: Colors.white,
+                    textColor: Colors.black,
+                    labelColor: Colors.grey[800],
+                  ),
+                  const SizedBox(height: 16),
+                  CustomTextField(
+                    label: "Password",
+                    hint: "********",
+                    controller: passwordController,
+                    icon: Icons.lock,
+                    isPassword: true,
+                    fillColor: AppColors.primary,
+                    textColor: Colors.white,
+                    labelColor: Colors.white,
+                  ),
+                  const SizedBox(height: 32),
+                  CustomButton(label: "Login", onPressed: validateLogin),
+                ],
+              ),
             ),
-            const SizedBox(height: 16),
-            CustomTextField(
-              label: "Password",
-              hint: "********",
-              controller: passwordController,
-              icon: Icons.lock,
-              isPassword: true,
-              fillColor: AppColors.primary,
-              textColor: Colors.white,
-              labelColor: Colors.white,
-            ),
-            const SizedBox(height: 32),
-            CustomButton(
-              label: "Login",
-              onPressed: validateLogin,
-            ),
-          ],
-        ),
-      ),
     );
   }
 

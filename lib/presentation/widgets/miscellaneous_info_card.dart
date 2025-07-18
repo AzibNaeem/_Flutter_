@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 enum MiscInfoType { text, dropdown, date }
@@ -14,7 +15,7 @@ class MiscInfoItem {
   });
 }
 
-class MiscellaneousInfoCard extends StatelessWidget {
+class MiscellaneousInfoCard extends StatelessWidget{
   final List<MiscInfoItem> items;
 
   const MiscellaneousInfoCard({super.key, required this.items});

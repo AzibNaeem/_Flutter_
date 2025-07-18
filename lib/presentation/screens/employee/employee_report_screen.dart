@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fl_chart/fl_chart.dart';
+import '../../../core/themes/theme_service.dart';
 
 class EmployeeReportScreen extends StatefulWidget {
   const EmployeeReportScreen({super.key});
@@ -14,9 +15,7 @@ class _EmployeeReportScreenState extends State<EmployeeReportScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("Employee Report"),
-      ),
+      appBar: AppBar(title: const Text("Employee Report")),
       body: Padding(
         padding: const EdgeInsets.all(16),
         child: Column(
@@ -26,10 +25,7 @@ class _EmployeeReportScreenState extends State<EmployeeReportScreen> {
             const SizedBox(height: 16),
             _buildBarChart(),
             const SizedBox(height: 24),
-            const Text(
-              "Absent Employee",
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
-            ),
+            const Text("Absent Employee", style: ThemeService.titleMedium),
             const SizedBox(height: 12),
             _buildAbsentList(),
           ],
@@ -43,18 +39,24 @@ class _EmployeeReportScreenState extends State<EmployeeReportScreen> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: filters
-          .map((filter) => Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 6),
-        child: ChoiceChip(
-          label: Text(filter),
-          selected: selectedFilter == filter,
-          onSelected: (_) => setState(() => selectedFilter = filter),
-          selectedColor: Colors.deepPurple,
-          labelStyle: TextStyle(
-            color: selectedFilter == filter ? Colors.white : Colors.black,
-          ),
-        ),
-      ))
+          .map(
+            (filter) => Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 6),
+              child: ChoiceChip(
+                label: Text(
+                  filter,
+                  style: ThemeService.bodyMedium.copyWith(
+                    color: selectedFilter == filter
+                        ? Colors.white
+                        : Colors.black,
+                  ),
+                ),
+                selected: selectedFilter == filter,
+                onSelected: (_) => setState(() => selectedFilter = filter),
+                selectedColor: Colors.deepPurple,
+              ),
+            ),
+          )
           .toList(),
     );
   }
@@ -96,19 +98,39 @@ class _EmployeeReportScreenState extends State<EmployeeReportScreen> {
     ];
   }
 
-  BarChartGroupData _barGroup(int x, double absent, double ontime, double late) {
-    return BarChartGroupData(x: x, barRods: [
-      BarChartRodData(toY: absent, color: Colors.black, width: 6),
-      BarChartRodData(toY: ontime, color: Colors.blue, width: 6),
-      BarChartRodData(toY: late, color: Colors.lightBlueAccent, width: 6),
-    ]);
+  BarChartGroupData _barGroup(
+    int x,
+    double absent,
+    double ontime,
+    double late,
+  ) {
+    return BarChartGroupData(
+      x: x,
+      barRods: [
+        BarChartRodData(toY: absent, color: Colors.black, width: 6),
+        BarChartRodData(toY: ontime, color: Colors.blue, width: 6),
+        BarChartRodData(toY: late, color: Colors.lightBlueAccent, width: 6),
+      ],
+    );
   }
 
   Widget _buildAbsentList() {
     final absentees = [
-      {"name": "Bessie Cooper", "img": "https://i.pravatar.cc/150?img=4", "left": "2 left"},
-      {"name": "Annette Black", "img": "https://i.pravatar.cc/150?img=5", "left": "1 left"},
-      {"name": "Darrell Steward", "img": "https://i.pravatar.cc/150?img=6", "left": "0 left"},
+      {
+        "name": "Bessie Cooper",
+        "img": "https://i.pravatar.cc/150?img=4",
+        "left": "2 left",
+      },
+      {
+        "name": "Annette Black",
+        "img": "https://i.pravatar.cc/150?img=5",
+        "left": "1 left",
+      },
+      {
+        "name": "Darrell Steward",
+        "img": "https://i.pravatar.cc/150?img=6",
+        "left": "0 left",
+      },
     ];
 
     return Column(
@@ -120,7 +142,11 @@ class _EmployeeReportScreenState extends State<EmployeeReportScreen> {
             borderRadius: BorderRadius.circular(12),
             color: Colors.white,
             boxShadow: [
-              BoxShadow(color: Colors.black12, blurRadius: 4, offset: Offset(0, 2)),
+              BoxShadow(
+                color: Colors.black12,
+                blurRadius: 4,
+                offset: Offset(0, 2),
+              ),
             ],
           ),
           child: Row(
@@ -133,13 +159,15 @@ class _EmployeeReportScreenState extends State<EmployeeReportScreen> {
               Expanded(
                 child: Text(
                   e['name']!,
-                  style: const TextStyle(fontWeight: FontWeight.w500),
+                  style: ThemeService.bodyMedium.copyWith(
+                    fontWeight: ThemeService.fontWeightW500,
+                  ),
                 ),
               ),
               Text(
                 e['left']!,
-                style: const TextStyle(color: Colors.grey),
-              )
+                style: ThemeService.bodySmall.copyWith(color: Colors.grey),
+              ),
             ],
           ),
         );

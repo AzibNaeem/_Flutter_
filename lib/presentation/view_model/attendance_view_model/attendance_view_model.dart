@@ -1,9 +1,10 @@
-import 'dart:convert';
-import 'package:flutter/services.dart';
 import 'package:flutter/material.dart';
-import '../../data/models/attendance_day.dart';
+import '../../../data/models/attendance_day.dart';
+import '../../../domain/services/attendance/attendance_service.dart';
 
 class AttendanceViewModel extends ChangeNotifier {
+  final AttendanceService _attendanceService = AttendanceService();
+
   List<AttendanceDay> _attendanceDays = [];
   bool _isLoading = true;
 
@@ -15,18 +16,7 @@ class AttendanceViewModel extends ChangeNotifier {
     notifyListeners();
 
     try {
-      final String response =
-      await rootBundle.loadString('lib/data/json/attendance_record.json');
-      final Map<String, dynamic> fullData = json.decode(response);
-
-      if (fullData.containsKey(employeeId)) {
-        final List<dynamic> data = fullData[employeeId];
-        _attendanceDays =
-            data.map((item) => AttendanceDay.fromJson(item)).toList();
-      } else {
-        _attendanceDays = [];
-      }
-
+      _attendanceDays = await _attendanceService.fetchAttendanceDays(employeeId);
     } catch (e) {
       debugPrint("Error loading attendance: $e");
       _attendanceDays = [];

@@ -5,22 +5,60 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3b49d461-bc12-4301-b2fe-a52dae436fd4" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/lib/core/themes/theme_service.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/data/json/department_allocations.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/data/models/department_allocation.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/data/models/leave.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/domain/services/dashboard_cards/dashboard_card_data_service.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/domain/services/department_allocation/department_allocation_service.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/domain/services/department_allocation/department_allocation_validator.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/domain/services/futuristic_card/futuristic_card_service.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/domain/services/leaves/leave_json_service.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/domain/services/login/login_auth_service.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/domain/services/logout/logout_service.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/domain/services/schedule_service/schedule_block_service.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/domain/services/start_end_snackbar/work_service.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/presentation/screens/attendance/attendance_leaves_screen.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/presentation/screens/dashboard/dashboard_screen.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/presentation/screens/home_screen/home_screen.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/presentation/screens/splash_screen/splash_screen.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/presentation/screens/submit_leaves/submit_leave_screen.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/presentation/view_model/department_allocation_view_model/department_allocation_view_model.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/presentation/view_model/leaves_view_model/leaves_vm/leave_json_view_model.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/presentation/view_model/login_authorization_view_model/login_auth_view_model.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/presentation/widgets/dashboard_allocation.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/presentation/widgets/dashboard_grid.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/presentation/widgets/department_allocation.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/presentation/widgets/profile_card.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/presentation/widgets/schedule_section.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/core/api_constants.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/core/api_constants.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/core/api_constants.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/core/API/api_constants.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/data/json/attendance_record.json" beforeDir="false" afterPath="$PROJECT_DIR$/lib/data/json/attendance_record.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/data/models/leave_type.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/data/models/leave_type.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/data/json/loginData.json" beforeDir="false" afterPath="$PROJECT_DIR$/lib/data/json/loginData.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/domain/services/attendance_service.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/domain/services/attendance/attendance_service.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/domain/services/auth_service.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/domain/services/auth_service.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/domain/services/leave_service.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/domain/services/leave_service.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/domain/services/login_validation.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/domain/services/login_validation.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/domain/services/leave_service.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/domain/services/leaves/submit_leaves/submit_leave_service.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/domain/services/login_validation.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/domain/services/login/login_validator/login_validation.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/main.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/presentation/routes.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/presentation/routes.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/presentation/screens/dashboard_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/presentation/screens/dashboard_screen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/presentation/screens/attendance_leaves_screen.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/presentation/screens/employee_directory_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/presentation/screens/employee/employee_directory_screen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/presentation/screens/employee_report_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/presentation/screens/employee/employee_report_screen.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/presentation/screens/home_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/presentation/screens/home_screen.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/presentation/screens/login_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/presentation/screens/login_screen.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/presentation/screens/splash_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/presentation/screens/splash_screen.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/presentation/view_model/leave_view_model.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/presentation/view_model/leave_view_model.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/presentation/view_model/login_auth_view_model.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/presentation/view_model/login_auth_view_model.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/presentation/widgets/submit_leave_widgets/dropDown_List.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/presentation/widgets/submit_leave_widgets/dropDown_List.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/presentation/screens/login_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/presentation/screens/login_screen/login_screen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/presentation/screens/splash_screen.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/presentation/screens/submit_leave_screen.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/presentation/view_model/attendance_view_model.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/presentation/view_model/attendance_view_model/attendance_view_model.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/presentation/view_model/leave_view_model.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/presentation/view_model/leaves_view_model/submit_leaves_view_model/submit_leave_view_model.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/presentation/view_model/login_auth_view_model.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/presentation/widgets/attendance_calendar.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/presentation/widgets/attendance_calendar.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/presentation/widgets/custom_end_drawer.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/presentation/widgets/custom_end_drawer.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/presentation/widgets/drawer_menu_item.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/presentation/widgets/drawer_menu_item.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/presentation/widgets/drawer_menu_list.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/presentation/widgets/drawer_menu_list.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/presentation/widgets/leaves_card.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/presentation/widgets/leaves_card.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/presentation/widgets/miscellaneous_info_card.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/presentation/widgets/miscellaneous_info_card.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/presentation/widgets/work_buttons.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/presentation/widgets/work_buttons.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -85,24 +123,24 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Flutter.main.dart.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.readMode.enableVisualFormatting&quot;: &quot;true&quot;,
-    &quot;cf.first.check.clang-format&quot;: &quot;false&quot;,
-    &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
-    &quot;dart.analysis.tool.window.visible&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;io.flutter.reload.alreadyRun&quot;: &quot;true&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/My Apps/rc1/_Flutter_&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;AndroidSdkUpdater&quot;,
-    &quot;show.migrate.to.gradle.popup&quot;: &quot;false&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Flutter.main.dart.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.cidr.known.project.marker": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.readMode.enableVisualFormatting": "true",
+    "cf.first.check.clang-format": "false",
+    "cidr.known.project.marker": "true",
+    "dart.analysis.tool.window.visible": "false",
+    "git-widget-placeholder": "Merging main",
+    "io.flutter.reload.alreadyRun": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "D:/My Apps/rc1/_Flutter_",
+    "settings.editor.selected.configurable": "AndroidSdkUpdater",
+    "show.migrate.to.gradle.popup": "false"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\My Apps\rc1\_Flutter_\lib\domain\providers" />
