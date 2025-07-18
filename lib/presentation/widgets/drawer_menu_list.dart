@@ -21,15 +21,15 @@ class DrawerMenuList extends StatelessWidget {
       ),
       DrawerMenuItemData(
         icon: Icons.calendar_today,
-        title: 'Attendance',
+        title: 'Attendance and Leaves',
         onTap: () {
           Navigator.pop(context);
-          Navigator.pushNamed(context, '/attendance', arguments: user);
+          Navigator.pushNamed(context, '/attendance-leaves', arguments: user);
         },
       ),
       DrawerMenuItemData(
         icon: Icons.assignment,
-        title: 'Leave',
+        title: 'Submit Leave',
         onTap: () {
           Navigator.pop(context);
           Navigator.pushNamed(context, '/submitLeave', arguments: user);

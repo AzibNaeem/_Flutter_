@@ -11,7 +11,7 @@ import '../widgets/drawer_menu_list.dart';
 import '../../domain/services/dashboard_card_data_service.dart';
 import '../../domain/services/schedule_block_service.dart';
 import '../widgets/profile_card.dart';
-import '../widgets/schedule_section.dart';
+import '../widgets/department_allocation.dart';
 import '../../domain/services/work_service.dart';
 
 class DashboardScreen extends StatefulWidget {
