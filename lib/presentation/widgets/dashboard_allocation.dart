@@ -82,6 +82,7 @@ class DashboardAllocation extends StatelessWidget {
                             border: Border.all(color: Colors.black12, width: 1),
                           ),
                         ),
+                        // for text
                         SizedBox(width: 6),
                         Text(
                           label,
@@ -91,6 +92,7 @@ class DashboardAllocation extends StatelessWidget {
                             fontWeight: FontWeight.bold ,
                           ),
                         ),
+                        // for the percentages
                         SizedBox(width: 6),
                         Text(
                           '${(alloc.allocation * 100).toStringAsFixed(0)}%',
