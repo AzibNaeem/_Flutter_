@@ -16,7 +16,7 @@ class ScheduleSection extends StatelessWidget {
         Align(
           alignment: Alignment.centerLeft,
           child: Text(
-            "Today Schedule",
+            "Today's Meetings",
             style: ThemeService.titleMedium.copyWith(
               fontSize: isTablet ? 22 : 16,
               color: AppColors.primary,

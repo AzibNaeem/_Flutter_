@@ -7,6 +7,8 @@ import '../../presentation/theme/app_theme.dart';
 import '../widgets/shimmer/attendance_calendar_shimmer.dart';
 import '../../data/models/login_user.dart';
 import '../../core/themes/theme_service.dart';
+import '../../data/models/leave.dart';
+import '../view_model/leave_json_view_model.dart';
 
 class AttendanceLeavesScreen extends StatefulWidget {
   final LoginUser user;
@@ -17,6 +19,8 @@ class AttendanceLeavesScreen extends StatefulWidget {
 }
 
 class _AttendanceLeavesScreenState extends State<AttendanceLeavesScreen> {
+  late LeaveJsonViewModel leaveViewModel;
+
   @override
   void initState() {
     super.initState();
@@ -24,7 +28,14 @@ class _AttendanceLeavesScreenState extends State<AttendanceLeavesScreen> {
       context.read<AttendanceViewModel>().loadAttendance(
         widget.user.employeeId,
       );
+      leaveViewModel.loadLeaves();
     });
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    leaveViewModel = Provider.of<LeaveJsonViewModel>(context);
   }
 
   @override
@@ -38,6 +49,10 @@ class _AttendanceLeavesScreenState extends State<AttendanceLeavesScreen> {
     final isTablet = size.width > 600;
     final padding = isTablet ? 32.0 : 16.0;
     final titleFontSize = isTablet ? 22.0 : 18.0;
+
+    final leaveVm = leaveViewModel;
+    final leavesData = leaveVm.leaves;
+    final isLeavesLoading = leaveVm.isLoading;
 
     return Scaffold(
       backgroundColor: AppColors.white,
@@ -98,7 +113,24 @@ class _AttendanceLeavesScreenState extends State<AttendanceLeavesScreen> {
                               ),
                             ),
                             const SizedBox(height: 8),
-                            const LeavesCard(leaves: []),
+                            if (isLeavesLoading)
+                              const Center(child: CircularProgressIndicator())
+                            else if (leavesData.isEmpty)
+                              const Center(
+                                child: Text("No leave data available."),
+                              )
+                            else
+                              LeavesCard(
+                                leaves: leavesData
+                                    .map(
+                                      (leave) => LeaveItemData(
+                                        date: leave.date,
+                                        reason:
+                                            '${leave.type} (${leave.status})',
+                                      ),
+                                    )
+                                    .toList(),
+                              ),
                           ],
                         ),
                       ),
@@ -132,7 +164,21 @@ class _AttendanceLeavesScreenState extends State<AttendanceLeavesScreen> {
                         ),
                       ),
                       const SizedBox(height: 8),
-                      const LeavesCard(leaves: []),
+                      if (isLeavesLoading)
+                        const Center(child: CircularProgressIndicator())
+                      else if (leavesData.isEmpty)
+                        const Center(child: Text("No leave data available."))
+                      else
+                        LeavesCard(
+                          leaves: leavesData
+                              .map(
+                                (leave) => LeaveItemData(
+                                  date: leave.date,
+                                  reason: '${leave.type} (${leave.status})',
+                                ),
+                              )
+                              .toList(),
+                        ),
                     ],
                   ),
           );

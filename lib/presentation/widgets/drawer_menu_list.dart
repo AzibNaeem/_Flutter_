@@ -32,7 +32,7 @@ class DrawerMenuList extends StatelessWidget {
         title: 'Leave',
         onTap: () {
           Navigator.pop(context);
-          Navigator.pushNamed(context, '/leave', arguments: user);
+          Navigator.pushNamed(context, '/submitLeave', arguments: user);
         },
       ),
       DrawerMenuItemData(

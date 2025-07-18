@@ -6,7 +6,15 @@
   <component name="ChangeListManager">
     <list default="true" id="3b49d461-bc12-4301-b2fe-a52dae436fd4" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/presentation/widgets/drawer_menu_item.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/presentation/widgets/drawer_menu_item.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/domain/services/leave_service.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/domain/services/submit_leave_service.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/main.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/presentation/screens/attendance_leaves_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/presentation/screens/attendance_leaves_screen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/presentation/screens/submit_leave_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/presentation/screens/submit_leave_screen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/presentation/view_model/leave_view_model.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/presentation/view_model/submit_leave_view_model.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/presentation/widgets/drawer_menu_list.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/presentation/widgets/drawer_menu_list.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/presentation/widgets/leaves_card.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/presentation/widgets/leaves_card.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/presentation/widgets/miscellaneous_info_card.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/presentation/widgets/miscellaneous_info_card.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/presentation/widgets/schedule_section.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/presentation/widgets/schedule_section.dart" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,6 +47,9 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="ROOT_SYNC" value="DONT_SYNC" />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/lib/presentation/widgets/leaves_card.dart" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 2
