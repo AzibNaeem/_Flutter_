@@ -76,10 +76,7 @@ class _SubmitLeaveScreenState extends State<SubmitLeaveScreen> {
       );
 
       try {
-        await Provider.of<LeaveViewModel>(
-          context,
-          listen: false,
-        ).submitLeave(request);
+        await Provider.of<LeaveViewModel>(context, listen: false,).submitLeave(request);
 
         // Close loading spinner
         Navigator.of(context).pop();
@@ -102,13 +99,13 @@ class _SubmitLeaveScreenState extends State<SubmitLeaveScreen> {
     final size = MediaQuery.of(context).size;
     final isTablet = size.width > 600;
     final padding = isTablet ? 32.0 : 16.0;
-    final labelFontSize = isTablet ? 20.0 : 16.0;
+    final labelFontSize = isTablet ? 20.0 : 20.0;
     final buttonFontSize = isTablet ? 20.0 : 16.0;
 
     return Scaffold(
-      backgroundColor: AppColors.background,
+      backgroundColor: AppColors.white,
       appBar: AppBar(
-        backgroundColor: AppColors.white,
+        backgroundColor: AppColors.background,
         iconTheme: IconThemeData(color: AppColors.primary),
         title: Text(
           'Submit Leave',
