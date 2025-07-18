@@ -7,7 +7,6 @@ import '../../theme/app_theme.dart';
 import '../../widgets/shimmer/attendance_calendar_shimmer.dart';
 import '../../../data/models/login_user.dart';
 import '../../../core/themes/theme_service.dart';
-import '../../../data/models/leave.dart';
 import '../../view_model/leaves_view_model/leaves_vm/leave_json_view_model.dart';
 
 class AttendanceLeavesScreen extends StatefulWidget {

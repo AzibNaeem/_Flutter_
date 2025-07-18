@@ -12,9 +12,9 @@ class DashboardAllocation extends StatelessWidget {
   Widget build(BuildContext context) {
     final isTablet = MediaQuery.of(context).size.width > 600;
     final colors = [
+      Colors.yellow,
       Colors.blueAccent,
-      Colors.green,
-      Colors.orange,
+      Colors.red,
       Colors.purple,
       Colors.redAccent,
       Colors.teal,
@@ -28,11 +28,13 @@ class DashboardAllocation extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-              "Department Allocation",
-              style: ThemeService.titleMedium.copyWith(
-                fontSize: isTablet ? 22 : 16,
-                color: AppColors.black,
+            Center(
+              child: Text(
+                "Department Allocation",
+                style: ThemeService.titleMedium.copyWith(
+                  fontSize: isTablet ? 22 : 20,
+                  color: AppColors.black,
+                ),
               ),
             ),
             SizedBox(height: isTablet ? 24 : 12),
@@ -47,7 +49,7 @@ class DashboardAllocation extends StatelessWidget {
                       color: color,
                       value: alloc.allocation * 100,
                       title: '',
-                      radius: isTablet ? 70 : 50,
+                      radius: isTablet ? 70 : 70,
                     );
                   }),
                   sectionsSpace: 2,
@@ -56,45 +58,51 @@ class DashboardAllocation extends StatelessWidget {
               ),
             ),
             SizedBox(height: isTablet ? 24 : 12),
-            Wrap(
-              spacing: 16,
-              runSpacing: 8,
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: List.generate(allocations.length, (i) {
                 final alloc = allocations[i];
                 final color = colors[i % colors.length];
                 final label = alloc.project.isNotEmpty
                     ? '${alloc.project} - ${alloc.department}'
                     : alloc.department;
-                return Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Container(
-                      width: 16,
-                      height: 16,
-                      decoration: BoxDecoration(
-                        color: color,
-                        shape: BoxShape.circle,
-                        border: Border.all(color: Colors.black12, width: 1),
-                      ),
+                return Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 6.0),
+                  child: Center(
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Container(
+                          width: 16,
+                          height: 16,
+                          decoration: BoxDecoration(
+                            color: color,
+                            shape: BoxShape.circle,
+                            border: Border.all(color: Colors.black12, width: 1),
+                          ),
+                        ),
+                        SizedBox(width: 6),
+                        Text(
+                          label,
+                          style: TextStyle(
+                            color: AppColors.black,
+                            fontSize: isTablet ? 15 : 15,
+                            fontWeight: FontWeight.bold ,
+                          ),
+                        ),
+                        SizedBox(width: 6),
+                        Text(
+                          '${(alloc.allocation * 100).toStringAsFixed(0)}%',
+                          style: TextStyle(
+                            color: Colors.black54,
+                            fontSize: isTablet ? 14 : 15,
+                            fontWeight: FontWeight.bold
+                          ),
+                        ),
+                      ],
                     ),
-                    SizedBox(width: 6),
-                    Text(
-                      label,
-                      style: TextStyle(
-                        color: AppColors.black,
-                        fontSize: isTablet ? 15 : 12,
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
-                    SizedBox(width: 6),
-                    Text(
-                      '${(alloc.allocation * 100).toStringAsFixed(0)}%',
-                      style: TextStyle(
-                        color: Colors.black54,
-                        fontSize: isTablet ? 14 : 11,
-                      ),
-                    ),
-                  ],
+                  ),
                 );
               }),
             ),

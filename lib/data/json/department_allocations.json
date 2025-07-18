@@ -16,14 +16,25 @@
     ]
   },
   {
-    "employee_id": "8291",
+    "employee_id": "8260",
     "name": "Employee 02",
     "department_allocations": [
       {
         "department": "Operations",
         "project": "Workflow360",
-        "allocation": 1.0
+        "allocation": 0.33
+      },
+      {
+        "department": "Operations",
+        "project": "Nvidia RTX",
+        "allocation": 0.33
+      },
+      {
+        "department": "Operations",
+        "project": "Intel",
+        "allocation": 0.34
       }
+
     ]
   },
   {

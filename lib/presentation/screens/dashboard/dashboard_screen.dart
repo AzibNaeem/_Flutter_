@@ -9,7 +9,6 @@ import '../../../domain/services/futuristic_card/futuristic_card_service.dart';
 import '../../widgets/dashboard_grid.dart';
 import '../../widgets/drawer_menu_list.dart';
 import '../../../domain/services/dashboard_cards/dashboard_card_data_service.dart';
-import '../../../domain/services/schedule_service/schedule_block_service.dart';
 import '../../widgets/profile_card.dart';
 import '../../../domain/services/start_end_snackbar/work_service.dart';
 import '../../widgets/dashboard_allocation.dart';
@@ -120,21 +119,6 @@ class _DashboardScreenState extends State<DashboardScreen> {
     );
   }
 
-  Widget _buildScheduleTimeline({bool isTablet = false}) {
-    return SizedBox(
-      height: isTablet ? 100 : 80,
-      child: ListView(
-        scrollDirection: Axis.horizontal,
-        padding: EdgeInsets.symmetric(horizontal: isTablet ? 32 : 16),
-        children: const [
-          ScheduleBlock(time: '8:00 AM', active: true),
-          ScheduleBlock(time: '9:00 AM'),
-          ScheduleBlock(time: '9:35 AM'),
-          ScheduleBlock(time: '3:00 PM', active: true),
-        ],
-      ),
-    );
-  }
 
   Widget _buildGridCards(BuildContext context, {bool isTablet = false}) {
     final cards = [
