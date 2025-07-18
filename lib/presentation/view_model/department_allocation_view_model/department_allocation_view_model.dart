@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../../data/models/department_allocation.dart';
-import '../../../domain/services/department_allocation_service.dart';
+import '../../../domain/services/department_allocation/department_allocation_service.dart';
 
 class DepartmentAllocationViewModel extends ChangeNotifier {
   final DepartmentAllocationService _service = DepartmentAllocationService();

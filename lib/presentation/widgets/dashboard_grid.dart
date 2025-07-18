@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import '../../domain/services/dashboard_card_data_service.dart';
-import '../../domain/services/futuristic_card_service.dart';
+import '../../domain/services/dashboard_cards/dashboard_card_data_service.dart';
+import '../../domain/services/futuristic_card/futuristic_card_service.dart';
 import '../../data/models/login_user.dart';
 import '../theme/app_theme.dart';
 

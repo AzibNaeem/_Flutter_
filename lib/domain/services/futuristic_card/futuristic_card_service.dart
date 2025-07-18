@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'dashboard_card_data_service.dart';
-import '../../core/themes/theme_service.dart';
+import '../dashboard_cards/dashboard_card_data_service.dart';
+import '../../../core/themes/theme_service.dart';
 
 class FuturisticCard extends StatelessWidget {
   final DashboardCardData card;

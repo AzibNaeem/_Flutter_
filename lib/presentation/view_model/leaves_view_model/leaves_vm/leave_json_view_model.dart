@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../../../data/models/leave.dart';
-import '../../../../domain/services/leave_json_service.dart';
+import '../../../../domain/services/leaves/leave_json_service.dart';
 
 class LeaveJsonViewModel extends ChangeNotifier {
   final LeaveJsonService _leaveService = LeaveJsonService();

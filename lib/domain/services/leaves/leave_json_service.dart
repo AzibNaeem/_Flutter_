@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'package:flutter/services.dart' show rootBundle;
-import '../../data/models/leave.dart';
+import '../../../data/models/leave.dart';
 
 class LeaveJsonService {
   Future<List<Leave>> loadLeaves() async {

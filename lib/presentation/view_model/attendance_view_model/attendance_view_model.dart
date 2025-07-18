@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../../data/models/attendance_day.dart';
-import '../../../domain/services/attendance_service.dart';
+import '../../../domain/services/attendance/attendance_service.dart';
 
 class AttendanceViewModel extends ChangeNotifier {
   final AttendanceService _attendanceService = AttendanceService();

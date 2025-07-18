@@ -1,4 +1,4 @@
-import '../../data/models/department_allocation.dart';
+import '../../../data/models/department_allocation.dart';
 
 class DepartmentAllocationValidator {
   List<DepartmentAllocationItem> validAllocations(

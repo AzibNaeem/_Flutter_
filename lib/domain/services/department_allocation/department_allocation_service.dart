@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'package:flutter/services.dart';
-import '../../data/models/department_allocation.dart';
+import '../../../data/models/department_allocation.dart';
 import 'department_allocation_validator.dart';
 
 class DepartmentAllocationService {

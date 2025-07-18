@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import '../../presentation/theme/app_theme.dart';
-import '../../core/themes/theme_service.dart';
+import '../../../presentation/theme/app_theme.dart';
+import '../../../core/themes/theme_service.dart';
 
 class ScheduleBlock extends StatelessWidget {
   final String time;

@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'package:flutter/services.dart';
-import '../../data/models/attendance_day.dart';
+import '../../../data/models/attendance_day.dart';
 
 class AttendanceService {
   Future<List<AttendanceDay>> fetchAttendanceDays(String employeeId) async {
