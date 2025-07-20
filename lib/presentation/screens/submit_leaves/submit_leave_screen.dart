@@ -11,8 +11,8 @@ import '../../widgets/submit_leave_widgets/textForm_Field.dart';
 import '../../../core/themes/theme_service.dart';
 
 class SubmitLeaveScreen extends StatefulWidget {
-  final LoginUser user;
-  const SubmitLeaveScreen({super.key, required this.user});
+  //final LoginUser user;
+  const SubmitLeaveScreen({super.key});
 
   @override
   State<SubmitLeaveScreen> createState() => _SubmitLeaveScreenState();
@@ -61,7 +61,7 @@ class _SubmitLeaveScreenState extends State<SubmitLeaveScreen> {
         _startDate != null &&
         _endDate != null) {
       final request = LeaveRequest(
-        employeeId: widget.user.employeeId,
+        employeeId: "1234",
         leaveType: _leaveType.label,
         startDate: _startDate!,
         endDate: _endDate!,

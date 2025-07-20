@@ -4,6 +4,7 @@ import 'package:hris_project/presentation/view_model/leaves_view_model/submit_le
 import 'package:hris_project/presentation/view_model/login_authorization_view_model/login_auth_view_model.dart';
 import 'package:provider/provider.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'domain/providers/user_provider.dart';
 import 'presentation/routes.dart';
 import 'core/themes/app_theme.dart';
 import 'domain/providers/employee_provider.dart';
@@ -23,12 +24,14 @@ void main() async {
   runApp(
     MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (_) => EmployeeProvider()),
-        ChangeNotifierProvider(create: (_) => HomeViewModel()),
-        ChangeNotifierProvider(create: (_) => AuthViewModel()),
-        ChangeNotifierProvider(create: (_) => AttendanceViewModel()),
-        ChangeNotifierProvider(create: (_) => UserProvider()),
-      //  ChangeNotifierProvider(create: (_) => LeaveViewModel()),
+        ChangeNotifierProvider(create: (context) => EmployeeProvider()),
+        ChangeNotifierProvider(create: (context) => HomeViewModel()),
+        ChangeNotifierProvider(create: (context) => AuthViewModel()),
+        ChangeNotifierProvider(create: (context) => LeaveJsonViewModel()),
+        ChangeNotifierProvider(create: (context) => AttendanceViewModel()),
+        ChangeNotifierProvider(create: (context) => UserProvider()),
+        ChangeNotifierProvider(create: (context) => DepartmentAllocationViewModel()),
+
       ],
       child: const HRMSApp(),
 

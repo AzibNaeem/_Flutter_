@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:hris_project/presentation/view_model/login_authorization_view_model/login_auth_view_model.dart';
 import 'package:hris_project/presentation/screens/dashboard/dashboard_screen.dart';
+import '../../routes.dart';
 import '../../widgets/custom_text_field.dart';
 import '../../widgets/custom_button.dart';
 import '../../theme/app_theme.dart';
@@ -43,12 +44,13 @@ class _LoginScreenState extends State<LoginScreen> {
 
     setState(() => _isLoading = false);
 
-    if (matchingUser != null) {
-      Navigator.pushReplacement(
+    if (result == null) {
+      // Login successful
+
+      Navigator.pushReplacementNamed(
         context,
-        MaterialPageRoute(builder: (_) => DashboardScreen(user: matchingUser)),
         AppRoutes.dashboard,
-        arguments: authViewModel.loggedInUser,
+     //   arguments: authViewModel.loggedInUser,
       );
     } else {
       // Login failed - show specific message

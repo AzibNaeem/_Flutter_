@@ -22,10 +22,10 @@ class AppRoutes {
         return MaterialPageRoute(builder: (_) => const LoginScreen());
 
       case dashboard:
-        final user = settings.arguments;
-        if (user is! LoginUser) {
-          return _errorRoute('Missing or invalid user for dashboard.');
-        }
+        // final user = settings.arguments;
+        // if (user is! LoginUser) {
+        //   return _errorRoute('Missing or invalid user for dashboard.');
+        // }
         return MaterialPageRoute(
           builder: (_) => DashboardScreen(),
         );
@@ -42,9 +42,9 @@ class AppRoutes {
       //   return MaterialPageRoute(builder: (_) => const HomeScreen());
 
       case submitLeaves:
-        // final args=settings.arguments as LoginRequest;
-        // return MaterialPageRoute(
-        //     builder: (_) =>  SubmitLeaveScreen(user:args));
+        //final args=settings.arguments as LoginRequest;
+        return MaterialPageRoute(
+            builder: (_) =>  SubmitLeaveScreen());
 
       case attendanceLeaves:
         final args=settings.arguments as LoginUser;

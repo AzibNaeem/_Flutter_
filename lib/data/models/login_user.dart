@@ -17,7 +17,7 @@ class LoginUser {
     return LoginUser(
       email: json['email'] ?? '',
       password: json['password'] ?? '',
-      employeeId: json['employee_id'] ?? '',
+      employeeId: json['employeeId'] ?? '',
       name: json['name'] ?? '',
       role: json['role'] ?? '',
     );

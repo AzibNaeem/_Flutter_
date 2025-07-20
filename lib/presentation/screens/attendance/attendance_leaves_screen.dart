@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import '../../../domain/providers/user_provider.dart';
 import '../../view_model/attendance_view_model/attendance_view_model.dart';
 import '../../widgets/attendance_calendar.dart';
 import '../../widgets/leaves_card.dart';
@@ -18,23 +19,25 @@ class AttendanceLeavesScreen extends StatefulWidget {
 }
 
 class _AttendanceLeavesScreenState extends State<AttendanceLeavesScreen> {
-  late LeaveJsonViewModel leaveViewModel;
+
 
   @override
   void initState() {
     super.initState();
-    Future.microtask(() {
-      context.read<AttendanceViewModel>().loadAttendance(
-        widget.user.employeeId,
-      );
-      leaveViewModel.loadLeaves();
-    });
-  }
+    }
 
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    leaveViewModel = Provider.of<LeaveJsonViewModel>(context);
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      final user = Provider.of<UserProvider>(context, listen: false).user;
+    context.read<AttendanceViewModel>().loadAttendance(
+      user!.employeeId,
+    );
+    final LeaveJsonViewModel   leaveViewModel;
+    leaveViewModel = Provider.of<LeaveJsonViewModel>(context, listen: false);
+    leaveViewModel.loadLeaves();
+    });
   }
 
   @override
@@ -48,10 +51,9 @@ class _AttendanceLeavesScreenState extends State<AttendanceLeavesScreen> {
     final isTablet = size.width > 600;
     final padding = isTablet ? 32.0 : 16.0;
     final titleFontSize = isTablet ? 22.0 : 18.0;
-
-    final leaveVm = leaveViewModel;
-    final leavesData = leaveVm.leaves;
-    final isLeavesLoading = leaveVm.isLoading;
+    late LeaveJsonViewModel leaveViewModel = Provider.of<LeaveJsonViewModel>(context);
+    final leavesData = leaveViewModel.leaves;
+    final isLeavesLoading = leaveViewModel.isLoading;
 
     return Scaffold(
       backgroundColor: AppColors.white,

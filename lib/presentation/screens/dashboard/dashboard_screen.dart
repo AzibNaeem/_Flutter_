@@ -5,6 +5,7 @@ import 'package:hris_project/presentation/widgets/custom_end_drawer.dart';
 import 'package:provider/provider.dart';
 import 'package:hris_project/presentation/theme/app_theme.dart';
 import '../../../core/themes/theme_service.dart';
+import '../../../domain/providers/user_provider.dart';
 import '../../../domain/services/futuristic_card/futuristic_card_service.dart';
 import '../../widgets/dashboard_grid.dart';
 import '../../widgets/drawer_menu_list.dart';
@@ -15,8 +16,8 @@ import '../../widgets/dashboard_allocation.dart';
 import '../../view_model/department_allocation_view_model/department_allocation_view_model.dart';
 
 class DashboardScreen extends StatefulWidget {
-  final LoginUser user;
-  const DashboardScreen({super.key, required this.user});
+
+  const DashboardScreen({super.key});
 
   @override
   State<DashboardScreen> createState() => _DashboardScreenState();
@@ -25,19 +26,34 @@ class DashboardScreen extends StatefulWidget {
 class _DashboardScreenState extends State<DashboardScreen> {
   bool _isWorking = false;
 
+  LoginUser? user1;
+
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      Provider.of<AttendanceViewModel>(
-        context,
-        listen: false,
-      ).loadAttendance(widget.user.employeeId);
-      Provider.of<DepartmentAllocationViewModel>(
-        context,
-        listen: false,
-      ).loadAllocations(widget.user.employeeId);
-    });
+  }
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+
+    if (user1 == null) {
+      user1 = Provider.of<UserProvider>(context).user;
+
+      // Call functions after widget is built
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        if (user1 != null) {
+          Provider.of<AttendanceViewModel>(
+            context,
+            listen: false,
+          ).loadAttendance(user1!.employeeId);
+
+          Provider.of<DepartmentAllocationViewModel>(
+            context,
+            listen: false,
+          ).loadAllocations(user1!.employeeId);
+        }
+      });
+    }
   }
 
   void _toggleWork(bool start) {
@@ -49,8 +65,8 @@ class _DashboardScreenState extends State<DashboardScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final user1=Provider.of<UserProvider>(context).user;
     AppColors.init(context);
-    // final viewModel = Provider.of<HomeViewModel>(context);
     final size = MediaQuery.of(context).size;
     final isTablet = size.width > 600;
     final padding = isTablet ? 32.0 : 16.0;
@@ -58,8 +74,10 @@ class _DashboardScreenState extends State<DashboardScreen> {
     return Scaffold(
       backgroundColor: AppColors.background,
       endDrawer: CustomEndDrawer(
-        menuContent: DrawerMenuList(context: context, user: widget.user),
+        menuContent: DrawerMenuList(context: context, user: user1!,),
+
       ),
+
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(isTablet ? 60 : 48),
         child: AppBar(
@@ -96,13 +114,13 @@ class _DashboardScreenState extends State<DashboardScreen> {
           child: Column(
             children: [
               ProfileCard(
-                user: widget.user,
+                user: user1,
                 isWorking: _isWorking,
                 onStartWork: () => _toggleWork(true),
                 onEndWork: () => _toggleWork(false),
               ),
               SizedBox(height: 24),
-              DashboardGrid(user: widget.user),
+              DashboardGrid(user: user1),
               SizedBox(height: 24),
               Consumer<DepartmentAllocationViewModel>(
                 builder: (context, allocVm, _) {
@@ -180,7 +198,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
             Navigator.pushNamed(
               context,
               cards[index].route,
-              arguments: widget.user,
+              arguments: user1,
             );
           },
           child: Card(
