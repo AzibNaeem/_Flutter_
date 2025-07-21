@@ -7,6 +7,8 @@ import 'screens/home_screen/home_screen.dart';
 import 'package:hris_project/data/models/login_user.dart';
 import 'package:hris_project/presentation/screens/attendance/attendance_leaves_screen.dart'; // New import
 import 'screens/submit_leaves/submit_leave_screen.dart';
+import 'screens/salary_management_screen.dart';
+
 class AppRoutes {
   static const String login = '/login';
   static const String dashboard = '/dashboard';
@@ -14,7 +16,8 @@ class AppRoutes {
   static const String report = '/report';
   static const String home = '/home';
   static const String attendanceLeaves = '/attendance-leaves';
-  static const String submitLeaves='/submitLeave';
+  static const String submitLeaves = '/submitLeave';
+  static const String salaryManagement = '/salary-management';
 
   static Route<dynamic> onGenerateRoute(RouteSettings settings) {
     switch (settings.name) {
@@ -26,30 +29,33 @@ class AppRoutes {
         // if (user is! LoginUser) {
         //   return _errorRoute('Missing or invalid user for dashboard.');
         // }
-        return MaterialPageRoute(
-          builder: (_) => DashboardScreen(),
-        );
+        return MaterialPageRoute(builder: (_) => DashboardScreen());
 
       case employeeDirectory:
         return MaterialPageRoute(
-            builder: (_) => const EmployeeDirectoryScreen());
+          builder: (_) => const EmployeeDirectoryScreen(),
+        );
 
       case report:
-        return MaterialPageRoute(
-            builder: (_) => const EmployeeReportScreen());
+        return MaterialPageRoute(builder: (_) => const EmployeeReportScreen());
 
       // case home:
       //   return MaterialPageRoute(builder: (_) => const HomeScreen());
 
       case submitLeaves:
         //final args=settings.arguments as LoginRequest;
-        return MaterialPageRoute(
-            builder: (_) =>  SubmitLeaveScreen());
+        return MaterialPageRoute(builder: (_) => SubmitLeaveScreen());
 
       case attendanceLeaves:
-        final args=settings.arguments as LoginUser;
+        final args = settings.arguments as LoginUser;
         return MaterialPageRoute(
-            builder: (_) =>  AttendanceLeavesScreen(user:args));
+          builder: (_) => AttendanceLeavesScreen(user: args),
+        );
+
+      case salaryManagement:
+        return MaterialPageRoute(
+          builder: (_) => const SalaryManagementScreen(),
+        );
 
       default:
         return _errorRoute('Route not found: ${settings.name}');

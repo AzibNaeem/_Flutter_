@@ -34,7 +34,7 @@ class DashboardGrid extends StatelessWidget {
         value: '',
         icon: Icons.attach_money,
         color: AppColors.primaryLight,
-        route: '/payslip',
+        route: '/salary-management',
         textColor: AppColors.lightText,
       ),
       DashboardCardData(

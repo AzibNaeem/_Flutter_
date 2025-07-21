@@ -31,6 +31,7 @@ class _AttendanceLeavesScreenState extends State<AttendanceLeavesScreen> {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       final user = Provider.of<UserProvider>(context, listen: false).user;
       context.read<AttendanceViewModel>().loadAttendance(user!.employeeId);
+
       final LeaveJsonViewModel leaveViewModel;
       leaveViewModel = Provider.of<LeaveJsonViewModel>(context, listen: false);
       leaveViewModel.loadLeaves();
