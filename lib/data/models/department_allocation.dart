@@ -8,14 +8,6 @@ class DepartmentAllocationItem {
     required this.project,
     required this.allocation,
   });
-
-  factory DepartmentAllocationItem.fromJson(Map<String, dynamic> json) {
-    return DepartmentAllocationItem(
-      department: json['department'],
-      project: json['project'],
-      allocation: (json['allocation'] as num).toDouble(),
-    );
-  }
 }
 
 class DepartmentAllocationUser {
@@ -28,14 +20,4 @@ class DepartmentAllocationUser {
     required this.name,
     required this.allocations,
   });
-
-  factory DepartmentAllocationUser.fromJson(Map<String, dynamic> json) {
-    return DepartmentAllocationUser(
-      employeeId: json['employee_id'],
-      name: json['name'],
-      allocations: (json['department_allocations'] as List)
-          .map((e) => DepartmentAllocationItem.fromJson(e))
-          .toList(),
-    );
-  }
 }

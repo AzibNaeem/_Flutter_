@@ -79,6 +79,7 @@ class HomeViewModel extends ChangeNotifier {
       status: 'Present',
       isWeekend: false,
       isLate: false,
+      date: DateTime(2024, 6, 5),
     ),
     AttendanceDay(
       dayName: 'Tue',
@@ -88,11 +89,11 @@ class HomeViewModel extends ChangeNotifier {
       status: 'Leave',
       isWeekend: false,
       isLate: false,
+      date: DateTime(2024, 6, 12),
     ),
   ];
 
-
-// ✅ Fixes End
+  // ✅ Fixes End
 }
 
 class HomeScreen extends StatelessWidget {
@@ -139,9 +140,8 @@ class HomeScreen extends StatelessWidget {
           ),
         ],
       ),
+
       // Attach your custom end drawer here
-
-
       body: ListView(
         padding: const EdgeInsets.all(16.0),
         children: [

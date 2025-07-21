@@ -4,8 +4,6 @@ import '../../../data/models/login_request.dart';
 import '../../../data/models/login_user.dart';
 import '../../../domain/providers/user_provider.dart';
 import '../../../domain/services/auth_service.dart';
-import '../../../domain/services/login/login_auth_service.dart';
-import '../../routes.dart';
 
 
 class AuthViewModel with ChangeNotifier {

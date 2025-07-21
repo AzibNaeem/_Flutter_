@@ -4,13 +4,13 @@ import 'package:provider/provider.dart';
 import '../../../data/models/department_allocation.dart';
 import '../../providers/user_provider.dart';
 import 'department_allocation_validator.dart';
+import 'department_allocation_parser_service.dart';
 
 class DepartmentAllocationService {
   final DepartmentAllocationValidator _validator =
       DepartmentAllocationValidator();
 
   Future<List<DepartmentAllocationItem>> getAllocationsForUser(
-
     String employeeId,
   ) async {
     final String jsonString = await rootBundle.loadString(
@@ -22,7 +22,7 @@ class DepartmentAllocationService {
       orElse: () => null,
     );
     if (userJson == null) return [];
-    final user = DepartmentAllocationUser.fromJson(userJson);
+    final user = DepartmentAllocationParserService.parseUserFromJson(userJson);
     return _validator.validAllocations(user.allocations);
   }
 }

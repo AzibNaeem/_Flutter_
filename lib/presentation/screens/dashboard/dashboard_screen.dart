@@ -16,7 +16,6 @@ import '../../widgets/dashboard_allocation.dart';
 import '../../view_model/department_allocation_view_model/department_allocation_view_model.dart';
 
 class DashboardScreen extends StatefulWidget {
-
   const DashboardScreen({super.key});
 
   @override
@@ -32,6 +31,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
   void initState() {
     super.initState();
   }
+
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
@@ -65,7 +65,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final user1=Provider.of<UserProvider>(context).user;
+    final user1 = Provider.of<UserProvider>(context).user;
     AppColors.init(context);
     final size = MediaQuery.of(context).size;
     final isTablet = size.width > 600;
@@ -74,8 +74,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
     return Scaffold(
       backgroundColor: AppColors.background,
       endDrawer: CustomEndDrawer(
-        menuContent: DrawerMenuList(context: context, user: user1!,),
-
+        menuContent: DrawerMenuList(context: context, user: user1!),
       ),
 
       appBar: PreferredSize(
@@ -137,7 +136,6 @@ class _DashboardScreenState extends State<DashboardScreen> {
     );
   }
 
-
   Widget _buildGridCards(BuildContext context, {bool isTablet = false}) {
     final cards = [
       DashboardCardData(
@@ -195,21 +193,19 @@ class _DashboardScreenState extends State<DashboardScreen> {
         ),
         itemBuilder: (context, index) => GestureDetector(
           onTap: () {
-            Navigator.pushNamed(
-              context,
-              cards[index].route,
-              arguments: user1,
-            );
+            Navigator.pushNamed(context, cards[index].route, arguments: user1);
           },
           child: Card(
-            elevation: 6,
+            color: Colors.white, // <-- Add this line
+            elevation: 4,
             shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(16),
+              borderRadius: BorderRadius.circular(12),
             ),
-            color: cards[index].color,
             child: Padding(
-              padding: EdgeInsets.all(isTablet ? 20 : 14),
-              child: FuturisticCard(card: cards[index]),
+              padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+              child: Row(
+                // ... date pickers ...
+              ),
             ),
           ),
         ),

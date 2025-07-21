@@ -6,6 +6,7 @@ class AttendanceDay {
   final String status;
   final bool isWeekend;
   final bool isLate;
+  final DateTime date;
 
   AttendanceDay({
     required this.dayName,
@@ -15,6 +16,7 @@ class AttendanceDay {
     required this.status,
     required this.isWeekend,
     required this.isLate,
+    required this.date,
   });
 
   factory AttendanceDay.fromJson(Map<String, dynamic> json) {
@@ -26,6 +28,7 @@ class AttendanceDay {
       status: json['status'] as String,
       isWeekend: json['isWeekend'] as bool,
       isLate: json['isLate'] as bool,
+      date: DateTime.parse(json['date'] as String),
     );
   }
 }

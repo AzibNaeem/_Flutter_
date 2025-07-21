@@ -9,6 +9,7 @@ import '../../widgets/shimmer/attendance_calendar_shimmer.dart';
 import '../../../data/models/login_user.dart';
 import '../../../core/themes/theme_service.dart';
 import '../../view_model/leaves_view_model/leaves_vm/leave_json_view_model.dart';
+import '../../widgets/submit_leave_widgets/datePicker_Tile.dart';
 
 class AttendanceLeavesScreen extends StatefulWidget {
   final LoginUser user;
@@ -19,24 +20,20 @@ class AttendanceLeavesScreen extends StatefulWidget {
 }
 
 class _AttendanceLeavesScreenState extends State<AttendanceLeavesScreen> {
-
-
   @override
   void initState() {
     super.initState();
-    }
+  }
 
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
     WidgetsBinding.instance.addPostFrameCallback((_) {
       final user = Provider.of<UserProvider>(context, listen: false).user;
-    context.read<AttendanceViewModel>().loadAttendance(
-      user!.employeeId,
-    );
-    final LeaveJsonViewModel   leaveViewModel;
-    leaveViewModel = Provider.of<LeaveJsonViewModel>(context, listen: false);
-    leaveViewModel.loadLeaves();
+      context.read<AttendanceViewModel>().loadAttendance(user!.employeeId);
+      final LeaveJsonViewModel leaveViewModel;
+      leaveViewModel = Provider.of<LeaveJsonViewModel>(context, listen: false);
+      leaveViewModel.loadLeaves();
     });
   }
 
@@ -45,13 +42,15 @@ class _AttendanceLeavesScreenState extends State<AttendanceLeavesScreen> {
     AppColors.init(context);
 
     final vm = context.watch<AttendanceViewModel>();
-    final attendanceData = vm.attendanceDays;
+    final attendanceData = vm.filteredAttendanceDays;
 
     final size = MediaQuery.of(context).size;
     final isTablet = size.width > 600;
     final padding = isTablet ? 32.0 : 16.0;
     final titleFontSize = isTablet ? 22.0 : 18.0;
-    late LeaveJsonViewModel leaveViewModel = Provider.of<LeaveJsonViewModel>(context);
+    late LeaveJsonViewModel leaveViewModel = Provider.of<LeaveJsonViewModel>(
+      context,
+    );
     final leavesData = leaveViewModel.leaves;
     final isLeavesLoading = leaveViewModel.isLoading;
 
@@ -80,6 +79,73 @@ class _AttendanceLeavesScreenState extends State<AttendanceLeavesScreen> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
+                            // Date pickers for attendance filter
+                            Row(
+                              children: [
+                                Expanded(
+                                  child: Card(
+                                    color: Colors.white,
+                                    elevation: 4,
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(12),
+                                    ),
+                                    child: Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                        horizontal: 8,
+                                        vertical: 4,
+                                      ),
+                                      child: DatePickerTile(
+                                        label: 'From',
+                                        date: vm.fromDate,
+                                        onTap: () async {
+                                          final picked = await showDatePicker(
+                                            context: context,
+                                            initialDate:
+                                                vm.fromDate ?? DateTime.now(),
+                                            firstDate: DateTime(2000),
+                                            lastDate: DateTime(2100),
+                                          );
+                                          if (picked != null)
+                                            vm.setFromDate(picked);
+                                        },
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                SizedBox(width: 8),
+                                Expanded(
+                                  child: Card(
+                                    color: Colors.white,
+                                    elevation: 4,
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(12),
+                                    ),
+                                    child: Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                        horizontal: 8,
+                                        vertical: 4,
+                                      ),
+                                      child: DatePickerTile(
+                                        label: 'To',
+                                        date: vm.toDate,
+                                        onTap: () async {
+                                          final picked = await showDatePicker(
+                                            context: context,
+                                            initialDate:
+                                                vm.toDate ?? DateTime.now(),
+                                            firstDate: DateTime(2000),
+                                            lastDate: DateTime(2100),
+                                          );
+                                          if (picked != null)
+                                            vm.setToDate(picked);
+                                        },
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                            SizedBox(height: 8),
                             Text(
                               "Attendance",
                               style: ThemeService.titleMedium.copyWith(
@@ -139,6 +205,70 @@ class _AttendanceLeavesScreenState extends State<AttendanceLeavesScreen> {
                   )
                 : ListView(
                     children: [
+                      // Date pickers for attendance filter
+                      Row(
+                        children: [
+                          Expanded(
+                            child: Card(
+                              color: Colors.white,
+                              elevation: 4,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(12),
+                              ),
+                              child: Padding(
+                                padding: const EdgeInsets.symmetric(
+                                  horizontal: 8,
+                                  vertical: 4,
+                                ),
+                                child: DatePickerTile(
+                                  label: 'From',
+                                  date: vm.fromDate,
+                                  onTap: () async {
+                                    final picked = await showDatePicker(
+                                      context: context,
+                                      initialDate:
+                                          vm.fromDate ?? DateTime.now(),
+                                      firstDate: DateTime(2000),
+                                      lastDate: DateTime(2100),
+                                    );
+                                    if (picked != null) vm.setFromDate(picked);
+                                  },
+                                ),
+                              ),
+                            ),
+                          ),
+                          SizedBox(width: 8),
+                          Expanded(
+                            child: Card(
+                              color: Colors.white,
+                              elevation: 4,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(12),
+                              ),
+                              child: Padding(
+                                padding: const EdgeInsets.symmetric(
+                                  horizontal: 8,
+                                  vertical: 4,
+                                ),
+                                child: DatePickerTile(
+                                  label: 'To',
+                                  date: vm.toDate,
+                                  onTap: () async {
+                                    final picked = await showDatePicker(
+                                      context: context,
+                                      initialDate: vm.toDate ?? DateTime.now(),
+                                      firstDate: DateTime(2000),
+                                      lastDate: DateTime(2100),
+                                    );
+                                    if (picked != null) vm.setToDate(picked);
+                                  },
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      SizedBox(height: 8),
                       Text(
                         "Attendance",
                         style: ThemeService.titleMedium.copyWith(
