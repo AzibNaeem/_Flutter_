@@ -5,7 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3b49d461-bc12-4301-b2fe-a52dae436fd4" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/lib/presentation/screens/attendance/attendance_leaves_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/presentation/screens/attendance/attendance_leaves_screen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/presentation/routes.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/presentation/routes.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/presentation/screens/dashboard/dashboard_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/presentation/screens/dashboard/dashboard_screen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/presentation/screens/salary_management_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/presentation/screens/experience/employee_experience.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/presentation/widgets/dashboard_grid.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/presentation/widgets/dashboard_grid.dart" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -90,6 +94,7 @@
 }</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="U:\HRIS\lib\presentation\screens\salary_management" />
       <recent name="D:\My Apps\rc1\_Flutter_\lib\domain\providers" />
       <recent name="U:\HRIS\lib\assets\images" />
     </key>

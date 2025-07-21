@@ -155,9 +155,9 @@ class _DashboardScreenState extends State<DashboardScreen> {
         textColor: AppColors.lightText,
       ),
       DashboardCardData(
-        title: 'Salary Management',
+        title: 'Experience',
         value: '',
-        icon: Icons.attach_money,
+        icon: Icons.work,
         color: AppColors.primaryLight,
         route: '/payslip',
         textColor: AppColors.lightText,
