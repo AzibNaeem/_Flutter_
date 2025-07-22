@@ -40,7 +40,7 @@ class DrawerMenuList extends StatelessWidget {
         title: 'Travel',
         onTap: () {
           Navigator.pop(context);
-          Navigator.pushNamed(context, '/travel', arguments: user);
+             Navigator.pushNamed(context, '/travel-plan-submit');
         },
       ),
       DrawerMenuItemData(

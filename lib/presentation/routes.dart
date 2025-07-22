@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:hris_project/presentation/screens/Travel/travel_plan.dart';
 import 'screens/login_screen/login_screen.dart';
 import 'screens/dashboard/dashboard_screen.dart';
 import 'screens/employee/employee_directory_screen.dart';
 import 'screens/employee/employee_report_screen.dart';
-import 'screens/home_screen/home_screen.dart';
 import 'package:hris_project/data/models/login_user.dart';
 import 'package:hris_project/presentation/screens/attendance/attendance_leaves_screen.dart'; // New import
 import 'screens/submit_leaves/submit_leave_screen.dart';
@@ -16,9 +16,14 @@ class AppRoutes {
   static const String report = '/report';
   static const String home = '/home';
   static const String attendanceLeaves = '/attendance-leaves';
+<<<<<<< Updated upstream
   static const String submitLeaves = '/submitLeave';
   static const String salaryManagement = '/salary-management';
   static const String employeeExperience = '/employee-experience';
+=======
+  static const String submitLeaves='/submitLeave';
+  static const String travelPlan='/travel-plan-submit';
+>>>>>>> Stashed changes
 
   static Route<dynamic> onGenerateRoute(RouteSettings settings) {
     switch (settings.name) {
@@ -32,6 +37,9 @@ class AppRoutes {
         // }
         return MaterialPageRoute(builder: (_) => DashboardScreen());
 
+      case travelPlan:
+        return MaterialPageRoute(
+            builder: (_) => const TravelFormScreen());
       case employeeDirectory:
         return MaterialPageRoute(
           builder: (_) => const EmployeeDirectoryScreen(),

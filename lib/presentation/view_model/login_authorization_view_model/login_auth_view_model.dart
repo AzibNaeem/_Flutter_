@@ -20,8 +20,7 @@ class AuthViewModel with ChangeNotifier {
         _loggedInUser = user;
         Provider.of<UserProvider>(context, listen: false).setUser(loggedInUser!);
         print("Logged in Employee ID: ${loggedInUser?.employeeId}");
-       // Navigator.pushReplacementNamed(context, AppRoutes.dashboard);
-        notifyListeners();
+         notifyListeners();
         return null; // success
       } else {
         return 'Invalid email/ID or password';
