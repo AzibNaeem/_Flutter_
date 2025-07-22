@@ -55,12 +55,12 @@ class AppRoutes {
 
       case salaryManagement:
         return MaterialPageRoute(
-          builder: (_) => const EmployeeExperienceScreen(),
+          builder: (_) => const ExperienceScreen(),
         );
 
       case employeeExperience:
         return MaterialPageRoute(
-          builder: (_) => const EmployeeExperienceScreen(),
+          builder: (_) => const ExperienceScreen(),
         );
 
       default:
