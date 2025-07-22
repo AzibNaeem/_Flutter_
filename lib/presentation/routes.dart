@@ -16,15 +16,10 @@ class AppRoutes {
   static const String report = '/report';
   static const String home = '/home';
   static const String attendanceLeaves = '/attendance-leaves';
-<<<<<<< Updated upstream
   static const String submitLeaves = '/submitLeave';
   static const String salaryManagement = '/salary-management';
   static const String employeeExperience = '/employee-experience';
-=======
-  static const String submitLeaves='/submitLeave';
   static const String travelPlan='/travel-plan-submit';
->>>>>>> Stashed changes
-
   static Route<dynamic> onGenerateRoute(RouteSettings settings) {
     switch (settings.name) {
       case login:
