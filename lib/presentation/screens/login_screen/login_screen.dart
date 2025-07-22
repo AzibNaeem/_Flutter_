@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:hris_project/presentation/view_model/login_authorization_view_model/login_auth_view_model.dart';
-import 'package:hris_project/presentation/screens/dashboard/dashboard_screen.dart';
 import '../../routes.dart';
 import '../../widgets/custom_text_field.dart';
 import '../../widgets/custom_button.dart';

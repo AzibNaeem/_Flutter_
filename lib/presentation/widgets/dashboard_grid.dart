@@ -34,7 +34,7 @@ class DashboardGrid extends StatelessWidget {
         value: '',
         icon: Icons.work,
         color: AppColors.primaryLight,
-        route: '/employee-experience',
+        route: '/experience',
         textColor: AppColors.lightText,
       ),
       DashboardCardData(
@@ -49,9 +49,6 @@ class DashboardGrid extends StatelessWidget {
 
     final crossAxisCount = 2;
     final aspectRatio = 1.0;
-    final cardIconSize = isTablet ? 40.0 : 32.0;
-    final cardTitleFontSize = isTablet ? 16.0 : 14.0;
-    final cardValueFontSize = isTablet ? 20.0 : 16.0;
 
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: isTablet ? 0 : 0),

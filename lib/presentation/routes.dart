@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hris_project/presentation/screens/Travel/travel_plan.dart';
+import 'package:hris_project/presentation/screens/experience/employee_experience.dart';
 import 'screens/login_screen/login_screen.dart';
 import 'screens/dashboard/dashboard_screen.dart';
 import 'screens/employee/employee_directory_screen.dart';
@@ -16,6 +17,7 @@ class AppRoutes {
   static const String attendanceLeaves = '/attendance-leaves';
   static const String submitLeaves='/submitLeave';
   static const String travelPlan='/travel-plan-submit';
+  static const String experience = '/experience';
 
   static Route<dynamic> onGenerateRoute(RouteSettings settings) {
     switch (settings.name) {
@@ -23,10 +25,10 @@ class AppRoutes {
         return MaterialPageRoute(builder: (_) => const LoginScreen());
 
       case dashboard:
-        // final user = settings.arguments;
-        // if (user is! LoginUser) {
-        //   return _errorRoute('Missing or invalid user for dashboard.');
-        // }
+      // final user = settings.arguments;
+      // if (user is! LoginUser) {
+      //   return _errorRoute('Missing or invalid user for dashboard.');
+      // }
         return MaterialPageRoute(
           builder: (_) => DashboardScreen(),
         );
@@ -42,23 +44,29 @@ class AppRoutes {
         return MaterialPageRoute(
             builder: (_) => const EmployeeReportScreen());
 
-      // case home:
-      //   return MaterialPageRoute(builder: (_) => const HomeScreen());
+    // case home:
+    //   return MaterialPageRoute(builder: (_) => const HomeScreen());
 
       case submitLeaves:
-        //final args=settings.arguments as LoginRequest;
+      //final args=settings.arguments as LoginRequest;
         return MaterialPageRoute(
-            builder: (_) =>  SubmitLeaveScreen());
+            builder: (_) => SubmitLeaveScreen());
 
       case attendanceLeaves:
-        final args=settings.arguments as LoginUser;
+        final args = settings.arguments as LoginUser;
         return MaterialPageRoute(
-            builder: (_) =>  AttendanceLeavesScreen(user:args));
+            builder: (_) => AttendanceLeavesScreen(user: args));
+
+      case experience:
+        return MaterialPageRoute(
+            builder: (_) => ExperienceScreen());
 
       default:
         return _errorRoute('Route not found: ${settings.name}');
     }
   }
+
+
 
   static Route<dynamic> _errorRoute(String message) {
     return MaterialPageRoute(
