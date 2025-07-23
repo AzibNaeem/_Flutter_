@@ -1,1 +1,0 @@
-enum TravelTypes { domestic, international }

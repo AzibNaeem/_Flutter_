@@ -1,16 +1,34 @@
-# hris_project
+# Smart Home Device Manager
 
-A new Flutter project.
+A console-based Dart simulation of a smart home system that manages various devices (Lights, Thermostats, Security Cameras) using **Object-Oriented Programming (OOP)** concepts, along with the **Factory Design Pattern**, **Interfaces**, and **Composition vs Aggregation** modeling.
 
-## Getting Started
+## Class Structure
 
-This project is a starting point for a Flutter application.
+### `SmartDevice` (Abstract Class)
+- Base class for all smart devices.
+- **Properties**: `name`, `location`, `isOn`
+- **Methods**: `turnOn()`, `turnOff()`, `status()`
 
-A few resources to get you started if this is your first Flutter project:
+### `Schedulable` (Interface)
+- For devices that support scheduling.
+- **Methods**: `scheduleOn(time)`, `scheduleOff(time)`
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+### Subclasses of `SmartDevice`
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+| Class           | Inherits From | Implements     | Description                                    |
+|----------------|----------------|----------------|------------------------------------------------|
+| `Light`         | `SmartDevice`  | `Schedulable`  | A simple light device that supports scheduling |
+| `Thermostat`    | `SmartDevice`  | `Schedulable`  | Controls temperature and supports scheduling   |
+| `SecurityCamera`| `SmartDevice`  | –              | Can record when turned on                      |
+
+### `Room` (Aggregation)
+- Aggregates smart devices.
+- **Methods**: `addDevice()`, `removeDevice()`, `turnAllOn()`, `turnAllOff()`, `showStatus()`
+
+### `SmartHomeController` (Composition)
+- Composes and manages rooms.
+- **Methods**: `addRoom()`, `turnDevicesOnInRoom()`, `turnDevicesOffInRoom()`, `showAllStatus()`
+
+### `DeviceFactory` (Factory Pattern)
+- Creates devices dynamically based on string input.
+- **Method**: `static SmartDevice create(String type, String name, String location)`
