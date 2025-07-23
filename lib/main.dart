@@ -16,7 +16,7 @@ void main() async {
         ChangeNotifierProvider(create: (context) => EmployeeProvider()),
         ChangeNotifierProvider(create: (context) => HomeViewModel()),
         ChangeNotifierProvider(create: (context) => AuthViewModel()),
-        ChangeNotifierProvider(create: (context) => LeaveJsonViewModel()),
+        ChangeNotifierProvider(create: (context) => LeaveViewModel()),
         ChangeNotifierProvider(create: (context) => AttendanceViewModel()),
         ChangeNotifierProvider(create: (context) => UserProvider()),
         ChangeNotifierProvider(create: (context) => DepartmentAllocationViewModel()),
