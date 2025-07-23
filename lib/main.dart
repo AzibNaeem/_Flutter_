@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hris_project/presentation/view_model/attendance_view_model/attendance_view_model.dart';
 import 'package:hris_project/presentation/view_model/leaves_view_model/submit_leaves_view_model/submit_leave_view_model.dart';
 import 'package:hris_project/presentation/view_model/login_authorization_view_model/login_auth_view_model.dart';
+import 'package:hris_project/presentation/view_model/travel_view_model/travel_view_model.dart';
 import 'package:provider/provider.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'domain/providers/user_provider.dart';
@@ -31,6 +32,8 @@ void main() async {
         ChangeNotifierProvider(create: (context) => AttendanceViewModel()),
         ChangeNotifierProvider(create: (context) => UserProvider()),
         ChangeNotifierProvider(create: (context) => DepartmentAllocationViewModel()),
+        ChangeNotifierProvider(create: (_) => TravelViewModel()),
+
 
       ],
       child: const HRMSApp(),

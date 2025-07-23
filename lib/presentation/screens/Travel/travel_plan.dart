@@ -1,34 +1,29 @@
 import 'package:flutter/material.dart';
-import 'package:hris_project/data/models/travel_type.dart' hide TravelType;
+import 'package:provider/provider.dart';
 import '../../../core/themes/theme_service.dart';
+import '../../../data/models/travel_request.dart';
 import '../../../domain/enums/project_categories.dart';
 import '../../../domain/enums/travel_type.dart';
+import '../../../domain/providers/user_provider.dart';
 import '../../theme/app_theme.dart';
+import '../../view_model/travel_view_model/travel_view_model.dart';
 import '../../widgets/dropdown/drop_down.dart';
 import '../../widgets/dropdown/project_category_dropdown.dart';
 import '../../widgets/dropdown/travel_type_dropdown.dart';
-import '../../widgets/submit_leave_widgets/dropDown_List.dart';
 import '../../widgets/travel_widgets/date_fiield.dart';
-import '../../widgets/travel_widgets/drop_down_field.dart';
 import '../../widgets/travel_widgets/number_field.dart';
-import '../../widgets/travel_widgets/project_categories.dart';
-import '../../widgets/travel_widgets/project_dropdown_fiield.dart';
-import '../../widgets/travel_widgets/submit_button.dart';
 import '../../widgets/travel_widgets/text_field.dart';
 import '../../widgets/travel_widgets/time_field.dart';
 
-
 class TravelFormScreen extends StatefulWidget {
-  const TravelFormScreen({super.key});
+  const TravelFormScreen({Key? key}) : super(key: key);
 
   @override
-  State<TravelFormScreen> createState() => _TravelFormScreenState();
+  _TravelFormScreenState createState() => _TravelFormScreenState();
 }
 
 class _TravelFormScreenState extends State<TravelFormScreen> {
-
   final _formKey = GlobalKey<FormState>();
-  //TravelType _tarvelType=TravelType.domestic;
   DateTime? fromDate;
   DateTime? toDate;
   TimeOfDay? fromTime;
@@ -36,9 +31,63 @@ class _TravelFormScreenState extends State<TravelFormScreen> {
   double taxiFare = 0.0;
   double entertainmentCost = 0.0;
   String? purpose;
-//ProjectCategories _projectCategories=ProjectCategories.project1;
   ProjectCategoryDropdownItem? _projectCategory;
   TravelTypeDropdownItem? _travelType;
+
+  late final List<ProjectCategoryDropdownItem> _projectCategoryItems;
+  late final List<TravelTypeDropdownItem> _travelTypeItems;
+  String _formatTime(TimeOfDay? time) {
+    if (time == null) return '';
+    final now = DateTime.now();
+    final dt = DateTime(now.year, now.month, now.day, time.hour, time.minute);
+    return "${dt.hour.toString().padLeft(2, '0')}:${dt.minute.toString().padLeft(2, '0')}:00";
+  }
+
+  void _submit() async {
+    print("here in api 1");
+    if (!_formKey.currentState!.validate()) return;
+    print("here in api 2");
+
+    final user = Provider.of<UserProvider>(context, listen: false).user;
+    if (user == null) return;
+    print("here in api 3");
+
+    final travel = TravelRequest(
+      fromDate: fromDate?.toIso8601String() ?? '',
+      toDate: toDate?.toIso8601String() ?? '',
+      fromTime: _formatTime(fromTime),
+      toTime: _formatTime(toTime),
+      projectCategory: _projectCategory?.value.toString().split('.').last ?? '',
+      travelType: _travelType?.value.toString().split('.').last ?? '',
+
+      taxiFare: taxiFare,
+      entertainmentCost: entertainmentCost,
+      purpose: purpose ?? '',
+      employeeId: user.employeeId.toString(),
+    );
+
+    try {
+      await Provider.of<TravelViewModel>(context, listen: false).submitTravelPlan(travel);
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Travel Plan Submitted')),
+      );
+      Navigator.pop(context);
+    } catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Failed: ${e.toString()}')),
+      );
+    }
+  }
+  @override
+  void initState() {
+    super.initState();
+    _projectCategoryItems = ProjectCategory.values
+        .map((e) => ProjectCategoryDropdownItem(e))
+        .toList();
+    _travelTypeItems = TravelTypes.values
+        .map((e) => TravelTypeDropdownItem(e))
+        .toList();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -53,7 +102,7 @@ class _TravelFormScreenState extends State<TravelFormScreen> {
         backgroundColor: AppColors.background,
         iconTheme: IconThemeData(color: AppColors.primary),
         title: Text(
-          'Submit Leave',
+          'Travel Plan',
           style: ThemeService.appBar.copyWith(
             color: AppColors.primary,
             fontSize: isTablet ? 24 : 20,
@@ -88,36 +137,18 @@ class _TravelFormScreenState extends State<TravelFormScreen> {
                             label: "Time To", value: toTime, onChanged: (val) => setState(() => toTime = val)),
                         const SizedBox(height: 12),
                         GenericDropdown<ProjectCategoryDropdownItem>(
-                          items: ProjectCategory.values
-                              .map((e) => ProjectCategoryDropdownItem(e))
-                              .toList(),
+                          items: _projectCategoryItems,
                           selectedItem: _projectCategory,
                           onChanged: (val) => setState(() => _projectCategory = val),
                           hint: "Select Project Category",
                         ),
-
                         GenericDropdown<TravelTypeDropdownItem>(
-                          items: TravelTypes.values
-                              .map((e) => TravelTypeDropdownItem(e))
-                              .toList(),
+                          items: _travelTypeItems,
                           selectedItem: _travelType,
                           onChanged: (val) => setState(() => _travelType = val),
                           hint: "Select Travel Type",
                         ),
-                        // ProjectDropdownField(
-                        //   value: _projectCategories,
-                        //   onChanged: (val) => setState(() => _projectCategories= val!),
-                        //   textColor: AppColors.primary,
-                        //   labelColor: AppColors.primary,
-                        // ),
-                        // TravelTypeDropdownField(
-                        //   value: _tarvelType,
-                        //   onChanged: (val) => setState(() => _tarvelType= val!),
-                        //   textColor: AppColors.primary,
-                        //   labelColor: AppColors.primary,
-                        // ),
                         const SizedBox(height: 12),
-
                         const SizedBox(height: 12),
                         NumberField(
                           label: "Taxi Fare",
@@ -144,15 +175,15 @@ class _TravelFormScreenState extends State<TravelFormScreen> {
                                 vertical: isTablet ? 18 : 12,
                               ),
                             ),
-                            onPressed: () {
-                              // TODO: Submit logic with Provider
-                              print("Submitted");
-                            },
+
+                            onPressed: _submit,
+
                             child: Text(
                               'Submit',
                               style: ThemeService.button.copyWith(
                                 color: AppColors.primary,
                                 fontSize: buttonFontSize,
+
                               ),
                             ),
                           ),
