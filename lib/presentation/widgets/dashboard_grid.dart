@@ -38,11 +38,11 @@ class DashboardGrid extends StatelessWidget {
         textColor: AppColors.lightText,
       ),
       DashboardCardData(
-        title: 'Onboarding & Training',
+        title: 'Teams',
         value: '',
         icon: Icons.school,
         color: AppColors.primaryLight,
-        route: '/onboarding',
+        route: '/my-teams',
         textColor: AppColors.lightText,
       ),
     ];

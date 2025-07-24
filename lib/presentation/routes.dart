@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:hris_project/presentation/screens/Travel/travel_plan.dart';
 import 'package:hris_project/presentation/screens/experience/employee_experience.dart';
+import 'package:hris_project/presentation/screens/team/team_screen.dart';
+import 'package:hris_project/presentation/view_model/all_teams_view_model/all_teams_vm.dart';
+import 'package:provider/provider.dart';
 import 'screens/login_screen/login_screen.dart';
 import 'screens/dashboard/dashboard_screen.dart';
 import 'screens/employee/employee_directory_screen.dart';
@@ -18,6 +21,8 @@ class AppRoutes {
   static const String submitLeaves='/submitLeave';
   static const String travelPlan='/travel-plan-submit';
   static const String experience = '/experience';
+  static const String myTeams = '/my-teams';
+
 
   static Route<dynamic> onGenerateRoute(RouteSettings settings) {
     switch (settings.name) {
@@ -60,6 +65,16 @@ class AppRoutes {
       case experience:
         return MaterialPageRoute(
             builder: (_) => ExperienceScreen());
+
+    case AppRoutes.myTeams:
+      return MaterialPageRoute(
+          builder: (_) => ChangeNotifierProvider(
+          create: (_) => AllTeamsViewModel(),
+          child: const MyTeamsScreen(),
+        ),
+
+    );
+
 
       default:
         return _errorRoute('Route not found: ${settings.name}');
