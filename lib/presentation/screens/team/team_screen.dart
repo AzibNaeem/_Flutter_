@@ -5,6 +5,8 @@ import '../../view_model/all_teams_view_model/all_teams_vm.dart';
 import '../../widgets/shimmer/teams_shimmer.dart';
 import '../../widgets/team/team_card.dart';
 import '../../../domain/providers/user_provider.dart';
+import 'package:dropdown_button2/dropdown_button2.dart';
+
 
 class MyTeamsScreen extends StatefulWidget {
   const MyTeamsScreen({super.key});
@@ -14,11 +16,12 @@ class MyTeamsScreen extends StatefulWidget {
 }
 
 class _MyTeamsScreenState extends State<MyTeamsScreen> {
+  String? selectedProject;
+  bool showEmployees = true;
+
   @override
   void initState() {
     super.initState();
-
-    // Safe loading after first frame
     WidgetsBinding.instance.addPostFrameCallback((_) {
       final user = Provider.of<UserProvider>(context, listen: false).user;
       if (user != null) {
@@ -32,51 +35,172 @@ class _MyTeamsScreenState extends State<MyTeamsScreen> {
     final vm = context.watch<AllTeamsViewModel>();
 
     if (vm.isLoading) {
-      return ListView.builder(
-        itemCount: 3,
-        padding: const EdgeInsets.all(16),
-        itemBuilder: (_, __) => const TeamCardShimmer(),
+      return Scaffold(
+        backgroundColor: AppColors.white,
+        appBar: AppBar(
+          backgroundColor: AppColors.background,
+          iconTheme: const IconThemeData(color: Colors.black),
+          title: Text("My Teams", style: TextStyle(color: AppColors.primary, fontWeight: FontWeight.bold)),
+          centerTitle: true,
+        ),
+        body: ListView.builder(
+          itemCount: 3,
+          padding: const EdgeInsets.all(16),
+          itemBuilder: (_, __) => const TeamCardShimmer(),
+        ),
       );
     }
 
-    if (vm.error != null) return Center(child: Text("Error: ${vm.error}"));
+    if (vm.error != null) {
+      return Scaffold(
+        backgroundColor: AppColors.white,
+        appBar: AppBar(
+          backgroundColor: AppColors.background,
+          title: Text("My Teams", style: TextStyle(color: AppColors.primary)),
+          centerTitle: true,
+        ),
+        body: Center(child: Text("Error: ${vm.error}", style: TextStyle(color: AppColors.primary))),
+      );
+    }
 
     final teams = vm.teams;
-
-    if (teams.isEmpty) return const Center(child: Text("No teams found."));
+    final projectNames = teams.keys.toList();
 
     return Scaffold(
+      backgroundColor: AppColors.white,
       appBar: AppBar(
         backgroundColor: AppColors.background,
         title: Text("My Teams", style: TextStyle(color: AppColors.primary)),
         centerTitle: true,
       ),
-      body: ListView(
+      body: SingleChildScrollView(
         padding: const EdgeInsets.all(16),
-        children: teams.entries.map((entry) {
-          final project = entry.key;
-          final team = entry.value;
-          return Card(
-            margin: const EdgeInsets.only(bottom: 16),
-            child: Padding(
-              padding: const EdgeInsets.all(16),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(project, style: Theme.of(context).textTheme.titleLarge),
-                  const SizedBox(height: 8),
-                  if (team.reportingManager != null)
-                    TeamCard(title: "Reporting Manager", member: team.reportingManager!),
-                  if (team.teamLead != null)
-                    TeamCard(title: "Team Lead", member: team.teamLead!),
-                  const SizedBox(height: 8),
-                  Text("Employees", style: Theme.of(context).textTheme.titleMedium),
-                  ...team.employees.map((e) => TeamCard(title: "", member: e)),
-                ],
+        child: Column(
+          children: [
+          DropdownButtonFormField2<String>(
+          isExpanded: true,
+          value: selectedProject,
+          onChanged: (value) {
+            setState(() {
+              selectedProject = value;
+            });
+          },
+          items: projectNames.map((item) {
+            return DropdownMenuItem<String>(
+              value: item,
+              child: Text(
+                item,
+                style: TextStyle(color: AppColors.primary),
               ),
+            );
+          }).toList(),
+          decoration: InputDecoration(
+            labelText: "Select Project",
+            labelStyle: TextStyle(color: AppColors.primary),
+            border: OutlineInputBorder(),
+            focusedBorder: OutlineInputBorder(
+              borderSide: BorderSide(color: AppColors.primary, width: 2),
             ),
-          );
-        }).toList(),
+            contentPadding: const EdgeInsets.symmetric(vertical: 14, horizontal: 12),
+          ),
+          iconStyleData: IconStyleData(
+            icon: Icon(Icons.arrow_drop_down, color: AppColors.primary),
+            iconSize: 24,
+            openMenuIcon: Icon(Icons.arrow_drop_up, color: AppColors.primary),
+          ),
+          dropdownStyleData: DropdownStyleData(
+            decoration: BoxDecoration(
+              color: AppColors.white,
+              borderRadius: BorderRadius.circular(8),
+              border: Border.all(color: AppColors.primary),
+            ),
+            elevation: 4,
+            maxHeight: 300,
+          ),
+          buttonStyleData: const ButtonStyleData(
+            height: 50,
+            padding: EdgeInsets.symmetric(horizontal: 12),
+          ),
+        ),
+          const SizedBox(height: 12),
+            if (selectedProject != null)
+              Theme(
+                data: Theme.of(context).copyWith(
+                  checkboxTheme: CheckboxThemeData(
+                    fillColor: MaterialStateProperty.resolveWith((states) {
+                      if (states.contains(MaterialState.selected)) {
+                        return Colors.white; // background of checkbox
+                      }
+                      return Colors.white;
+                    }),
+                    checkColor: MaterialStateProperty.all(AppColors.black), // tick ✔ color
+                    side:  BorderSide(color: AppColors.primary),       // border color
+                  ),
+                ),
+                child: CheckboxListTile(
+                  contentPadding: EdgeInsets.zero,
+                  title: Text(
+                    "Show Employees",
+                    style: TextStyle(color: AppColors.primary),
+                  ),
+                  value: showEmployees,
+                  onChanged: (val) {
+                    setState(() {
+                      showEmployees = val ?? true;
+                    });
+                  },
+                  controlAffinity: ListTileControlAffinity.leading,
+                  tileColor: Colors.transparent,
+                ),
+              ),
+            const SizedBox(height: 12),
+            if (selectedProject != null)
+              Card(
+                elevation: 6,
+                margin: const EdgeInsets.symmetric(vertical: 8),
+                color: AppColors.white,
+                child: Padding(
+                  padding: const EdgeInsets.all(16),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        selectedProject!,
+                        style: Theme.of(context).textTheme.titleLarge?.copyWith(color: AppColors.primary),
+                      ),
+                      const SizedBox(height: 8),
+                      if (teams[selectedProject]?.reportingManager?.name.trim().isNotEmpty ?? false)
+                        TeamCard(
+                          title: "Reporting Manager",
+                          member: teams[selectedProject]!.reportingManager!,
+                          textColor: AppColors.primary,
+                        ),
+                      if (teams[selectedProject]?.teamLead?.name.trim().isNotEmpty ?? false)
+                        TeamCard(
+                          title: "Team Lead",
+                          member: teams[selectedProject]!.teamLead!,
+                          textColor: AppColors.primary,
+                        ),
+                      if (showEmployees) ...[
+                        const SizedBox(height: 8),
+                        Text(
+                          "Employees",
+                          style: Theme.of(context).textTheme.titleMedium?.copyWith(color: AppColors.primary),
+                        ),
+                        ...teams[selectedProject]!.employees.map(
+                              (e) => TeamCard(
+                            title: "",
+                            member: e,
+                            textColor: AppColors.black,
+                          ),
+                        ),
+                      ],
+                    ],
+                  ),
+                ),
+              ),
+          ],
+        ),
       ),
     );
   }
