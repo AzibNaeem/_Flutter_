@@ -39,35 +39,27 @@ class _LoginScreenState extends State<LoginScreen> {
     setState(() => _isLoading = true);
 
     final authViewModel = Provider.of<AuthViewModel>(context, listen: false);
-    final result = await authViewModel.login(email, password,context);
+    final result = await authViewModel.login(email, password, context);
 
     setState(() => _isLoading = false);
 
     if (result == null) {
-      // Login successful
-
-      Navigator.pushReplacementNamed(
-        context,
-        AppRoutes.dashboard,
-     //   arguments: authViewModel.loggedInUser,
-      );
+      Navigator.pushReplacementNamed(context, AppRoutes.dashboard);
     } else {
-      // Login failed - show specific message
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text(result)),
       );
     }
   }
 
-
-
   @override
   Widget build(BuildContext context) {
     AppColors.init(context);
     return Scaffold(
-      backgroundColor: AppColors.black,
+      backgroundColor: AppColors.white,
       appBar: AppBar(
-        backgroundColor: AppColors.white,
+        automaticallyImplyLeading: false, // 🔹 Removes back arrow
+        backgroundColor: AppColors.background,
         elevation: 0.5,
         title: Text(
           "Login",
@@ -77,40 +69,85 @@ class _LoginScreenState extends State<LoginScreen> {
             fontWeight: FontWeight.bold,
           ),
         ),
-        iconTheme: IconThemeData(color: AppColors.primary),
       ),
       body: _isLoading
           ? const Center(child: CircularProgressIndicator())
-          : Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Column(
-                children: [
-                  CustomTextField(
-                    label: "Email or Employee ID",
-                    hint: "example@gmail.com or 1234",
-                    controller: emailOrIdController,
-                    icon: Icons.email,
-                    fillColor: Colors.white,
-                    textColor: Colors.black,
-                    labelColor: Colors.grey[800],
+          : SingleChildScrollView(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            // 🔹 Image Banner
+            Container(
+              height: 180,
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage('lib/assets/images/library.png'), // Update path if needed
+                  fit: BoxFit.cover,
+                ),
+                borderRadius: BorderRadius.circular(12),
+              ),
+              alignment: Alignment.center,
+              child: Container(
+                padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                color: Colors.black,
+                child: Text(
+                  "Welcome to HRIS",
+                  style: Theme.of(context).textTheme.headlineSmall?.copyWith(
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
                   ),
-                  const SizedBox(height: 16),
-                  CustomTextField(
-                    label: "Password",
-                    hint: "********",
-                    controller: passwordController,
-                    icon: Icons.lock,
-                    isPassword: true,
-                    fillColor: AppColors.primary,
-                    textColor: Colors.white,
-                    labelColor: Colors.white,
-                  ),
-                  const SizedBox(height: 32),
-                  CustomButton(label: "Login", onPressed: validateLogin),
-                ],
+                ),
               ),
             ),
+            const SizedBox(height: 24),
+
+            // 🔹 Sign In Heading
+            Center(
+              child: Text(
+                "Sign In",
+                style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                  color: AppColors.primary,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+            const SizedBox(height: 16),
+
+            // 🔹 Email / ID
+            CustomTextField(
+              label: "Email or Employee ID",
+              hint: "example@gmail.com or 1234",
+              controller: emailOrIdController,
+              icon: Icons.email,
+              fillColor: Colors.white,
+              textColor: Colors.black,
+              labelColor: Colors.grey[800],
+            ),
+            const SizedBox(height: 16),
+
+            // 🔹 Password
+            CustomTextField(
+              label: "Password",
+              hint: "********",
+              controller: passwordController,
+              icon: Icons.lock,
+              isPassword: true,
+              fillColor: AppColors.white,
+              textColor: Colors.black,
+              labelColor: Colors.grey[800],
+            ),
+            const SizedBox(height: 32),
+
+            // 🔹 Login Button with new color
+            CustomButton(
+              label: "Login",
+              onPressed: validateLogin,
+              backgroundColor: AppColors.background,
+            ),
+          ],
+        ),
+      ),
     );
   }
-
 }

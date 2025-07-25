@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:hris_project/core/themes/theme_service.dart';
 import 'package:provider/provider.dart';
 import '../../theme/app_theme.dart';
 import '../../view_model/all_teams_view_model/all_teams_vm.dart';
@@ -187,7 +186,7 @@ class _MyTeamsScreenState extends State<MyTeamsScreen> {
                         ),
                       ],
 
-                      if (showEmployees)
+                      if (showEmployees)...[
                         const Divider(thickness: 1, color: Colors.grey, height: 10),
                         Center(child: Text("Team Members", style: Theme.of(context).textTheme.titleMedium?.copyWith(color: AppColors.primary))),
                         const SizedBox(height: 4),
@@ -199,6 +198,7 @@ class _MyTeamsScreenState extends State<MyTeamsScreen> {
                           ),
                         ),
                       ],
+                          ],
                   ),
                 ),
               ),
