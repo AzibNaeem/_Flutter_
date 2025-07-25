@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hris_project/presentation/screens/Travel/travel_plan.dart';
+import 'package:hris_project/presentation/screens/hcd_portal/hcd_screen.dart';
 import 'screens/login_screen/login_screen.dart';
 import 'screens/dashboard/dashboard_screen.dart';
 import 'screens/employee/employee_directory_screen.dart';
@@ -16,6 +17,7 @@ class AppRoutes {
   static const String attendanceLeaves = '/attendance-leaves';
   static const String submitLeaves='/submitLeave';
   static const String travelPlan='/travel-plan-submit';
+  static const String hcdPortal = '/hcdPortal';
 
   static Route<dynamic> onGenerateRoute(RouteSettings settings) {
     switch (settings.name) {
@@ -54,6 +56,11 @@ class AppRoutes {
         final args=settings.arguments as LoginUser;
         return MaterialPageRoute(
             builder: (_) =>  AttendanceLeavesScreen(user:args));
+
+      case hcdPortal:
+        return MaterialPageRoute(
+          builder: (_) => const MenuScreen(), // or your actual screen
+        );
 
       default:
         return _errorRoute('Route not found: ${settings.name}');

@@ -7,8 +7,9 @@
     <list default="true" id="3b49d461-bc12-4301-b2fe-a52dae436fd4" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/core/API/api_constants.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/core/API/api_constants.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/main.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/presentation/routes.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/presentation/routes.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/presentation/view_model/login_authorization_view_model/login_auth_view_model.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/presentation/view_model/login_authorization_view_model/login_auth_view_model.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/presentation/screens/dashboard/dashboard_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/presentation/screens/dashboard/dashboard_screen.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/presentation/widgets/drawer_menu_list.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/presentation/widgets/drawer_menu_list.dart" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -84,7 +85,7 @@
     &quot;cf.first.check.clang-format&quot;: &quot;false&quot;,
     &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
     &quot;dart.analysis.tool.window.visible&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;HRIS/Features/ResourceHierarchy&quot;,
     &quot;io.flutter.reload.alreadyRun&quot;: &quot;true&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
     &quot;last_opened_file_path&quot;: &quot;D:/app backup/_Flutter_&quot;,
@@ -94,6 +95,8 @@
 }</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\My Apps\rc1\_Flutter_\lib\domain\repositories" />
+      <recent name="D:\My Apps\rc1\_Flutter_\lib\domain\repositories\abstract" />
       <recent name="D:\My Apps\rc1\_Flutter_\lib\domain\providers" />
       <recent name="U:\HRIS\lib\assets\images" />
     </key>

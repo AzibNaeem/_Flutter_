@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:hris_project/presentation/widgets/drawer_menu_item.dart';
 import 'package:hris_project/data/models/login_user.dart';
 
+import '../routes.dart';
+
 class DrawerMenuList extends StatelessWidget {
   final BuildContext context;
   final LoginUser user;
@@ -48,17 +50,10 @@ class DrawerMenuList extends StatelessWidget {
         title: 'HCD Portal',
         onTap: () {
           Navigator.pop(context);
-          Navigator.pushNamed(context, '/hcdPortal', arguments: user);
+          Navigator.pushNamed(context, '/hcdPortal');
         },
       ),
-      DrawerMenuItemData(
-        icon: Icons.access_time,
-        title: 'Late Sitting',
-        onTap: () {
-          Navigator.pop(context);
-          Navigator.pushNamed(context, '/lateSitting', arguments: user);
-        },
-      ),
+
       DrawerMenuItemData(
         icon: Icons.bar_chart,
         title: 'Reports',

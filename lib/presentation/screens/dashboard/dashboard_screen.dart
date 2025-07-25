@@ -7,9 +7,11 @@ import 'package:hris_project/presentation/theme/app_theme.dart';
 import '../../../core/themes/theme_service.dart';
 import '../../../domain/providers/user_provider.dart';
 import '../../../domain/services/futuristic_card/futuristic_card_service.dart';
+import '../../view_model/resource_hierarchy_view_model/resource_hierarchy_view_model.dart';
 import '../../widgets/dashboard_grid.dart';
 import '../../widgets/drawer_menu_list.dart';
 import '../../../domain/services/dashboard_cards/dashboard_card_data_service.dart';
+import '../../widgets/hierarchy_card.dart';
 import '../../widgets/profile_card.dart';
 import '../../../domain/services/start_end_snackbar/work_service.dart';
 import '../../widgets/dashboard_allocation.dart';
@@ -51,6 +53,10 @@ class _DashboardScreenState extends State<DashboardScreen> {
             context,
             listen: false,
           ).loadAllocations(user1!.employeeId);
+
+          Provider.of<HierarchyViewModel>(
+              context, listen: false)
+              .loadHierarchy(user1!.employeeId);
         }
       });
     }
@@ -129,6 +135,24 @@ class _DashboardScreenState extends State<DashboardScreen> {
                   return DashboardAllocation(allocations: allocVm.allocations);
                 },
               ),
+              // Resource Hierarchy Card
+              Consumer<HierarchyViewModel>(
+                builder: (context, vm, _) {
+                  if (vm.isLoading) {
+                    return const Center(child: CircularProgressIndicator());
+                  } else if (vm.hierarchy != null) {
+                    return Column(
+                      children: [
+                        HierarchyCard(hierarchy: vm.hierarchy!), // your custom widget
+                        const SizedBox(height: 24),
+                      ],
+                    );
+                  } else {
+                    return const Text("No resource hierarchy found.");
+                  }
+                },
+              ),
+
             ],
           ),
         ),
@@ -206,6 +230,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
               child: Row(
                 // ... date pickers ...
               ),
+
             ),
           ),
         ),
