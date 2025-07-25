@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hris_project/core/themes/theme_service.dart';
 import 'package:provider/provider.dart';
 import '../../theme/app_theme.dart';
 import '../../view_model/all_teams_view_model/all_teams_vm.dart';
@@ -6,7 +7,6 @@ import '../../widgets/shimmer/teams_shimmer.dart';
 import '../../widgets/team/team_card.dart';
 import '../../../domain/providers/user_provider.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
-
 
 class MyTeamsScreen extends StatefulWidget {
   const MyTeamsScreen({super.key});
@@ -77,75 +77,63 @@ class _MyTeamsScreenState extends State<MyTeamsScreen> {
         padding: const EdgeInsets.all(16),
         child: Column(
           children: [
-          DropdownButtonFormField2<String>(
-          isExpanded: true,
-          value: selectedProject,
-          onChanged: (value) {
-            setState(() {
-              selectedProject = value;
-            });
-          },
-          items: projectNames.map((item) {
-            return DropdownMenuItem<String>(
-              value: item,
-              child: Text(
-                item,
-                style: TextStyle(color: AppColors.primary),
+            DropdownButtonFormField2<String>(
+              isExpanded: true,
+              value: selectedProject,
+              onChanged: (value) {
+                setState(() {
+                  selectedProject = value;
+                });
+              },
+              items: projectNames.map((item) {
+                return DropdownMenuItem<String>(
+                  value: item,
+                  child: Text(item, style: TextStyle(color: AppColors.primary)),
+                );
+              }).toList(),
+              decoration: InputDecoration(
+                labelText: "Select Project",
+                labelStyle: TextStyle(color: AppColors.primary),
+                border: OutlineInputBorder(),
+                focusedBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: AppColors.primary, width: 2),
+                ),
+                contentPadding: const EdgeInsets.symmetric(vertical: 14, horizontal: 12),
               ),
-            );
-          }).toList(),
-          decoration: InputDecoration(
-            labelText: "Select Project",
-            labelStyle: TextStyle(color: AppColors.primary),
-            border: OutlineInputBorder(),
-            focusedBorder: OutlineInputBorder(
-              borderSide: BorderSide(color: AppColors.primary, width: 2),
+              iconStyleData: IconStyleData(
+                icon: Icon(Icons.arrow_drop_down, color: AppColors.primary),
+                iconSize: 24,
+                openMenuIcon: Icon(Icons.arrow_drop_up, color: AppColors.primary),
+              ),
+              dropdownStyleData: DropdownStyleData(
+                decoration: BoxDecoration(
+                  color: AppColors.white,
+                  borderRadius: BorderRadius.circular(8),
+                  border: Border.all(color: AppColors.primary),
+                ),
+                elevation: 4,
+                maxHeight: 300,
+              ),
+              buttonStyleData: const ButtonStyleData(
+                height: 50,
+                padding: EdgeInsets.symmetric(horizontal: 12),
+              ),
             ),
-            contentPadding: const EdgeInsets.symmetric(vertical: 14, horizontal: 12),
-          ),
-          iconStyleData: IconStyleData(
-            icon: Icon(Icons.arrow_drop_down, color: AppColors.primary),
-            iconSize: 24,
-            openMenuIcon: Icon(Icons.arrow_drop_up, color: AppColors.primary),
-          ),
-          dropdownStyleData: DropdownStyleData(
-            decoration: BoxDecoration(
-              color: AppColors.white,
-              borderRadius: BorderRadius.circular(8),
-              border: Border.all(color: AppColors.primary),
-            ),
-            elevation: 4,
-            maxHeight: 300,
-          ),
-          buttonStyleData: const ButtonStyleData(
-            height: 50,
-            padding: EdgeInsets.symmetric(horizontal: 12),
-          ),
-        ),
-          const SizedBox(height: 12),
+            const SizedBox(height: 12),
             if (selectedProject != null)
               Theme(
                 data: Theme.of(context).copyWith(
                   checkboxTheme: CheckboxThemeData(
-                    fillColor: MaterialStateProperty.resolveWith((states) {
-                      return Colors.white;
-                    }),
+                    fillColor: MaterialStateProperty.resolveWith((states) => Colors.white),
                     checkColor: MaterialStateProperty.all(AppColors.primary),
-                    side:  BorderSide(color: AppColors.primary),
+                    side: BorderSide(color: AppColors.primary),
                   ),
                 ),
                 child: CheckboxListTile(
                   contentPadding: EdgeInsets.zero,
-                  title: Text(
-                    "Show Team Members",
-                    style: TextStyle(color: AppColors.primary),
-                  ),
+                  title: Text("Show Team Members", style: TextStyle(color: AppColors.primary)),
                   value: showEmployees,
-                  onChanged: (val) {
-                    setState(() {
-                      showEmployees = val ?? true;
-                    });
-                  },
+                  onChanged: (val) => setState(() => showEmployees = val ?? true),
                   controlAffinity: ListTileControlAffinity.leading,
                   tileColor: Colors.transparent,
                 ),
@@ -159,31 +147,50 @@ class _MyTeamsScreenState extends State<MyTeamsScreen> {
                 child: Padding(
                   padding: const EdgeInsets.all(16),
                   child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
-                      Text(
-                        selectedProject!,
-                        style: Theme.of(context).textTheme.titleLarge?.copyWith(color: AppColors.primary),
+                      Center(
+                        child: Text(
+                          selectedProject!,
+                          style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                            color: AppColors.primary,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 25
+                          ),
+                        ),
                       ),
-                      const SizedBox(height: 8),
-                      if (teams[selectedProject]?.reportingManager?.name.trim().isNotEmpty ?? false)
+                      const SizedBox(height: 16),
+                      const Divider(thickness: 1, color: Colors.grey, height: 10),
+
+
+                      // Reporting Manager
+                      if (teams[selectedProject]?.reportingManager?.name.trim().isNotEmpty ?? false) ...[
+                        Center(child: Text("Reporting Manager", style: TextStyle(fontSize: 16, color: AppColors.primary, fontWeight: FontWeight.bold))),
+                        const SizedBox(height: 4),
                         TeamCard(
-                          title: "Reporting Manager",
+                          title: "",
                           member: teams[selectedProject]!.reportingManager!,
-                          textColor: AppColors.primary,
+                          textColor: Colors.black,
                         ),
-                      if (teams[selectedProject]?.teamLead?.name.trim().isNotEmpty ?? false)
+                      ],
+
+                      const Divider(thickness: 1, color: Colors.grey, height: 10),
+
+                      // Team Lead
+                      if (teams[selectedProject]?.teamLead?.name.trim().isNotEmpty ?? false) ...[
+                        Center(child: Text("Team Lead", style: TextStyle(fontSize: 16, color: AppColors.primary, fontWeight: FontWeight.bold))),
+                        const SizedBox(height: 4),
                         TeamCard(
-                          title: "Team Lead",
+                          title: "",
                           member: teams[selectedProject]!.teamLead!,
-                          textColor: AppColors.primary,
+                          textColor: Colors.black,
                         ),
-                      if (showEmployees) ...[
-                        const SizedBox(height: 8),
-                        Text(
-                          "Team Members",
-                          style: Theme.of(context).textTheme.titleMedium?.copyWith(color: AppColors.primary),
-                        ),
+                      ],
+
+                      if (showEmployees)
+                        const Divider(thickness: 1, color: Colors.grey, height: 10),
+                        Center(child: Text("Team Members", style: Theme.of(context).textTheme.titleMedium?.copyWith(color: AppColors.primary))),
+                        const SizedBox(height: 4),
                         ...teams[selectedProject]!.employees.map(
                               (e) => TeamCard(
                             title: "",
@@ -192,7 +199,6 @@ class _MyTeamsScreenState extends State<MyTeamsScreen> {
                           ),
                         ),
                       ],
-                    ],
                   ),
                 ),
               ),
