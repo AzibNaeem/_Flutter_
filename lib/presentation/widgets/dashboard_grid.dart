@@ -22,11 +22,11 @@ class DashboardGrid extends StatelessWidget {
         textColor: AppColors.lightText,
       ),
       DashboardCardData(
-        title: 'Employee Report',
+        title: 'Rewards & Recognition',
         value: '',
-        icon: Icons.bar_chart,
+        icon: Icons.emoji_events,
         color: AppColors.primaryLight,
-        route: '/report',
+        route: '/rewards',
         textColor: AppColors.lightText,
       ),
       DashboardCardData(

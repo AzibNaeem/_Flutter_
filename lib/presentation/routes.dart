@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:hris_project/presentation/screens/Travel/travel_plan.dart';
 import 'package:hris_project/presentation/screens/experience/employee_experience.dart';
+import 'package:hris_project/presentation/screens/rewards/rewards_screen.dart';
 import 'package:hris_project/presentation/screens/team/team_screen.dart';
 import 'package:hris_project/presentation/view_model/all_teams_view_model/all_teams_vm.dart';
+import 'package:hris_project/presentation/view_model/rewards_view_model/rewards_view_model.dart';
 import 'package:provider/provider.dart';
 import 'screens/login_screen/login_screen.dart';
 import 'screens/dashboard/dashboard_screen.dart';
@@ -22,7 +24,7 @@ class AppRoutes {
   static const String travelPlan='/travel-plan-submit';
   static const String experience = '/experience';
   static const String myTeams = '/my-teams';
-
+  static const String rewards = '/rewards';
 
   static Route<dynamic> onGenerateRoute(RouteSettings settings) {
     switch (settings.name) {
@@ -70,9 +72,14 @@ class AppRoutes {
       return MaterialPageRoute(
           builder: (_) => ChangeNotifierProvider(
           create: (_) => AllTeamsViewModel(),
-          child: const MyTeamsScreen(),
-        ),
-
+          child: const MyTeamsScreen()),
+    );
+    case rewards:
+    return MaterialPageRoute(
+    builder: (_) => ChangeNotifierProvider(
+    create: (_) => RewardViewModel(),
+    child: const RewardsScreen(),
+    ),
     );
 
 
