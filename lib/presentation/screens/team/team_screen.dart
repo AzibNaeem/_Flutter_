@@ -128,19 +128,16 @@ class _MyTeamsScreenState extends State<MyTeamsScreen> {
                 data: Theme.of(context).copyWith(
                   checkboxTheme: CheckboxThemeData(
                     fillColor: MaterialStateProperty.resolveWith((states) {
-                      if (states.contains(MaterialState.selected)) {
-                        return Colors.white; // background of checkbox
-                      }
                       return Colors.white;
                     }),
-                    checkColor: MaterialStateProperty.all(AppColors.black), // tick ✔ color
-                    side:  BorderSide(color: AppColors.primary),       // border color
+                    checkColor: MaterialStateProperty.all(AppColors.primary),
+                    side:  BorderSide(color: AppColors.primary),
                   ),
                 ),
                 child: CheckboxListTile(
                   contentPadding: EdgeInsets.zero,
                   title: Text(
-                    "Show Employees",
+                    "Show Team Members",
                     style: TextStyle(color: AppColors.primary),
                   ),
                   value: showEmployees,
@@ -184,7 +181,7 @@ class _MyTeamsScreenState extends State<MyTeamsScreen> {
                       if (showEmployees) ...[
                         const SizedBox(height: 8),
                         Text(
-                          "Employees",
+                          "Team Members",
                           style: Theme.of(context).textTheme.titleMedium?.copyWith(color: AppColors.primary),
                         ),
                         ...teams[selectedProject]!.employees.map(
