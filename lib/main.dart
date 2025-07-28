@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hris_project/presentation/view_model/attendance_view_model/attendance_view_model.dart';
+import 'package:hris_project/presentation/view_model/late_sitting_view_model/late_sitting_vm.dart';
 import 'package:hris_project/presentation/view_model/login_authorization_view_model/login_auth_view_model.dart';
 import 'package:provider/provider.dart';
 import 'domain/providers/user_provider.dart';
@@ -20,6 +21,7 @@ void main() async {
         ChangeNotifierProvider(create: (context) => AttendanceViewModel()),
         ChangeNotifierProvider(create: (context) => UserProvider()),
         ChangeNotifierProvider(create: (context) => DepartmentAllocationViewModel()),
+        ChangeNotifierProvider(create: (_) => LateSittingViewModel()),
 
       ],
       child: const HRMSApp(),

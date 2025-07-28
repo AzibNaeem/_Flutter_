@@ -25,12 +25,10 @@ class ProjectTeam {
 
   factory ProjectTeam.fromJson(Map<String, dynamic> json) {
     return ProjectTeam(
-      reportingManager: json['reporting_manager'] != null
-          ? TeamMember.fromJson(json['reporting_manager'])
-          : null,
-      teamLead: json['team_lead'] != null
-          ? TeamMember.fromJson(json['team_lead'])
-          : null,
+      reportingManager: json['reporting_manager'] != null ? TeamMember.fromJson(json['reporting_manager']) : null,
+
+      teamLead: json['team_lead'] != null ? TeamMember.fromJson(json['team_lead']) : null,
+
       employees: (json['employees'] as List)
           .map((e) => TeamMember.fromJson(e))
           .toList(),

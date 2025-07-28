@@ -56,7 +56,7 @@ class DrawerMenuList extends StatelessWidget {
         title: 'Late Sitting',
         onTap: () {
           Navigator.pop(context);
-          Navigator.pushNamed(context, '/lateSitting', arguments: user);
+          Navigator.pushNamed(context, '/late_sitting');
         },
       ),
       DrawerMenuItemData(
