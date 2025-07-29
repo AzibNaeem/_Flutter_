@@ -12,9 +12,9 @@ class AuthViewModel with ChangeNotifier {
 
   LoginUser? get loggedInUser => _loggedInUser;
 
-  Future<String?> login(String email, String password,BuildContext context) async {
+  Future<String?> login(String emailOrEmployeeId, String password,BuildContext context) async {
     try {
-      LoginRequest request = LoginRequest(input: email, password: password);
+      LoginRequest request = LoginRequest(input: emailOrEmployeeId, password: password);
       final user = await _apiService.login(request);
       if (user != null) {
         _loggedInUser = user;

@@ -1,8 +1,5 @@
-import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:hris_project/presentation/widgets/allocation_card.dart';
-import 'package:hris_project/presentation/widgets/attendance_view.dart';
-import 'package:hris_project/presentation/widgets/custom_end_drawer.dart';
 import 'package:hris_project/presentation/widgets/experience_card.dart';
 import 'package:hris_project/presentation/widgets/leaves_card.dart';
 import 'package:hris_project/presentation/widgets/miscellaneous_info_card.dart';
@@ -13,15 +10,9 @@ import 'package:hris_project/presentation/widgets/reporting_manager_card.dart';
 import 'package:hris_project/presentation/widgets/user_account_info.dart';
 import 'package:hris_project/presentation/widgets/user_profile_card.dart';
 import 'package:hris_project/presentation/widgets/work_buttons.dart';
-import 'package:hris_project/presentation/widgets/attendance_calendar.dart';
 import 'package:hris_project/presentation/widgets/date_filter.dart';
 import 'package:hris_project/presentation/view_model/home_view_model.dart';
 import 'package:provider/provider.dart';
-import 'package:hris_project/presentation/screens/splash_screen/splash_screen.dart';
-
-import '../../../data/models/login_user.dart';
-import '../../widgets/drawer_menu_item.dart';
-import '../../widgets/drawer_menu_list.dart';
 import '../../../core/themes/theme_service.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -29,13 +20,11 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final LoginUser user;
     final viewModel = Provider.of<HomeViewModel>(context);
 
     final size = MediaQuery.of(context).size;
     final isTablet = size.width > 600;
     final padding = isTablet ? 32.0 : 16.0;
-    final titleFontSize = isTablet ? 22.0 : 18.0;
 
     final allocationCardWidget = AllocationCard(
       month: 'June',
@@ -299,16 +288,6 @@ class HomeScreen extends StatelessWidget {
           );
         },
       ),
-    );
-  }
-
-  BarChartGroupData _makeGroupData(int x, double y1, double y2) {
-    return BarChartGroupData(
-      x: x,
-      barRods: [
-        BarChartRodData(toY: y1, color: Colors.pink, width: 7),
-        BarChartRodData(toY: y2, color: Colors.blue, width: 7),
-      ],
     );
   }
 }

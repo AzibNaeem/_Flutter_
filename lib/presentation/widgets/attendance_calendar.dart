@@ -119,7 +119,7 @@ class _AttendanceDayCell extends StatelessWidget {
         ),
 
         Text(
-          'Status: ${day.status ?? '-'}',
+          'Status: ${day.status}',
           style: const TextStyle(color: Colors.green),
         ),
       ],

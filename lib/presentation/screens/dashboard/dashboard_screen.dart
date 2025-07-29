@@ -6,14 +6,13 @@ import 'package:provider/provider.dart';
 import 'package:hris_project/presentation/theme/app_theme.dart';
 import '../../../core/themes/theme_service.dart';
 import '../../../domain/providers/user_provider.dart';
-import '../../../domain/services/futuristic_card/futuristic_card_service.dart';
 import '../../widgets/dashboard_grid.dart';
 import '../../widgets/drawer_menu_list.dart';
-import '../../../domain/services/dashboard_cards/dashboard_card_data_service.dart';
 import '../../widgets/profile_card.dart';
 import '../../../domain/services/start_end_snackbar/work_service.dart';
 import '../../widgets/dashboard_allocation.dart';
 import '../../view_model/department_allocation_view_model/department_allocation_view_model.dart';
+import '../../widgets/shimmer/department_allocations_shimmer.dart';
 
 class DashboardScreen extends StatefulWidget {
   const DashboardScreen({super.key});
@@ -124,7 +123,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
               Consumer<DepartmentAllocationViewModel>(
                 builder: (context, allocVm, _) {
                   if (allocVm.isLoading) {
-                    return const Center(child: CircularProgressIndicator());
+                    return const DepartmentAllocationShimmer();
                   }
                   return DashboardAllocation(allocations: allocVm.allocations);
                 },
@@ -136,80 +135,4 @@ class _DashboardScreenState extends State<DashboardScreen> {
     );
   }
 
-  Widget _buildGridCards(BuildContext context, {bool isTablet = false}) {
-    final cards = [
-      DashboardCardData(
-        title: 'Leave & Attendance',
-        value: '',
-        icon: Icons.calendar_today,
-        color: AppColors.primaryLight,
-        route: '/attendance-leaves',
-        textColor: AppColors.lightText,
-      ),
-      DashboardCardData(
-        title: 'Employee Report',
-        value: '',
-        icon: Icons.bar_chart,
-        color: AppColors.primaryLight,
-        route: '/report',
-        textColor: AppColors.lightText,
-      ),
-      DashboardCardData(
-        title: 'Experience',
-        value: '',
-        icon: Icons.work,
-        color: AppColors.primaryLight,
-        route: '/payslip',
-        textColor: AppColors.lightText,
-      ),
-      DashboardCardData(
-        title: 'Onboarding & Training',
-        value: '',
-        icon: Icons.school,
-        color: AppColors.primaryLight,
-        route: '/onboarding',
-        textColor: AppColors.lightText,
-      ),
-    ];
-
-    // Always 2 columns, square cards
-    final crossAxisCount = 2;
-    final aspectRatio = 1.0;
-    // final cardIconSize = isTablet ? 40.0 : 32.0;
-    // final cardTitleFontSize = isTablet ? 16.0 : 14.0;
-    // final cardValueFontSize = isTablet ? 20.0 : 16.0;
-
-    return Padding(
-      padding: EdgeInsets.symmetric(horizontal: isTablet ? 0 : 0),
-      child: GridView.builder(
-        shrinkWrap: true,
-        physics: const NeverScrollableScrollPhysics(),
-        itemCount: cards.length,
-        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: crossAxisCount,
-          crossAxisSpacing: isTablet ? 24 : 12,
-          mainAxisSpacing: isTablet ? 24 : 12,
-          childAspectRatio: aspectRatio,
-        ),
-        itemBuilder: (context, index) => GestureDetector(
-          onTap: () {
-            Navigator.pushNamed(context, cards[index].route, arguments: user1);
-          },
-          child: Card(
-            color: Colors.white, // <-- Add this line
-            elevation: 4,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(12),
-            ),
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-              child: Row(
-                // ... date pickers ...
-              ),
-            ),
-          ),
-        ),
-      ),
-    );
-  }
 }

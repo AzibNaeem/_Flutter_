@@ -1,16 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../data/models/attendance_day.dart';
-import '../widgets/custom_end_drawer.dart';
-import '../widgets/drawer_menu_item.dart';
-import '../widgets/drawer_menu_list.dart';
 import '../widgets/experience_card.dart';
 import '../widgets/leaves_card.dart';
 import '../widgets/monthly_status_card.dart';
 import '../widgets/mvp_stats_card.dart';
 import '../widgets/perks_card.dart';
 import '../widgets/miscellaneous_info_card.dart';
-import '../widgets/attendance_calendar.dart';
 import 'package:intl/intl.dart';
 import 'package:hris_project/presentation/widgets/user_account_info.dart';
 import 'package:hris_project/presentation/widgets/work_buttons.dart';
@@ -92,39 +88,11 @@ class HomeViewModel extends ChangeNotifier {
       date: DateTime(2024, 6, 12),
     ),
   ];
-
-  // ✅ Fixes End
 }
 
 class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final menuItems = [
-      DrawerMenuItemData(
-        icon: Icons.dashboard,
-        title: 'Dashboard',
-        onTap: () {
-          Navigator.pop(context);
-          // Optional navigation
-        },
-      ),
-      DrawerMenuItemData(
-        icon: Icons.person,
-        title: 'Profile',
-        onTap: () {
-          Navigator.pop(context);
-          Navigator.pushNamed(context, '/profile');
-        },
-      ),
-      DrawerMenuItemData(
-        icon: Icons.calendar_today_outlined,
-        title: 'Leave',
-        onTap: () {
-          Navigator.pop(context);
-          Navigator.pushNamed(context, '/submitLeave');
-        },
-      ),
-    ];
     final viewModel = Provider.of<HomeViewModel>(context);
 
     return Scaffold(

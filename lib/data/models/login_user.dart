@@ -1,25 +1,22 @@
 class LoginUser {
-  final String email;
-  final String password;
   final String employeeId;
+  final String email;
   final String name;
   final String role;
 
   LoginUser({
-    required this.email,
-    required this.password,
     required this.employeeId,
+    required this.email,
     required this.name,
     required this.role,
   });
 
   factory LoginUser.fromJson(Map<String, dynamic> json) {
     return LoginUser(
-      email: json['email'] ?? '',
-      password: json['password'] ?? '',
-      employeeId: json['employeeId'] ?? '',
-      name: json['name'] ?? '',
-      role: json['role'] ?? '',
+      employeeId: json['employee_id'],
+      email: json['email'],
+      name: json['name'],
+      role: json['role'],
     );
   }
 }

@@ -79,7 +79,7 @@ class ScheduleSection extends StatelessWidget {
                                 borderRadius: BorderRadius.circular(12),
                                 boxShadow: [
                                   BoxShadow(
-                                    color: alloc.color.withOpacity(0.25),
+                                    color: alloc.color,
                                     blurRadius: 8,
                                     offset: Offset(0, 3),
                                   ),
@@ -94,7 +94,7 @@ class ScheduleSection extends StatelessWidget {
                           Container(
                             height: isTablet ? 38 : 26,
                             decoration: BoxDecoration(
-                              color: alloc.color.withOpacity(0.15),
+                              color: alloc.color,
                               borderRadius: BorderRadius.circular(12),
                               border: Border.all(
                                 color: Colors.black,

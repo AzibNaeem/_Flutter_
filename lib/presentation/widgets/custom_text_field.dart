@@ -61,7 +61,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
         labelText: _isFocused ? null : widget.label,
         labelStyle: TextStyle(color: widget.labelColor),
         hintText: _isFocused ? widget.hint : null,
-        hintStyle: TextStyle(color: widget.textColor?.withOpacity(0.6)),
+        hintStyle: TextStyle(color: widget.textColor),
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12),
         ),
