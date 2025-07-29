@@ -4,7 +4,6 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -98,7 +97,6 @@
       <recent name="U:\HRIS\android\app\src\main\res\mipmap-hdpi" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="U:\HRIS\lib\data\models\feedback" />
       <recent name="D:\My Apps\rc1\_Flutter_\lib\domain\providers" />
       <recent name="U:\HRIS\lib\assets\images" />
     </key>

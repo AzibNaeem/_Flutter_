@@ -29,6 +29,11 @@ void main() async {
         ChangeNotifierProvider(create: (_) => DepartmentAllocationViewModel()),
         ChangeNotifierProvider(create: (_) => MenuViewModel(MenuRepositoryImpl(MenuService()))),
         ChangeNotifierProvider(create: (context) => DepartmentAllocationViewModel()),
+        ChangeNotifierProvider(
+        create: (_) => HierarchyViewModel(
+          HierarchyRepositoryImpl(ResourceHierarchyService()) ),
+        ),
+
 
       ],
       child: const HRMSApp(),
