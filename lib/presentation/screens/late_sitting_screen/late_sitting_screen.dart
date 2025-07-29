@@ -89,7 +89,7 @@ class _LateSittingScreenState extends State<LateSittingScreen> {
                 borderSide: BorderSide(color: AppColors.primary),
               ),
               enabledBorder: UnderlineInputBorder(
-                borderSide: BorderSide(color: AppColors.primary.withOpacity(0.5)),
+                borderSide: BorderSide(color: AppColors.primary),
               ),
             ),
             style: TextStyle(color: AppColors.black),

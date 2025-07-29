@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hris_project/presentation/screens/Travel/travel_plan.dart';
 import 'package:hris_project/presentation/screens/experience/employee_experience.dart';
+import 'package:hris_project/presentation/screens/feedback_screen/feedback_screen.dart';
 import 'package:hris_project/presentation/screens/late_sitting_screen/late_sitting_screen.dart';
 import 'package:hris_project/presentation/screens/rewards/rewards_screen.dart';
 import 'package:hris_project/presentation/screens/team/team_screen.dart';
@@ -27,6 +28,7 @@ class AppRoutes {
   static const String myTeams = '/my-teams';
   static const String rewards = '/rewards';
   static const String late_sitting = '/late-sitting';
+  static const String feedback = '/feedback';
 
   static Route<dynamic> onGenerateRoute(RouteSettings settings) {
     switch (settings.name) {
@@ -83,8 +85,11 @@ class AppRoutes {
     child: const RewardsScreen(),
     ),
     );
-      case '/late_sitting':
-        return MaterialPageRoute(builder: (_) => const LateSittingScreen());
+    case '/late_sitting':
+      return MaterialPageRoute(builder: (_) => const LateSittingScreen());
+      case '/feedback':
+        return MaterialPageRoute(builder: (_) => const FeedbackScreen());
+
 
 
 

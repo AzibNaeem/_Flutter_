@@ -72,7 +72,8 @@ class DrawerMenuList extends StatelessWidget {
         title: 'CFS',
         onTap: () {
           Navigator.pop(context);
-          Navigator.pushNamed(context, '/cfs', arguments: user);
+          Navigator.pushNamed(context, '/feedback');
+
         },
       ),
       DrawerMenuItemData(
