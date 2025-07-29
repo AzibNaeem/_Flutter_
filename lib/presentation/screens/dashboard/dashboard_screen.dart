@@ -12,10 +12,13 @@ import '../../widgets/dashboard_grid.dart';
 import '../../widgets/drawer_menu_list.dart';
 import '../../../domain/services/dashboard_cards/dashboard_card_data_service.dart';
 import '../../widgets/hierarchy_card.dart';
+import '../../widgets/dashboard_grid.dart';
+import '../../widgets/drawer_menu_list.dart';
 import '../../widgets/profile_card.dart';
 import '../../../domain/services/start_end_snackbar/work_service.dart';
 import '../../widgets/dashboard_allocation.dart';
 import '../../view_model/department_allocation_view_model/department_allocation_view_model.dart';
+import '../../widgets/shimmer/department_allocations_shimmer.dart';
 
 class DashboardScreen extends StatefulWidget {
   const DashboardScreen({super.key});
@@ -130,7 +133,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
               Consumer<DepartmentAllocationViewModel>(
                 builder: (context, allocVm, _) {
                   if (allocVm.isLoading) {
-                    return const Center(child: CircularProgressIndicator());
+                    return const DepartmentAllocationShimmer();
                   }
                   return DashboardAllocation(allocations: allocVm.allocations);
                 },

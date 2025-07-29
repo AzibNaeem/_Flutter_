@@ -51,6 +51,15 @@ class DrawerMenuList extends StatelessWidget {
         onTap: () {
           Navigator.pop(context);
           Navigator.pushNamed(context, '/hcdPortal');
+          Navigator.pushNamed(context, '/hcdPortal', arguments: user);
+        },
+      ),
+      DrawerMenuItemData(
+        icon: Icons.access_time,
+        title: 'Late Sitting',
+        onTap: () {
+          Navigator.pop(context);
+          Navigator.pushNamed(context, '/late_sitting')
         },
       ),
 
@@ -67,7 +76,8 @@ class DrawerMenuList extends StatelessWidget {
         title: 'CFS',
         onTap: () {
           Navigator.pop(context);
-          Navigator.pushNamed(context, '/cfs', arguments: user);
+          Navigator.pushNamed(context, '/feedback');
+
         },
       ),
       DrawerMenuItemData(

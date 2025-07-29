@@ -1,19 +1,19 @@
-class Leave {
+class LeaveItem {
   final String type;
   final String date;
   final String status;
 
-  Leave({required this.type, required this.date, required this.status});
+  LeaveItem({
+    required this.type,
+    required this.date,
+    required this.status,
+  });
 
-  factory Leave.fromJson(Map<String, dynamic> json) {
-    return Leave(
+  factory LeaveItem.fromJson(Map<String, dynamic> json) {
+    return LeaveItem(
       type: json['type'],
       date: json['date'],
       status: json['status'],
     );
-  }
-
-  Map<String, dynamic> toJson() {
-    return {'type': type, 'date': date, 'status': status};
   }
 }

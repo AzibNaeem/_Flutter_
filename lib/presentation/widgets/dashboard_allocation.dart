@@ -1,8 +1,8 @@
-import 'package:flutter/material.dart';
-import '../../data/models/department_allocation.dart';
-import '../../core/themes/theme_service.dart';
-import '../theme/app_theme.dart';
 import 'package:fl_chart/fl_chart.dart';
+import 'package:flutter/material.dart';
+import '../../core/themes/theme_service.dart';
+import '../../data/models/department_allocation.dart';
+import '../theme/app_theme.dart';
 
 class DashboardAllocation extends StatelessWidget {
   final List<DepartmentAllocationItem> allocations;
@@ -11,7 +11,7 @@ class DashboardAllocation extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final isTablet = MediaQuery.of(context).size.width > 600;
-    final colors = [
+    final List<Color> colors = [
       Colors.yellow,
       Colors.blueAccent,
       Colors.red,
@@ -19,6 +19,7 @@ class DashboardAllocation extends StatelessWidget {
       Colors.redAccent,
       Colors.teal,
     ];
+
     return Card(
       color: AppColors.white,
       elevation: 4,
@@ -38,76 +39,77 @@ class DashboardAllocation extends StatelessWidget {
               ),
             ),
             SizedBox(height: isTablet ? 24 : 12),
+
+            // Pie Chart
             SizedBox(
               height: isTablet ? 220 : 160,
               child: PieChart(
                 PieChartData(
-                  sections: List.generate(allocations.length, (i) {
-                    final alloc = allocations[i];
-                    final color = colors[i % colors.length];
+                  sections: allocations.asMap().entries.map((entry) {
+                    final i = entry.key;
+                    final alloc = entry.value;
                     return PieChartSectionData(
-                      color: color,
+                      color: colors[i % colors.length],
                       value: alloc.allocation * 100,
                       title: '',
-                      radius: isTablet ? 70 : 70,
+                      radius: 70,
                     );
-                  }),
+                  }).toList(),
                   sectionsSpace: 2,
                   centerSpaceRadius: 0,
                 ),
               ),
             ),
+
             SizedBox(height: isTablet ? 24 : 12),
-            Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: List.generate(allocations.length, (i) {
-                final alloc = allocations[i];
-                final color = colors[i % colors.length];
-                final label = alloc.project.isNotEmpty
-                    ? '${alloc.project} - ${alloc.department}'
-                    : alloc.department;
-                return Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 6.0),
-                  child: Center(
-                    child: Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Container(
-                          width: 16,
-                          height: 16,
-                          decoration: BoxDecoration(
-                            color: color,
-                            shape: BoxShape.circle,
-                            border: Border.all(color: Colors.black12, width: 1),
-                          ),
+
+            // Legend List
+            ...allocations.asMap().entries.map((entry) {
+              final i = entry.key;
+              final alloc = entry.value;
+              final color = colors[i % colors.length];
+              final label = alloc.project.isNotEmpty
+                  ? '${alloc.project} - ${alloc.department}'
+                  : alloc.department;
+
+              return Padding(
+                padding: const EdgeInsets.symmetric(vertical: 6.0),
+                child: Center(
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Container(
+                        width: 16,
+                        height: 16,
+                        decoration: BoxDecoration(
+                          color: color,
+                          shape: BoxShape.circle,
+                          border: Border.all(color: Colors.black12),
                         ),
-                        // for text
-                        SizedBox(width: 6),
-                        Text(
-                          label,
-                          style: TextStyle(
-                            color: AppColors.black,
-                            fontSize: isTablet ? 15 : 15,
-                            fontWeight: FontWeight.bold ,
-                          ),
+                      ),
+                      const SizedBox(width: 6),
+                      Text(
+                        label,
+                        style: TextStyle(
+                          color: AppColors.black,
+                          fontSize: 15,
+                          fontWeight: FontWeight.bold,
                         ),
-                        // for the percentages
-                        SizedBox(width: 6),
-                        Text(
-                          '${(alloc.allocation * 100).toStringAsFixed(0)}%',
-                          style: TextStyle(
-                            color: Colors.black54,
-                            fontSize: isTablet ? 14 : 15,
-                            fontWeight: FontWeight.bold
-                          ),
+                      ),
+                      const SizedBox(width: 6),
+                      Text(
+                        '${(alloc.allocation * 100).toStringAsFixed(0)}%',
+                        style: TextStyle(
+                          color: AppColors.primary,
+                          fontSize: 15,
+                          fontWeight: FontWeight.bold,
                         ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
-                );
-              }),
-            ),
+                ),
+              );
+            }),
           ],
         ),
       ),

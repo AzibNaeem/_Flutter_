@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:hris_project/presentation/theme/app_theme.dart';
 class UserAccountInfo extends StatelessWidget {
   final String name;
   final String role;

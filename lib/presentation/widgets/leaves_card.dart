@@ -73,7 +73,7 @@ class LeavesCard extends StatelessWidget {
                     color: AppColors.white,
                     borderRadius: BorderRadius.circular(12),
                     border: Border.all(
-                      color: AppColors.primaryLight.withOpacity(0.1),
+                      color: AppColors.primaryLight,
                     ),
                   ),
                   child: ListTile(
@@ -89,7 +89,7 @@ class LeavesCard extends StatelessWidget {
                     subtitle: Text(
                       leave.reason.replaceAll(RegExp(r'\s*\([^)]*\)'), ''),
                       style: TextStyle(
-                        color: AppColors.black.withOpacity(0.85),
+                        color: AppColors.black,
                         fontSize: 14,
                       ),
                     ),

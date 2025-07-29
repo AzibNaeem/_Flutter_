@@ -1,13 +1,12 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-import '../../core/API/api_constants.dart';
+import '../../core/API/api_constants_login.dart';
 import '../../data/models/login_request.dart';
 import '../../data/models/login_user.dart';
 
-
 class ApiService {
   Future<LoginUser?> login(LoginRequest user) async {
-    final url = Uri.parse('${ApiConstants.baseUrl}${ApiConstants.loginEndpoint}');
+    final url = Uri.parse('${ApiConstantsLogin.baseUrl}${ApiConstantsLogin.validateUserEndpoint}');
 
     final response = await http.post(
       url,
@@ -23,6 +22,4 @@ class ApiService {
       throw Exception(error['detail'] ?? 'Login failed');
     }
   }
-
-
 }
