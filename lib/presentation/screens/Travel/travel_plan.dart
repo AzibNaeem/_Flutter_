@@ -75,17 +75,46 @@ class _TravelFormScreenState extends State<TravelFormScreen> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        DateField(
-                            label: "From (Date)", value: fromDate, onChanged: (val) => setState(() => fromDate = val)),
+                        Row(
+                          children: [
+                            Expanded(
+                              child: DateField(
+                                label: "From Date",
+                                value: fromDate,
+                                onChanged: (val) => setState(() => fromDate = val),
+                              ),
+                            ),
+                            const SizedBox(width: 12),
+                            Expanded(
+                              child: DateField(
+                                label: "To Date",
+                                value: toDate,
+                                onChanged: (val) => setState(() => toDate = val),
+                              ),
+                            ),
+                          ],
+                        ),
                         const SizedBox(height: 12),
-                        DateField(
-                            label: "To (Date)", value: toDate, onChanged: (val) => setState(() => toDate = val)),
-                        const SizedBox(height: 12),
-                        TimeField(
-                            label: "Time From", value: fromTime, onChanged: (val) => setState(() => fromTime = val)),
-                        const SizedBox(height: 12),
-                        TimeField(
-                            label: "Time To", value: toTime, onChanged: (val) => setState(() => toTime = val)),
+
+                        Row(
+                          children: [
+                            Expanded(
+                              child: TimeField(
+                                label: "Time From",
+                                value: fromTime,
+                                onChanged: (val) => setState(() => fromTime = val),
+                              ),
+                            ),
+                            const SizedBox(width: 12),
+                            Expanded(
+                              child: TimeField(
+                                label: "Time To",
+                                value: toTime,
+                                onChanged: (val) => setState(() => toTime = val),
+                              ),
+                            ),
+                          ],
+                        ),
                         const SizedBox(height: 12),
                         GenericDropdown<ProjectCategoryDropdownItem>(
                           items: ProjectCategory.values
@@ -104,31 +133,18 @@ class _TravelFormScreenState extends State<TravelFormScreen> {
                           onChanged: (val) => setState(() => _travelType = val),
                           hint: "Select Travel Type",
                         ),
-                        // ProjectDropdownField(
-                        //   value: _projectCategories,
-                        //   onChanged: (val) => setState(() => _projectCategories= val!),
-                        //   textColor: AppColors.primary,
-                        //   labelColor: AppColors.primary,
-                        // ),
-                        // TravelTypeDropdownField(
-                        //   value: _tarvelType,
-                        //   onChanged: (val) => setState(() => _tarvelType= val!),
-                        //   textColor: AppColors.primary,
-                        //   labelColor: AppColors.primary,
-                        // ),
                         const SizedBox(height: 12),
-
                         const SizedBox(height: 12),
                         NumberField(
                           label: "Taxi Fare",
                           value: taxiFare,
-                          onChanged: (val) => setState(() => taxiFare = val as double),
+                          onChanged: (val) => setState(() => taxiFare = val),
                         ),
                         const SizedBox(height: 12),
                         NumberField(
                           label: "Client Entertainment",
                           value: entertainmentCost,
-                          onChanged: (val) => setState(() => entertainmentCost = val as double),
+                          onChanged: (val) => setState(() => entertainmentCost = val),
                         ),
                         const SizedBox(height: 12),
                         CustomTextField(
@@ -144,10 +160,9 @@ class _TravelFormScreenState extends State<TravelFormScreen> {
                                 vertical: isTablet ? 18 : 12,
                               ),
                             ),
-                            onPressed: () {
-                              // TODO: Submit logic with Provider
-                              print("Submitted");
-                            },
+
+                            onPressed: _submit,
+
                             child: Text(
                               'Submit',
                               style: ThemeService.button.copyWith(

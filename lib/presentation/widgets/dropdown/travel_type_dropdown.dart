@@ -4,6 +4,7 @@ import 'dropdown_item.dart';
 
 class TravelTypeDropdownItem implements DropdownItem {
   final TravelTypes category;
+
   TravelTypeDropdownItem(this.category);
 
   @override
@@ -11,7 +12,6 @@ class TravelTypeDropdownItem implements DropdownItem {
     switch (category) {
       case TravelTypes.domestic:
         return "Domestic";
-
       case TravelTypes.international:
         return "International";
     }
@@ -19,4 +19,12 @@ class TravelTypeDropdownItem implements DropdownItem {
 
   @override
   get value => category;
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+          other is TravelTypeDropdownItem && other.category == category;
+
+  @override
+  int get hashCode => category.hashCode;
 }

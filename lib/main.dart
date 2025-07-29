@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:hris_project/presentation/view_model/attendance_view_model/attendance_view_model.dart';
-import 'package:hris_project/presentation/view_model/feedback/feedback_view_model.dart';
-import 'package:hris_project/presentation/view_model/late_sitting_view_model/late_sitting_vm.dart';
+import 'package:hris_project/presentation/view_model/hcd_view_model/hcd_view_model.dart';
 import 'package:hris_project/presentation/view_model/login_authorization_view_model/login_auth_view_model.dart';
+import 'package:hris_project/presentation/view_model/resource_hierarchy_view_model/resource_hierarchy_view_model.dart';
 import 'package:provider/provider.dart';
 import 'domain/providers/user_provider.dart';
+import 'domain/repositories/hcd/hcd_repository_impl.dart';
+import 'domain/repositories/resource_hierarchy/hierarchy_repository.dart';
+import 'domain/repositories/resource_hierarchy/hierarchy_repository_impl.dart';
+import 'domain/services/HCD/hcd_service.dart';
+import 'domain/services/resource_hierarchy/resource_hierarchy_service.dart';
 import 'presentation/routes.dart';
 import 'domain/providers/employee_provider.dart';
 import 'presentation/view_model/home_view_model.dart';
@@ -21,9 +26,10 @@ void main() async {
         ChangeNotifierProvider(create: (context) => LeaveViewModel()),
         ChangeNotifierProvider(create: (context) => AttendanceViewModel()),
         ChangeNotifierProvider(create: (context) => UserProvider()),
+        ChangeNotifierProvider(create: (_) => DepartmentAllocationViewModel()),
+        ChangeNotifierProvider(create: (_) => MenuViewModel(MenuRepositoryImpl(MenuService()))),
         ChangeNotifierProvider(create: (context) => DepartmentAllocationViewModel()),
-        ChangeNotifierProvider(create: (_) => LateSittingViewModel()),
-        ChangeNotifierProvider(create: (_) => FeedbackViewModel()),
+
       ],
       child: const HRMSApp(),
 
