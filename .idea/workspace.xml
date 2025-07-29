@@ -6,10 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="3b49d461-bc12-4301-b2fe-a52dae436fd4" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/main.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/presentation/routes.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/presentation/routes.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/presentation/screens/late_sitting_screen/late_sitting_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/presentation/screens/late_sitting_screen/late_sitting_screen.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/presentation/widgets/drawer_menu_list.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/presentation/widgets/drawer_menu_list.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/domain/services/feedback/feedback_service.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/domain/services/feedback/feedback_service.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/presentation/screens/feedback_screen/feedback_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/presentation/screens/feedback_screen/feedback_screen.dart" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

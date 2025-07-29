@@ -19,7 +19,7 @@ class FeedbackService {
   }
 
   Future<List<SubmittedFeedback>> fetchPreviousFeedbacks(String employeeId) async {
-    final url = Uri.parse('${APIConstantsLateSitting.baseURL}/feedback/previous/$employeeId');
+    final url = Uri.parse('${APIConstantsLateSitting.baseURL}/feedback/$employeeId');
     final response = await http.get(url);
 
     if (response.statusCode == 200) {
@@ -31,7 +31,7 @@ class FeedbackService {
   }
 
   Future<bool> submitFeedback(SubmittedFeedback feedback) async {
-    final url = Uri.parse('${APIConstantsLateSitting.baseURL}/feedback/submit');
+    final url = Uri.parse('${APIConstantsLateSitting.baseURL}/feedback');
     final response = await http.post(
       url,
       headers: {'Content-Type': 'application/json'},

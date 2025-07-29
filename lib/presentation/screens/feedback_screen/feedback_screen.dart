@@ -31,7 +31,8 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
     return Scaffold(
       backgroundColor: AppColors.white,
       appBar: AppBar(
-        title: const Text("Feedback Form"),
+        backgroundColor: AppColors.background,
+        title: Text("Feedback Form", style: TextStyle(color: AppColors.primary),),
       ),
       body: feedbackVm.isLoading
           ? const Center(child: CircularProgressIndicator())
@@ -41,11 +42,13 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text("Employee: ${user.name} (${user.employeeId})",
-                  style: Theme.of(context)
-                      .textTheme
-                      .titleMedium!
-                      .copyWith(color: AppColors.primary)),
+              Center(
+                child: Text("${user.name} (${user.employeeId})",
+                    style: Theme.of(context)
+                        .textTheme
+                        .titleMedium!
+                        .copyWith(color: AppColors.primary,  fontWeight: FontWeight.bold)),
+              ),
               const SizedBox(height: 16),
 
               // New Feedback Form
