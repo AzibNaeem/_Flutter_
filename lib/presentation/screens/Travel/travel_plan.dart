@@ -184,3 +184,7 @@ class _TravelFormScreenState extends State<TravelFormScreen> {
     );
   }
 }
+
+void _submit() {
+  print('Submit button pressed!');
+}

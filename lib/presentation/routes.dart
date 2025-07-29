@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hris_project/presentation/screens/Travel/travel_plan.dart';
 import 'package:hris_project/presentation/screens/experience/employee_experience.dart';
 import 'package:hris_project/presentation/screens/feedback_screen/feedback_screen.dart';
+import 'package:hris_project/presentation/screens/hcd_portal/hcd_screen.dart';
 import 'package:hris_project/presentation/screens/late_sitting_screen/late_sitting_screen.dart';
 import 'package:hris_project/presentation/screens/rewards/rewards_screen.dart';
 import 'package:hris_project/presentation/screens/team/team_screen.dart';
