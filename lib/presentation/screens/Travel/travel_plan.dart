@@ -153,13 +153,13 @@ class _TravelFormScreenState extends State<TravelFormScreen> {
                         NumberField(
                           label: "Taxi Fare",
                           value: taxiFare,
-                          onChanged: (val) => setState(() => taxiFare = val as double),
+                          onChanged: (val) => setState(() => taxiFare = val),
                         ),
                         const SizedBox(height: 12),
                         NumberField(
                           label: "Client Entertainment",
                           value: entertainmentCost,
-                          onChanged: (val) => setState(() => entertainmentCost = val as double),
+                          onChanged: (val) => setState(() => entertainmentCost = val),
                         ),
                         const SizedBox(height: 12),
                         CustomTextField(

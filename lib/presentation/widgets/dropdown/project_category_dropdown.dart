@@ -3,6 +3,7 @@ import 'dropdown_item.dart';
 
 class ProjectCategoryDropdownItem implements DropdownItem {
   final ProjectCategory category;
+
   ProjectCategoryDropdownItem(this.category);
 
   @override
@@ -23,4 +24,12 @@ class ProjectCategoryDropdownItem implements DropdownItem {
 
   @override
   get value => category;
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+          other is ProjectCategoryDropdownItem && other.category == category;
+
+  @override
+  int get hashCode => category.hashCode;
 }
