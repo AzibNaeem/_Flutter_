@@ -15,14 +15,15 @@ class SubmittedFeedback {
 
   factory SubmittedFeedback.fromJson(Map<String, dynamic> json) {
     return SubmittedFeedback(
-      employeeId: json['employee_id'],
-      employeeName: json['employee_name'],
-      submittedOn: json['submitted_on'],
-      feedback: (json['feedback'] as List)
-          .map((e) => FeedbackAnswer.fromJson(e))
-          .toList(),
+      employeeId: json['employee_id'] ?? '',
+      employeeName: json['employee_name'] ?? '',
+      submittedOn: json['submitted_on'] ?? '',
+      feedback: (json['responses'] as List<dynamic>?)
+          ?.map((e) => FeedbackAnswer.fromJson(e))
+          .toList() ?? [],
     );
   }
+
 
   Map<String, dynamic> toJson() {
     return {

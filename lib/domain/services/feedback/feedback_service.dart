@@ -40,4 +40,15 @@ class FeedbackService {
 
     return response.statusCode == 200;
   }
+
+  Future<bool> submitFeedbackRaw(Map<String, dynamic> body) async {
+    final url = Uri.parse('https://merry-in-martin.ngrok-free.app/feedback');
+    final response = await http.post(
+      url,
+      headers: {'Content-Type': 'application/json'},
+      body: jsonEncode(body),
+    );
+    return response.statusCode == 200;
+  }
+
 }

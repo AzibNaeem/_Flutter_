@@ -56,18 +56,20 @@ class FeedbackViewModel extends ChangeNotifier {
 
   Future<bool> submitFeedback(String employeeId, String employeeName) async {
     final now = DateTime.now().toIso8601String();
-    final feedbackList = selectedAnswers.entries.map((entry) {
+
+    final responses = selectedAnswers.entries.map((entry) {
       return FeedbackAnswer(section: entry.key, selectedOptions: entry.value.toList());
     }).toList();
 
-    final feedback = SubmittedFeedback(
-      employeeId: employeeId,
-      employeeName: employeeName,
-      submittedOn: now,
-      feedback: feedbackList,
-    );
+    // Build map with 'responses' key instead of 'feedback'
+    final payload = {
+      "employee_id": employeeId,
+      "employee_name": employeeName,
+      "submitted_on": now,
+      "responses": responses.map((r) => r.toJson()).toList(),
+    };
 
-    final success = await _feedbackService.submitFeedback(feedback);
+    final success = await _feedbackService.submitFeedbackRaw(payload);
     if (success) {
       selectedAnswers.clear();
       await loadPreviousFeedbacks(employeeId);

@@ -80,92 +80,117 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
                                 fontWeight: FontWeight.bold,
                                 color: AppColors.primary)),
                         const SizedBox(height: 12),
-                        ...section.questions.map((q) => CheckboxListTile(
-                          title: Text(q,
-                              style: TextStyle(
-                                  color: AppColors.primary)),
-                          value: feedbackVm.isChecked(
-                              section.title, q),
-                          activeColor: AppColors.primary,
-                          onChanged: (bool? value) {
-                            feedbackVm.toggleCheckbox(
-                                section.title, q);
-                          },
-                        )),
+                        ...section.questions.map((q) {
+                          final isChecked = feedbackVm.isChecked(section.title, q);
+                          return GestureDetector(
+                            onTap: () {
+                              feedbackVm.toggleCheckbox(section.title, q);
+                            },
+                            child: Container(
+                              margin: const EdgeInsets.symmetric(vertical: 4),
+                              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
+                              decoration: BoxDecoration(
+                                color: AppColors.white,
+                                borderRadius: BorderRadius.circular(8),
+                                border: Border.all(
+                                  color: isChecked ? AppColors.primary : Colors.grey.shade300,
+                                  width: 1.5,
+                                ),
+                              ),
+                              child: Row(
+                                children: [
+                                  Expanded(
+                                    child: Text(
+                                      q,
+                                      style: TextStyle(
+                                        color: AppColors.primary,
+                                        fontSize: 16,
+                                      ),
+                                    ),
+                                  ),
+                                  if (isChecked)
+                                    const Icon(Icons.arrow_forward, color: Colors.black),
+                                ],
+                              ),
+                            ),
+                          );
+                        }),
                       ],
                     ),
                   ),
                 );
               }).toList(),
 
-              ElevatedButton(
-                onPressed: () async {
-                  final success = await feedbackVm.submitFeedback(
-                      user.employeeId, user.name);
-                  final snackBar = SnackBar(
-                    content: Text(success
-                        ? "✅ Feedback submitted!"
-                        : "❌ Submission failed"),
-                    backgroundColor: AppColors.white,
-                    behavior: SnackBarBehavior.floating,
-                  );
-                  if (mounted) {
-                    ScaffoldMessenger.of(context)
-                        .showSnackBar(snackBar);
-                  }
-                },
-                child: const Text("Submit Feedback"),
+              Center(
+                child: ElevatedButton(
+                  onPressed: () async {
+                    final success = await feedbackVm.submitFeedback(
+                        user.employeeId, user.name);
+                    final snackBar = SnackBar(
+                      content: Text(success
+                          ? "✅ Feedback submitted!"
+                          : "❌ Submission failed"),
+                      backgroundColor: AppColors.white,
+                      behavior: SnackBarBehavior.floating,
+                    );
+                    if (mounted) {
+                      ScaffoldMessenger.of(context)
+                          .showSnackBar(snackBar);
+                    }
+                  },
+                  child: const Text("Submit Feedback", style: TextStyle(color: AppColors.white),),
+                ),
               ),
 
-              const SizedBox(height: 24),
+              const SizedBox(height: 30),
 
               // Previously Submitted Feedback
+              // Previously Submitted Feedback (Collapsible)
               if (feedbackVm.previousFeedbacks.isNotEmpty) ...[
-                Text("Previous Feedback",
-                    style: Theme.of(context)
-                        .textTheme
-                        .titleLarge!
-                        .copyWith(
-                        color: AppColors.primary,
-                        fontWeight: FontWeight.bold)),
-                const SizedBox(height: 12),
-                ...feedbackVm.previousFeedbacks.map((submitted) {
-                  return Card(
-                    elevation: 2,
-                    margin: const EdgeInsets.only(bottom: 16),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.all(12.0),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text("Submitted on: ${submitted.submittedOn}",
-                              style: TextStyle(
-                                  color: AppColors.primary,
-                                  fontWeight: FontWeight.w600)),
-                          const SizedBox(height: 8),
-                          ...submitted.feedback.map((fb) => Column(
-                            crossAxisAlignment:
-                            CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                fb.section,
-                                style: const TextStyle(
-                                    fontWeight: FontWeight.bold),
-                              ),
-                              ...fb.selectedOptions.map((opt) =>
-                                  Text("• $opt")),
-                              const SizedBox(height: 8),
-                            ],
-                          )),
-                        ],
+                ExpansionTile(
+                  title: Text("Previous Feedback",
+                      style: Theme.of(context)
+                          .textTheme
+                          .titleLarge!
+                          .copyWith(
+                          color: AppColors.primary,
+                          fontWeight: FontWeight.bold)),
+                  children: feedbackVm.previousFeedbacks.map((submitted) {
+                    return Card(
+                      elevation: 2,
+                      margin: const EdgeInsets.only(bottom: 16),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10),
                       ),
-                    ),
-                  );
-                }),
+                      child: Padding(
+                        padding: const EdgeInsets.all(12.0),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text("Submitted on: ${submitted.submittedOn}",
+                                style: TextStyle(
+                                    color: AppColors.primary,
+                                    fontWeight: FontWeight.w600)),
+                            const SizedBox(height: 8),
+                            ...submitted.feedback.map((fb) => Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  fb.section,
+                                  style: const TextStyle(fontWeight: FontWeight.bold),
+                                ),
+                                ...fb.selectedOptions.map((opt) => Text("• $opt")),
+                                const SizedBox(height: 8),
+                              ],
+                            )),
+                          ],
+                        ),
+                      ),
+                    );
+                  }).toList(),
+                ),
               ],
+
             ],
           ),
         ),
