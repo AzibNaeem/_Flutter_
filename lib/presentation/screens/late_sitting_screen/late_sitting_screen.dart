@@ -158,7 +158,7 @@ class _LateSittingScreenState extends State<LateSittingScreen> {
       backgroundColor: AppColors.white,
       appBar: AppBar(
         backgroundColor: AppColors.background,
-        title: Text('Late Sitting', style: TextStyle(color: AppColors.white)),
+        title: Text('Late Sitting', style: TextStyle(color: AppColors.primary, fontWeight: FontWeight.bold)),
       ),
       body: LayoutBuilder(
         builder: (_, cons) => SingleChildScrollView(

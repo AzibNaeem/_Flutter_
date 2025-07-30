@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:hris_project/data/models/travel_type.dart' hide TravelType;
 import '../../../core/themes/theme_service.dart';
 import '../../../domain/enums/project_categories.dart';
 import '../../../domain/enums/travel_type.dart';
@@ -7,13 +6,8 @@ import '../../theme/app_theme.dart';
 import '../../widgets/dropdown/drop_down.dart';
 import '../../widgets/dropdown/project_category_dropdown.dart';
 import '../../widgets/dropdown/travel_type_dropdown.dart';
-import '../../widgets/submit_leave_widgets/dropDown_List.dart';
 import '../../widgets/travel_widgets/date_fiield.dart';
-import '../../widgets/travel_widgets/drop_down_field.dart';
 import '../../widgets/travel_widgets/number_field.dart';
-import '../../widgets/travel_widgets/project_categories.dart';
-import '../../widgets/travel_widgets/project_dropdown_fiield.dart';
-import '../../widgets/travel_widgets/submit_button.dart';
 import '../../widgets/travel_widgets/text_field.dart';
 import '../../widgets/travel_widgets/time_field.dart';
 
@@ -45,7 +39,6 @@ class _TravelFormScreenState extends State<TravelFormScreen> {
     final size = MediaQuery.of(context).size;
     final isTablet = size.width > 600;
     final padding = isTablet ? 32.0 : 16.0;
-    final labelFontSize = isTablet ? 20.0 : 20.0;
     final buttonFontSize = isTablet ? 20.0 : 16.0;
     return Scaffold(
       backgroundColor: AppColors.white,
@@ -53,7 +46,7 @@ class _TravelFormScreenState extends State<TravelFormScreen> {
         backgroundColor: AppColors.background,
         iconTheme: IconThemeData(color: AppColors.primary),
         title: Text(
-          'Submit Leave',
+          'Travel Request',
           style: ThemeService.appBar.copyWith(
             color: AppColors.primary,
             fontSize: isTablet ? 24 : 20,

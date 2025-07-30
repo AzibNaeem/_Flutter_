@@ -2,14 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:hris_project/presentation/screens/Travel/travel_plan.dart';
 import 'package:hris_project/presentation/screens/experience/employee_experience.dart';
 import 'package:hris_project/presentation/screens/feedback_screen/feedback_screen.dart';
-import 'package:hris_project/presentation/screens/hcd_portal/hcd_screen.dart';
+import 'package:hris_project/presentation/screens/hcd_portal_screen/hcd_portal_screen.dart';
 import 'package:hris_project/presentation/screens/late_sitting_screen/late_sitting_screen.dart';
 import 'package:hris_project/presentation/screens/rewards/rewards_screen.dart';
 import 'package:hris_project/presentation/screens/team/team_screen.dart';
 import 'package:hris_project/presentation/view_model/all_teams_view_model/all_teams_vm.dart';
 import 'package:hris_project/presentation/view_model/rewards_view_model/rewards_view_model.dart';
 import 'package:provider/provider.dart';
-
 import 'screens/login_screen/login_screen.dart';
 import 'screens/dashboard/dashboard_screen.dart';
 import 'screens/employee/employee_directory_screen.dart';
@@ -26,8 +25,7 @@ class AppRoutes {
   static const String attendanceLeaves = '/attendance-leaves';
   static const String submitLeaves='/submitLeave';
   static const String travelPlan='/travel-plan-submit';
-  static const String hcdPortal = '/hcdPortal';
-
+  static const String hcd = '/hcd';
   static const String experience = '/experience';
   static const String myTeams = '/my-teams';
   static const String rewards = '/rewards';
@@ -39,10 +37,6 @@ class AppRoutes {
         return MaterialPageRoute(builder: (_) => const LoginScreen());
 
       case dashboard:
-      // final user = settings.arguments;
-      // if (user is! LoginUser) {
-      //   return _errorRoute('Missing or invalid user for dashboard.');
-      // }
         return MaterialPageRoute(
           builder: (_) => DashboardScreen(),
         );
@@ -92,14 +86,9 @@ class AppRoutes {
       return MaterialPageRoute(builder: (_) => const LateSittingScreen());
       case '/feedback':
         return MaterialPageRoute(builder: (_) => const FeedbackScreen());
+      case '/hcd':
+        return MaterialPageRoute(builder: (_) => const HCDPortalScreen());
 
-
-
-
-      case hcdPortal:
-        return MaterialPageRoute(
-          builder: (_) => const MenuScreen(), // or your actual screen
-        );
 
       default:
         return _errorRoute('Route not found: ${settings.name}');

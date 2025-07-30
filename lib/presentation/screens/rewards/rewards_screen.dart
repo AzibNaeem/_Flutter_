@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import '../../../domain/providers/user_provider.dart';
 import '../../theme/app_theme.dart';
 import '../../view_model/rewards_view_model/rewards_view_model.dart';
+import '../../widgets/shimmer/feedback_shimmer.dart';
 
 class RewardsScreen extends StatefulWidget {
   const RewardsScreen({super.key});
@@ -68,7 +69,7 @@ class _RewardsScreenState extends State<RewardsScreen> {
         ),
       )
           : rewardViewModel.isLoading
-          ? const Center(child: CircularProgressIndicator())
+          ?const FeedbackShimmer()
           : rewardViewModel.error != null
           ? Center(
         child: Text(

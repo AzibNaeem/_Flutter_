@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import '../../../domain/providers/user_provider.dart';
 import '../../theme/app_theme.dart';
 import '../../view_model/feedback/feedback_view_model.dart';
+import '../../widgets/shimmer/feedback_shimmer.dart';
 
 class FeedbackScreen extends StatefulWidget {
   const FeedbackScreen({super.key});
@@ -35,7 +36,7 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
         title: Text("Feedback Form", style: TextStyle(color: AppColors.primary),),
       ),
       body: feedbackVm.isLoading
-          ? const Center(child: CircularProgressIndicator())
+          ? const FeedbackShimmer()
           : Padding(
         padding: const EdgeInsets.all(16.0),
         child: SingleChildScrollView(

@@ -50,8 +50,7 @@ class DrawerMenuList extends StatelessWidget {
         title: 'HCD Portal',
         onTap: () {
           Navigator.pop(context);
-          Navigator.pushNamed(context, '/hcdPortal');
-          Navigator.pushNamed(context, '/hcdPortal', arguments: user);
+          Navigator.pushNamed(context, '/hcd');
         },
       ),
       DrawerMenuItemData(
@@ -77,7 +76,6 @@ class DrawerMenuList extends StatelessWidget {
         onTap: () {
           Navigator.pop(context);
           Navigator.pushNamed(context, '/feedback');
-
         },
       ),
       DrawerMenuItemData(
