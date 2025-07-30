@@ -75,7 +75,10 @@ class _SubmitLeaveScreenState extends State<SubmitLeaveScreen> {
       );
 
       try {
-        await Provider.of<LeaveViewModel>(context, listen: false,).submitLeave(request);
+        await Provider.of<SubmitLeavesViewModel>(
+          context,
+          listen: false,
+        ).submitLeave(request);
 
         // Close loading spinner
         Navigator.of(context).pop();

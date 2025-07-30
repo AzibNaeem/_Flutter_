@@ -1,20 +1,29 @@
-import 'package:http/http.dart' as http;
 import 'dart:convert';
+import 'package:http/http.dart' as http;
 import '../../../../data/models/leave_request.dart';
-import '../../../../core/API/api_constants.dart';
 
-class LeaveApiService {
-  Future<void> submitLeave(LeaveRequest request) async {
-    final response = await http.post(
-      Uri.parse(ApiConstants.leaveRequestsEndpoint),
-      headers: {'Content-Type': 'application/json'},
-      body: jsonEncode(request.toJson()),
-    );
+class SubmitLeavesService {
+  final String baseUrl = 'https://merry-in-martin.ngrok-free.app';
 
-    if (response.statusCode != 201) {
-      throw Exception('Failed to submit leave');
+  Future<bool> submitLeave(LeaveRequest request) async {
+    final url = Uri.parse('$baseUrl/submit_leave');
+
+    try {
+      final response = await http.post(
+        url,
+        headers: {'Content-Type': 'application/json'},
+        body: jsonEncode(request.toJson()),
+      );
+
+      if (response.statusCode == 200) {
+        return true;
+      } else {
+        print('❌ Failed to submit leave: ${response.body}');
+        return false;
+      }
+    } catch (e) {
+      print('❌ Exception occurred: $e');
+      return false;
     }
   }
-
-
 }

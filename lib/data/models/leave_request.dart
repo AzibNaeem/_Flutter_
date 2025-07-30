@@ -1,10 +1,11 @@
+import 'package:intl/intl.dart';
+
 class LeaveRequest {
   final String employeeId;
   final String leaveType;
   final DateTime startDate;
   final DateTime endDate;
   final String reason;
- // final String? id;
 
   LeaveRequest({
     required this.employeeId,
@@ -12,26 +13,15 @@ class LeaveRequest {
     required this.startDate,
     required this.endDate,
     required this.reason,
-   // this.id,
   });
 
-  factory LeaveRequest.fromJson(Map<String, dynamic> json) {
-    return LeaveRequest(
-      employeeId: json['employeeId'],
-      leaveType: json['leaveType'],
-      startDate: DateTime.fromMillisecondsSinceEpoch(json['startDate'] * 1000),
-      endDate: DateTime.fromMillisecondsSinceEpoch(json['endDate'] * 1000),
-      reason: json['reason'],
-     // id: json['id'],
-    );
-  }
-
   Map<String, dynamic> toJson() {
+    final formatter = DateFormat('yyyy-MM-dd');
     return {
-      'employeeId': employeeId,
-      'leaveType': leaveType,
-      'startDate': (startDate.millisecondsSinceEpoch / 1000).round(),
-      'endDate': (endDate.millisecondsSinceEpoch / 1000).round(),
+      'employee_id': employeeId,
+      'leave_type': leaveType,
+      'start_date': formatter.format(startDate),
+      'end_date': formatter.format(endDate),
       'reason': reason,
     };
   }

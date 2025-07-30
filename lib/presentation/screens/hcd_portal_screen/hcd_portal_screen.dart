@@ -24,7 +24,7 @@ class _HCDPortalScreenState extends State<HCDPortalScreen> {
     return Scaffold(
       backgroundColor: AppColors.white,
       appBar: AppBar(
-        title: const Text('HCD Portal'),
+        title: const Text('HCD Portal', style: TextStyle(fontWeight: FontWeight.bold),),
         backgroundColor: AppColors.background,
         foregroundColor: AppColors.primary,
         elevation: 0,

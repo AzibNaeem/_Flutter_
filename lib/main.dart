@@ -3,6 +3,7 @@ import 'package:hris_project/presentation/view_model/attendance_view_model/atten
 import 'package:hris_project/presentation/view_model/feedback/feedback_view_model.dart';
 import 'package:hris_project/presentation/view_model/hcd_portal_view_model/hcd_portal_view_model.dart';
 import 'package:hris_project/presentation/view_model/late_sitting_view_model/late_sitting_vm.dart';
+import 'package:hris_project/presentation/view_model/leaves_view_model/submit_leaves_view_model/submit_leave_view_model.dart';
 import 'package:hris_project/presentation/view_model/login_authorization_view_model/login_auth_view_model.dart';
 import 'package:provider/provider.dart';
 import 'domain/providers/user_provider.dart';
@@ -27,6 +28,7 @@ void main() async {
         ChangeNotifierProvider(create: (context) => LateSittingViewModel()),
         ChangeNotifierProvider(create: (context) => FeedbackViewModel()),
         ChangeNotifierProvider(create: (_) => HCDViewModel()),
+        ChangeNotifierProvider(create: (_) => SubmitLeavesViewModel()),
 
 
 

@@ -2,27 +2,21 @@ import 'package:flutter/material.dart';
 import '../../../../data/models/leave_request.dart';
 import '../../../../domain/services/leaves/submit_leaves/submit_leave_service.dart';
 
-class LeaveViewModel extends ChangeNotifier {
-  final LeaveApiService _leaveService = LeaveApiService();
-  List<LeaveRequest> _leaveRequests = [];
-  List<LeaveRequest> get leaveRequests => _leaveRequests;
+class SubmitLeavesViewModel extends ChangeNotifier {
+  final SubmitLeavesService _service = SubmitLeavesService();
 
-  /// Submit leave request to the API
-  Future<void> submitLeave(LeaveRequest request) async {
-    try {
-      await _leaveService.submitLeave(request);
-      // await loadLeaves(request.employeeId);
-    } catch (e) {
-      rethrow;
-    }
+  bool _isLoading = false;
+  bool get isLoading => _isLoading;
+
+  Future<bool> submitLeave(LeaveRequest request) async {
+    _isLoading = true;
+    notifyListeners();
+
+    final success = await _service.submitLeave(request);
+
+    _isLoading = false;
+    notifyListeners();
+
+    return success;
   }
-  /// Fetch leaves for the logged-in employee
-  // Future<void> loadLeaves(String employeeId) async {
-  //   try {
-  //     _leaveRequests = await _leaveService.getLeavesByEmployee(employeeId);
-  //     notifyListeners();
-  //   } catch (e) {
-  //     rethrow;
-  //   }
-  // }
 }
