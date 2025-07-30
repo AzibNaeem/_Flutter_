@@ -6,10 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="bd95bbe7-a721-4933-af72-b8fdbc6a5d8f" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/data/models/leave.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/data/models/leave.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/presentation/screens/attendance/attendance_leaves_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/presentation/screens/attendance/attendance_leaves_screen.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/presentation/screens/submit_leaves/submit_leave_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/presentation/screens/submit_leaves/submit_leave_screen.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/presentation/widgets/leaves_card.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/presentation/widgets/leaves_card.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/data/models/travel_request.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/data/models/travel_request.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/domain/services/Travel/travel_service.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/domain/services/Travel/travel_service.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/presentation/screens/Travel/travel_plan.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/presentation/screens/Travel/travel_plan.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/presentation/view_model/travel_view_model/travel_view_model.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/presentation/view_model/travel_view_model/travel_view_model.dart" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

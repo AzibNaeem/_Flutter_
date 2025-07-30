@@ -1,13 +1,11 @@
-
 import 'package:flutter/material.dart';
-import 'package:hris_project/domain/services/Travel/travel_service.dart';
 import '../../../data/models/travel_request.dart';
+import '../../../domain/services/Travel/travel_service.dart';
 
+class TravelRequestViewModel extends ChangeNotifier {
+  final TravelRequestService _service = TravelRequestService();
 
-class TravelViewModel with ChangeNotifier {
-  final TravelPlanService _apiService = TravelPlanService();
-
-  Future<void> submitTravelPlan(TravelRequest travel) async {
-    await _apiService.submitTravelPlan(travel);
+  Future<bool> submitTravel(TravelRequestModel model) async {
+    return await _service.submitTravelRequest(model);
   }
 }
