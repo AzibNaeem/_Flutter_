@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../../data/models/attendance_day.dart';
+import '../../../data/models/leave.dart';
 import '../../../domain/providers/user_provider.dart';
 import '../../view_model/attendance_view_model/attendance_view_model.dart';
 import '../../view_model/leaves_view_model/leaves_vm/leave_json_view_model.dart';
@@ -25,7 +26,9 @@ class _AttendanceLeavesScreenState extends State<AttendanceLeavesScreen> {
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      final user = Provider.of<UserProvider>(context, listen: false).user;
+      final user = Provider
+          .of<UserProvider>(context, listen: false)
+          .user;
       if (user != null) {
         context.read<AttendanceViewModel>().loadAttendance(user.employeeId);
         context.read<LeaveViewModel>().loadLeaves(user.employeeId);
@@ -36,7 +39,9 @@ class _AttendanceLeavesScreenState extends State<AttendanceLeavesScreen> {
   @override
   Widget build(BuildContext context) {
     AppColors.init(context);
-    final size = MediaQuery.of(context).size;
+    final size = MediaQuery
+        .of(context)
+        .size;
     final isTablet = size.width > 600;
     final padding = isTablet ? 32.0 : 16.0;
     final titleFontSize = isTablet ? 22.0 : 18.0;
@@ -68,15 +73,18 @@ class _AttendanceLeavesScreenState extends State<AttendanceLeavesScreen> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             // Left Column - Attendance
-            Expanded(child: _buildAttendanceSection(attendanceVM, attendanceData, titleFontSize)),
+            Expanded(child: _buildAttendanceSection(
+                attendanceVM, attendanceData, titleFontSize)),
             const SizedBox(width: 24),
             // Right Column - Leaves
-            Expanded(child: _buildLeaveSection(isLeavesLoading, leavesData, titleFontSize)),
+            Expanded(child: _buildLeaveSection(
+                isLeavesLoading, leavesData, titleFontSize)),
           ],
         )
             : ListView(
           children: [
-            _buildAttendanceSection(attendanceVM, attendanceData, titleFontSize),
+            _buildAttendanceSection(
+                attendanceVM, attendanceData, titleFontSize),
             const SizedBox(height: 24),
             _buildLeaveSection(isLeavesLoading, leavesData, titleFontSize),
           ],
@@ -85,15 +93,18 @@ class _AttendanceLeavesScreenState extends State<AttendanceLeavesScreen> {
     );
   }
 
-  Widget _buildAttendanceSection(AttendanceViewModel vm, List attendanceData, double titleFontSize) {
+  Widget _buildAttendanceSection(AttendanceViewModel vm, List attendanceData,
+      double titleFontSize) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Row(
           children: [
-            Expanded(child: _buildDateCard(label: 'From', date: vm.fromDate, onPick: vm.setFromDate)),
+            Expanded(child: _buildDateCard(
+                label: 'From', date: vm.fromDate, onPick: vm.setFromDate)),
             const SizedBox(width: 8),
-            Expanded(child: _buildDateCard(label: 'To', date: vm.toDate, onPick: vm.setToDate)),
+            Expanded(child: _buildDateCard(
+                label: 'To', date: vm.toDate, onPick: vm.setToDate)),
           ],
         ),
         const SizedBox(height: 8),
@@ -107,15 +118,18 @@ class _AttendanceLeavesScreenState extends State<AttendanceLeavesScreen> {
         const SizedBox(height: 8),
         if (vm.isLoading)
           const AttendanceCalendarShimmer()
-        else if (attendanceData.isEmpty)
-          const Center(child: Text("No attendance data available."))
         else
-         AttendanceCalendar(attendanceDays: attendanceData.cast<AttendanceDay>()),
+          if (attendanceData.isEmpty)
+            const Center(child: Text("No attendance data available."))
+          else
+            AttendanceCalendar(
+                attendanceDays: attendanceData.cast<AttendanceDay>()),
       ],
     );
   }
 
-  Widget _buildDateCard({required String label, DateTime? date, required Function(DateTime) onPick}) {
+  Widget _buildDateCard(
+      {required String label, DateTime? date, required Function(DateTime) onPick}) {
     return Card(
       color: Colors.white,
       elevation: 4,
@@ -139,7 +153,8 @@ class _AttendanceLeavesScreenState extends State<AttendanceLeavesScreen> {
     );
   }
 
-  Widget _buildLeaveSection(bool isLoading, List leavesData, double titleFontSize) {
+  Widget _buildLeaveSection(bool isLoading, List<LeaveItem> leavesData,
+      double titleFontSize) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -153,17 +168,25 @@ class _AttendanceLeavesScreenState extends State<AttendanceLeavesScreen> {
         const SizedBox(height: 8),
         if (isLoading)
           const Center(child: CircularProgressIndicator())
-        else if (leavesData.isEmpty)
-          const Center(child: Text("No leave data available."))
         else
-          LeavesCard(
-            leaves: leavesData.map((leave) {
-              return LeaveItemData(
-                date: leave.date,
-                reason: '${leave.type} (${leave.status})',
-              );
-            }).toList(),
-          ),
+          if (leavesData.isEmpty)
+            const Center(child: Text("No leave data available."))
+          else
+            LeavesCard(
+              leaves: (leavesData).map<LeaveItemData>((LeaveItem leave) {
+                final isSingleDay = leave.startDate == leave.endDate;
+                final formattedDate = isSingleDay
+                    ? leave.startDate
+                    : '${leave.startDate} to ${leave.endDate}';
+
+                return LeaveItemData(
+                  date: formattedDate,
+                  reason: '${leave.leaveType} (Submitted on ${leave.submittedAt
+                      .split("T")
+                      .first})',
+                );
+              }).toList(),
+            ),
       ],
     );
   }

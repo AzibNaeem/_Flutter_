@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../../data/models/leave_request.dart';
 import '../../../data/models/leave_type.dart';
+import '../../../domain/providers/user_provider.dart';
 import '../../theme/app_theme.dart';
 import '../../view_model/leaves_view_model/submit_leaves_view_model/submit_leave_view_model.dart';
 import '../../widgets/submit_leave_widgets/datePicker_Tile.dart';
@@ -59,15 +60,25 @@ class _SubmitLeaveScreenState extends State<SubmitLeaveScreen> {
     if (_formKey.currentState!.validate() &&
         _startDate != null &&
         _endDate != null) {
+      final userProvider = Provider.of<UserProvider>(context, listen: false);
+      final employeeId = userProvider.user?.employeeId ?? '';
+
+      if (employeeId.isEmpty) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text('Error: Employee ID not found')),
+        );
+        return;
+      }
+
       final request = LeaveRequest(
-        employeeId: "1234",
+        employeeId: employeeId,
         leaveType: _leaveType.label,
         startDate: _startDate!,
         endDate: _endDate!,
         reason: _reason,
       );
 
-      // Show loading while submitting
+      // Show loading spinner
       showDialog(
         context: context,
         barrierDismissible: false,
@@ -80,21 +91,21 @@ class _SubmitLeaveScreenState extends State<SubmitLeaveScreen> {
           listen: false,
         ).submitLeave(request);
 
-        // Close loading spinner
-        Navigator.of(context).pop();
-
+        Navigator.of(context).pop(); // Close loading
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(content: Text('Leave submitted successfully')),
         );
-        Navigator.pop(context); // Go back to previous screen
+
+        Navigator.pop(context); // Go back
       } catch (e) {
-        Navigator.of(context).pop(); // Close loading spinner
-        ScaffoldMessenger.of(
-          context,
-        ).showSnackBar(SnackBar(content: Text('Error: ${e.toString()}')));
+        Navigator.of(context).pop(); // Close loading
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Error: ${e.toString()}')),
+        );
       }
     }
   }
+
 
   @override
   Widget build(BuildContext context) {

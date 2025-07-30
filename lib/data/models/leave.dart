@@ -1,19 +1,28 @@
 class LeaveItem {
-  final String type;
-  final String date;
-  final String status;
+  final String employeeId;
+  final String leaveType;
+  final String startDate;
+  final String endDate;
+  final String reason;
+  final String submittedAt;
 
   LeaveItem({
-    required this.type,
-    required this.date,
-    required this.status,
+    required this.employeeId,
+    required this.leaveType,
+    required this.startDate,
+    required this.endDate,
+    required this.reason,
+    required this.submittedAt,
   });
 
   factory LeaveItem.fromJson(Map<String, dynamic> json) {
     return LeaveItem(
-      type: json['type'],
-      date: json['date'],
-      status: json['status'],
+      employeeId: json['employee_id'],
+      leaveType: json['leave_type'],
+      startDate: json['start_date'],
+      endDate: json['end_date'],
+      reason: json['reason'],
+      submittedAt: json['submitted_at'],
     );
   }
 }
