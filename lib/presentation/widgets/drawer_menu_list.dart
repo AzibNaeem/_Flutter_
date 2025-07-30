@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:hris_project/presentation/widgets/drawer_menu_item.dart';
 import 'package:hris_project/data/models/login_user.dart';
 
-import '../routes.dart';
-
 class DrawerMenuList extends StatelessWidget {
   final BuildContext context;
   final LoginUser user;
@@ -62,14 +60,14 @@ class DrawerMenuList extends StatelessWidget {
         },
       ),
 
-      DrawerMenuItemData(
-        icon: Icons.bar_chart,
-        title: 'Reports',
-        onTap: () {
-          Navigator.pop(context);
-          Navigator.pushNamed(context, '/reports', arguments: user);
-        },
-      ),
+      // DrawerMenuItemData(
+      //   icon: Icons.bar_chart,
+      //   title: 'Reports',
+      //   onTap: () {
+      //     Navigator.pop(context);
+      //     Navigator.pushNamed(context, '/reports', arguments: user);
+      //   },
+      // ),
       DrawerMenuItemData(
         icon: Icons.show_chart,
         title: 'CFS',
@@ -78,14 +76,14 @@ class DrawerMenuList extends StatelessWidget {
           Navigator.pushNamed(context, '/feedback');
         },
       ),
-      DrawerMenuItemData(
-        icon: Icons.assignment_turned_in,
-        title: 'TNA',
-        onTap: () {
-          Navigator.pop(context);
-          Navigator.pushNamed(context, '/tna', arguments: user);
-        },
-      ),
+      // DrawerMenuItemData(
+      //   icon: Icons.assignment_turned_in,
+      //   title: 'TNA',
+      //   onTap: () {
+      //     Navigator.pop(context);
+      //     Navigator.pushNamed(context, '/tna', arguments: user);
+      //   },
+      // ),
     ];
 
     // ✅ Convert to widgets

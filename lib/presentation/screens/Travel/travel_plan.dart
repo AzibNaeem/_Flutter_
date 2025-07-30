@@ -78,7 +78,7 @@ class _TravelFormScreenState extends State<TravelFormScreen> {
       if (success) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-            content: Text('✅ Travel request submitted successfully'),
+            content: Text('✅ Travel request submitted successfully', style: TextStyle(color: AppColors.white),),
             backgroundColor: AppColors.primary,
             behavior: SnackBarBehavior.floating,
           ),
